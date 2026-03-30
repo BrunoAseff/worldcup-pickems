@@ -3,6 +3,9 @@ export const routes = {
   groupStage: "/fase-de-grupos",
   knockout: "/mata-mata",
   ranking: "/ranking",
+  api: {
+    groupStagePredictions: "/api/group-stage-predictions",
+  },
 } as const;
 
 export type PrimaryRouteKey = "groupStage" | "knockout" | "ranking";

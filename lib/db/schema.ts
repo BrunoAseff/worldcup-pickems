@@ -151,3 +151,25 @@ export const matches = pgTable(
     uniqueIndex("matches_bracket_code_idx").on(table.bracketCode),
   ],
 );
+
+export const matchPredictions = pgTable(
+  "match_predictions",
+  {
+    id: uuid("id").defaultRandom().primaryKey(),
+    userId: uuid("user_id")
+      .notNull()
+      .references(() => users.id, { onDelete: "cascade" }),
+    matchId: uuid("match_id")
+      .notNull()
+      .references(() => matches.id, { onDelete: "cascade" }),
+    predictedHomeScore: integer("predicted_home_score").notNull(),
+    predictedAwayScore: integer("predicted_away_score").notNull(),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+    updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [
+    uniqueIndex("match_predictions_user_match_idx").on(table.userId, table.matchId),
+    index("match_predictions_user_id_idx").on(table.userId),
+    index("match_predictions_match_id_idx").on(table.matchId),
+  ],
+);
