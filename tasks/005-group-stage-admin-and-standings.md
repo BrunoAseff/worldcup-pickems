@@ -9,8 +9,8 @@ Enable admin result entry for the group stage and derive official standings corr
 - admin result-entry mode inside the shared group-stage route
 - official result persistence
 - standings calculation
-- qualification calculation
-- manual recalculation trigger entry point
+- group-stage qualification status inside each group
+- manual recalculation trigger entry point and persisted standings foundation
 
 ## Rules Source
 
@@ -33,15 +33,20 @@ Standings and best-third ranking must follow Article 13 exactly.
 
 - admin result-entry flow inside the shared group-stage screen
 - standings calculation module
-- qualification derivation module
+- persisted group standings snapshot after manual recalculation
 - safe recalculation trigger foundation
 
 ## Acceptance Criteria
 
 - entering official results updates derived standings after recalculation
 - standings follow Article 13 rules, not assumptions
-- qualification results are reproducible from persisted official results
+- group standings are reproducible from persisted official results
 - player predictions never affect official standings
+
+## Notes
+
+- exact ranking of the 12 third-placed teams and selection of the best 8 is completed in the knockout-stage pipeline task
+- round-of-32 allocation from Annexe C belongs to Task `006`
 
 ## Dependencies
 
