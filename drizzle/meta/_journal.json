@@ -8,6 +8,13 @@
       "when": 1774846875794,
       "tag": "0000_abandoned_mister_fear",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1774877164472,
+      "tag": "0001_early_mandarin",
+      "breakpoints": true
     }
   ]
 }
