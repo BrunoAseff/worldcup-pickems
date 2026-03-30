@@ -12,9 +12,10 @@
 ### Admin
 
 - can log in
+- uses the same 3 product routes as players
 - can enter official results
 - can trigger recalculation
-- does not use admin routes for prediction entry
+- does not use separate admin routes for prediction entry
 
 ## Domain Concepts
 

@@ -1,6 +1,7 @@
 import {
   boolean,
   integer,
+  index,
   pgEnum,
   pgTable,
   text,
@@ -27,6 +28,8 @@ export const participantSourceTypeEnum = pgEnum("participant_source_type", [
   "match_winner",
   "match_loser",
 ]);
+
+export const userRoleEnum = pgEnum("user_role", ["player", "admin"]);
 
 export const teams = pgTable(
   "teams",
@@ -86,6 +89,39 @@ export const venues = pgTable(
   (table) => [uniqueIndex("venues_code_idx").on(table.code)],
 );
 
+export const users = pgTable(
+  "users",
+  {
+    id: uuid("id").defaultRandom().primaryKey(),
+    username: varchar("username", { length: 64 }).notNull(),
+    displayName: text("display_name").notNull(),
+    passwordHash: text("password_hash").notNull(),
+    role: userRoleEnum("role").notNull().default("player"),
+    isActive: boolean("is_active").notNull().default(true),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+    updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [uniqueIndex("users_username_idx").on(table.username)],
+);
+
+export const sessions = pgTable(
+  "sessions",
+  {
+    id: uuid("id").defaultRandom().primaryKey(),
+    userId: uuid("user_id")
+      .notNull()
+      .references(() => users.id, { onDelete: "cascade" }),
+    tokenHash: varchar("token_hash", { length: 64 }).notNull(),
+    expiresAt: timestamp("expires_at", { withTimezone: true }).notNull(),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+    updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [
+    uniqueIndex("sessions_token_hash_idx").on(table.tokenHash),
+    index("sessions_user_id_idx").on(table.userId),
+  ],
+);
+
 export const matches = pgTable(
   "matches",
   {
@@ -113,5 +149,27 @@ export const matches = pgTable(
   (table) => [
     uniqueIndex("matches_match_number_idx").on(table.matchNumber),
     uniqueIndex("matches_bracket_code_idx").on(table.bracketCode),
+  ],
+);
+
+export const matchPredictions = pgTable(
+  "match_predictions",
+  {
+    id: uuid("id").defaultRandom().primaryKey(),
+    userId: uuid("user_id")
+      .notNull()
+      .references(() => users.id, { onDelete: "cascade" }),
+    matchId: uuid("match_id")
+      .notNull()
+      .references(() => matches.id, { onDelete: "cascade" }),
+    predictedHomeScore: integer("predicted_home_score").notNull(),
+    predictedAwayScore: integer("predicted_away_score").notNull(),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+    updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [
+    uniqueIndex("match_predictions_user_match_idx").on(table.userId, table.matchId),
+    index("match_predictions_user_id_idx").on(table.userId),
+    index("match_predictions_match_id_idx").on(table.matchId),
   ],
 );

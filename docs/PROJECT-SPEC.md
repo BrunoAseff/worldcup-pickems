@@ -19,6 +19,12 @@ The app has 3 main user-facing areas:
 - knockout stage
 - ranking
 
+These three routes are shared by every authenticated user:
+
+- `/fase-de-grupos`
+- `/mata-mata`
+- `/ranking`
+
 There are 2 user roles:
 
 - `player`: submits predictions and sees ranking
@@ -113,8 +119,9 @@ There is no public signup, password reset, or account recovery flow. Users are i
 
 ## Admin Rules
 
-- Admin routes are separate from player routes.
-- Admin does not place predictions through admin result routes.
+- Admin does not have separate product routes.
+- Admin uses the same 3 main routes as every other authenticated user.
+- In group stage and knockout views, admin sees official-result controls instead of prediction inputs.
 - Admin enters official match results.
 - Admin triggers a deterministic recalculation pipeline manually.
 

@@ -6,7 +6,7 @@ Enable admin result entry for the group stage and derive official standings corr
 
 ## Scope
 
-- admin group-stage result UI
+- admin result-entry mode inside the shared group-stage route
 - official result persistence
 - standings calculation
 - qualification calculation
@@ -23,14 +23,15 @@ Standings and best-third ranking must follow Article 13 exactly.
 
 ## Requirements
 
-- admin UI is separate from player prediction UI
+- admin uses the same group-stage route as players
+- admin content inside that route is different from the player prediction content
 - admin enters real match results only
 - group-stage results do not include penalties
 - standings are derived exclusively from official results
 
 ## Deliverables
 
-- admin result-entry flow
+- admin result-entry flow inside the shared group-stage screen
 - standings calculation module
 - qualification derivation module
 - safe recalculation trigger foundation

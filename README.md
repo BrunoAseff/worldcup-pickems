@@ -68,6 +68,7 @@ pnpm db:generate
 pnpm db:migrate
 pnpm db:push
 pnpm db:studio
+pnpm auth:create-user --username=admin --password=senha1234 --role=admin --name="Bruno"
 ```
 
 Se `pnpm db:studio` falhar, os dois problemas mais comuns são:
@@ -86,7 +87,12 @@ make db-logs
 make db-reset
 make db-push
 make db-studio
+make fresh
 ```
+
+`make fresh` recria o banco local do zero, aplica as migrations e roda os seeders.
+
+Depois do bootstrap, crie manualmente os usuarios com `pnpm auth:create-user`.
 
 ## Documentação
 
