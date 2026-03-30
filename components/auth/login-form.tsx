@@ -100,7 +100,7 @@ export function LoginForm() {
       </div>
 
       {state.error ? (
-        <div className="rounded-lg border border-destructive/20 bg-destructive/8 px-3 py-2 text-sm text-destructive">
+        <div className="border border-destructive/20 bg-destructive/8 px-3 py-2 text-sm text-destructive">
           {state.error}
         </div>
       ) : null}

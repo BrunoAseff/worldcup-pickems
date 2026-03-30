@@ -16,22 +16,22 @@ type FloatingNavProps = {
 export function FloatingNav({ user, activeKey }: FloatingNavProps) {
   return (
     <div className="sticky top-4 z-40 mb-8 px-4">
-      <div className="mx-auto flex w-full max-w-6xl items-center justify-between gap-3 rounded-full border border-border bg-card/95 px-3 py-2 backdrop-blur">
+      <div className="mx-auto flex w-full max-w-6xl items-center justify-between gap-4 rounded-md border border-border bg-card/95 px-3 py-2 backdrop-blur">
         <div className="flex items-center">
-          <div className="flex size-9 items-center justify-center rounded-full bg-primary text-primary-foreground">
+          <div className="flex size-9 items-center justify-center rounded-sm border border-border bg-background text-foreground">
             <Trophy className="size-4" />
           </div>
         </div>
 
-        <nav className="flex items-center gap-1 rounded-full bg-muted p-1">
+        <nav className="flex items-center gap-1 rounded-sm bg-muted p-1">
           {primaryNavItems.map((item) => (
             <Link
               key={item.href}
               href={item.href}
               className={cn(
-                "rounded-full px-4 py-2 text-sm font-medium transition-colors",
+                "rounded-sm px-4 py-2 text-sm font-medium transition-colors",
                 activeKey === item.key
-                  ? "bg-card text-foreground"
+                  ? "bg-background text-foreground"
                   : "text-muted-foreground hover:text-foreground"
               )}
             >
@@ -41,12 +41,12 @@ export function FloatingNav({ user, activeKey }: FloatingNavProps) {
         </nav>
 
         <div className="flex items-center gap-2">
-          <div className="hidden items-center gap-2 rounded-full bg-secondary px-3 py-2 sm:flex">
+          <div className="hidden items-center gap-2 rounded-sm bg-secondary px-3 py-2 sm:flex">
             <UserCircle2 className="size-4 text-muted-foreground" />
             <span className="text-sm font-medium text-foreground">
               {user.displayName}
             </span>
-            <Badge variant="outline" className="rounded-full">
+            <Badge variant="outline">
               {user.role}
             </Badge>
           </div>
