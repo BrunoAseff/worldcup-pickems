@@ -33,6 +33,8 @@ pnpm install
 cp .env.example .env.local
 ```
 
+Os comandos do Drizzle CLI leem `.env.local` primeiro e depois `.env`.
+
 3. Suba o banco local:
 
 ```bash
@@ -68,6 +70,10 @@ pnpm db:push
 pnpm db:studio
 ```
 
+Se `pnpm db:studio` falhar, os dois problemas mais comuns sao:
+- `DATABASE_URL` ausente: confirme que `.env.local` existe.
+- banco local desligado: rode `make db-up`.
+
 ## Makefile
 
 ```bash
@@ -90,8 +96,9 @@ Leia nesta ordem:
 2. `docs/PROJECT-SPEC.md`
 3. `docs/BUSINESS-LOGIC.md`
 4. `docs/DATA-MODEL.md`
-5. `docs/UI-RULES.md`
-6. `docs/IMPLEMENTATION-RULES.md`
+5. `docs/IMPORT-ASSUMPTIONS.md`
+6. `docs/UI-RULES.md`
+7. `docs/IMPLEMENTATION-RULES.md`
 
 ## Dados locais
 

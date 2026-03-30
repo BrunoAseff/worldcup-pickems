@@ -6,8 +6,9 @@ Read these files in this order:
 2. `docs/PROJECT-SPEC.md`
 3. `docs/BUSINESS-LOGIC.md`
 4. `docs/DATA-MODEL.md`
-5. `docs/UI-RULES.md`
-6. `docs/IMPLEMENTATION-RULES.md`
+5. `docs/IMPORT-ASSUMPTIONS.md`
+6. `docs/UI-RULES.md`
+7. `docs/IMPLEMENTATION-RULES.md`
 
 ## Purpose Of Each File
 
@@ -15,6 +16,7 @@ Read these files in this order:
 - `PROJECT-SPEC.md`: product scope, hard rules, and high-level decisions
 - `BUSINESS-LOGIC.md`: prediction, scoring, locking, and role behavior
 - `DATA-MODEL.md`: intended schema direction and modeling constraints
+- `IMPORT-ASSUMPTIONS.md`: current normalization and source-data assumptions
 - `UI-RULES.md`: layout, interaction, and feedback rules
 - `IMPLEMENTATION-RULES.md`: engineering constraints and agent execution boundaries
 
