@@ -1,4 +1,4 @@
-import "dotenv/config";
+import "./lib/load-env";
 import { getNormalizedTeams } from "./lib/tournament-source";
 
 const isDryRun = process.argv.includes("--dry-run");
@@ -20,22 +20,26 @@ const main = async () => {
     return;
   }
 
-  const [{ db }, { teams }] = await Promise.all([
+  const [{ db, postgresClient }, { teams }] = await Promise.all([
     import("@/lib/db/client"),
     import("@/lib/db/schema"),
   ]);
 
-  for (const value of values) {
-    await db
-      .insert(teams)
-      .values(value)
-      .onConflictDoUpdate({
-        target: teams.code,
-        set: value,
-      });
-  }
+  try {
+    for (const value of values) {
+      await db
+        .insert(teams)
+        .values(value)
+        .onConflictDoUpdate({
+          target: teams.code,
+          set: value,
+        });
+    }
 
-  console.log(`Seeded ${values.length} teams`);
+    console.log(`Seeded ${values.length} teams`);
+  } finally {
+    await postgresClient.end();
+  }
 };
 
 main().catch((error) => {
