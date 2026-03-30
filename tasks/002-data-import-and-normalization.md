@@ -2,7 +2,7 @@
 
 ## Goal
 
-Transform `copa_do_mundo_2026.csv` into a normalized database model with rerunnable seeds.
+Transform `data/copa_do_mundo_2026.csv` into a normalized database model with rerunnable seeds.
 
 ## Scope
 
