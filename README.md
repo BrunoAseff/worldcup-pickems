@@ -1,36 +1,100 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# World Cup Pick'ems
 
-## Getting Started
+Bolão privado da Copa do Mundo 2026 feito com Next.js, shadcn/ui e Drizzle.
 
-First, run the development server:
+## Stack
+
+- Next.js 16
+- React 19
+- Tailwind CSS 4
+- shadcn/ui
+- Drizzle ORM
+- Postgres 17
+- Zod
+- pnpm
+
+## Requisitos
+
+- Node.js 20+
+- pnpm 10+
+- Docker
+
+## Setup
+
+1. Instale as dependências:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+pnpm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Crie o arquivo de ambiente:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+cp .env.example .env.local
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+3. Suba o banco local:
 
-## Learn More
+```bash
+make db-up
+```
 
-To learn more about Next.js, take a look at the following resources:
+4. Rode a aplicação:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+pnpm dev
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Banco local
 
-## Deploy on Vercel
+O ambiente local usa Postgres 17 via Docker com esta URL padrão:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```bash
+postgres://postgres:postgres@localhost:5432/worldcup_pickems
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Para produção, a Vercel deve fornecer `DATABASE_URL` apontando para o Neon.
+
+## Scripts
+
+```bash
+pnpm dev
+pnpm build
+pnpm start
+pnpm lint
+pnpm db:generate
+pnpm db:migrate
+pnpm db:push
+pnpm db:studio
+```
+
+## Makefile
+
+```bash
+make install
+make dev
+make lint
+make db-up
+make db-down
+make db-logs
+make db-reset
+make db-push
+make db-studio
+```
+
+## Documentação
+
+Leia nesta ordem:
+
+1. `docs/RESEARCH-VALIDATION.md`
+2. `docs/PROJECT-SPEC.md`
+3. `docs/BUSINESS-LOGIC.md`
+4. `docs/DATA-MODEL.md`
+5. `docs/UI-RULES.md`
+6. `docs/IMPLEMENTATION-RULES.md`
+
+## Dados locais
+
+- `data/copa_do_mundo_2026.csv`
+- `data/matches.csv`
+- `FWC26_Competition Regulations_EN.pdf` e `references/` ficam locais e não devem ser versionados

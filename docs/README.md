@@ -20,9 +20,9 @@ Read these files in this order:
 
 ## Primary Sources
 
-- `FWC26_Competition Regulations_EN.pdf`: primary competition rules source
-- `copa_do_mundo_2026.csv`: local fixture/source data
-- `matches.csv`: local helper mapping for round-of-32 third-place candidate slots
+- `FWC26_Competition Regulations_EN.pdf`: primary competition rules source kept locally and not versioned
+- `data/copa_do_mundo_2026.csv`: local fixture/source data
+- `data/matches.csv`: local helper mapping for round-of-32 third-place candidate slots
 
 ## Tasks
 
