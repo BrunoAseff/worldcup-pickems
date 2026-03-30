@@ -53,6 +53,9 @@ importers:
       react-dom:
         specifier: 19.2.4
         version: 19.2.4(react@19.2.4)
+      react-flagpack:
+        specifier: ^2.0.6
+        version: 2.0.6(react@19.2.4)
       shadcn:
         specifier: ^4.1.1
         version: 4.1.1(@types/node@20.19.37)(typescript@5.9.3)
@@ -2743,6 +2746,10 @@ packages:
     resolution: {integrity: sha512-aisnrDP4GNe06UcKFnV5bfMNPBUw4jsLGaWwWfnH3v02GnBuXX2MCVn5RbrWo0j3pczUilYblq7fQ7Nw2t5XKw==}
     engines: {node: '>= 0.8'}
 
+  meow@13.2.0:
+    resolution: {integrity: sha512-pxQJQzB6djGPXh08dacEloMFopsOqGVRKFPYvPOt9XDZ1HasbgDZA74CJGreSU4G3Ak7EFJGoiH2auq+yXISgA==}
+    engines: {node: '>=18'}
+
   merge-descriptors@2.0.0:
     resolution: {integrity: sha512-Snk314V5ayFLhp3fkUREub6WtjBfPdCPY1Ln8/8munuLuiYhsABgBVWsozAG+MWMbVEvcdcpbi9R7ww22l9Q3g==}
     engines: {node: '>=18'}
@@ -3062,6 +3069,12 @@ packages:
     resolution: {integrity: sha512-AXJdLo8kgMbimY95O2aKQqsz2iWi9jMgKJhRBAxECE4IFxfcazB2LmzloIoibJI3C12IlY20+KFaLv+71bUJeQ==}
     peerDependencies:
       react: ^19.2.4
+
+  react-flagpack@2.0.6:
+    resolution: {integrity: sha512-ZLRC6u/d6AVTpMcFKZf2aSYPDmesPEzU084I99sU/Bcg32Jux6acE2bfHQnW2P/HYfSzx9YWwiNjJKxiW8OTGQ==}
+    hasBin: true
+    peerDependencies:
+      react: ^16.8.* || ^17.* || ^18.*
 
   react-is@16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
@@ -6086,6 +6099,8 @@ snapshots:
 
   media-typer@1.1.0: {}
 
+  meow@13.2.0: {}
+
   merge-descriptors@2.0.0: {}
 
   merge-stream@2.0.0: {}
@@ -6413,6 +6428,13 @@ snapshots:
     dependencies:
       react: 19.2.4
       scheduler: 0.27.0
+
+  react-flagpack@2.0.6(react@19.2.4):
+    dependencies:
+      chalk: 5.6.2
+      fs-extra: 11.3.4
+      meow: 13.2.0
+      react: 19.2.4
 
   react-is@16.13.1: {}
 
