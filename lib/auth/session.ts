@@ -4,6 +4,7 @@ import { cookies } from "next/headers";
 import { forbidden, redirect } from "next/navigation";
 import { db } from "@/lib/db/client";
 import { sessions, users } from "@/lib/db/schema";
+import { routes } from "@/lib/routes";
 import { SESSION_COOKIE_NAME, SESSION_DURATION_SECONDS } from "./constants";
 
 export type AuthenticatedUser = {
@@ -107,7 +108,7 @@ export const requireAuthenticatedUser = async () => {
   const session = await getCurrentSession();
 
   if (!session) {
-    redirect("/login");
+    redirect(routes.login);
   }
 
   return session.user;

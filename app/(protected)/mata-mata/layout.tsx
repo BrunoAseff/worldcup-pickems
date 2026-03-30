@@ -1,7 +1,7 @@
 import { requireAuthenticatedUser } from "@/lib/auth/session";
 import { FloatingNav } from "@/components/app/floating-nav";
 
-export default async function PredictionsLayout({
+export default async function KnockoutLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
@@ -10,7 +10,7 @@ export default async function PredictionsLayout({
 
   return (
     <>
-      <FloatingNav user={user} activeHref="/palpites" />
+      <FloatingNav user={user} activeKey="knockout" />
       {children}
     </>
   );

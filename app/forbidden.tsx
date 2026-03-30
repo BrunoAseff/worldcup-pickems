@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { routes } from "@/lib/routes";
 
 export default function ForbiddenPage() {
   return (
@@ -13,7 +14,7 @@ export default function ForbiddenPage() {
         </CardHeader>
         <CardContent>
           <Link
-            href="/ranking"
+            href={routes.ranking}
             className="inline-flex h-11 items-center justify-center rounded-lg bg-primary px-4 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
           >
             Voltar para o ranking

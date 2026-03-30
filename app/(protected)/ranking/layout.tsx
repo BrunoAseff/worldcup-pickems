@@ -10,7 +10,7 @@ export default async function RankingLayout({
 
   return (
     <>
-      <FloatingNav user={user} activeHref="/ranking" />
+      <FloatingNav user={user} activeKey="ranking" />
       {children}
     </>
   );
