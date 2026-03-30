@@ -9,7 +9,7 @@ const globalForDatabase = globalThis as typeof globalThis & {
 const client =
   globalForDatabase.postgresClient ??
   postgres(env.DATABASE_URL, {
-    max: 1,
+    max: 5,
     prepare: false,
   });
 
@@ -18,3 +18,4 @@ if (process.env.NODE_ENV !== "production") {
 }
 
 export const db = drizzle(client);
+export const postgresClient = client;
