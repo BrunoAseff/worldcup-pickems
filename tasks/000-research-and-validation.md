@@ -33,7 +33,7 @@ Use authoritative sources whenever possible:
 
 For the CSV review, use the local project file:
 
-- `copa_do_mundo_2026.csv`
+- `data/copa_do_mundo_2026.csv`
 
 ## Required Outputs
 

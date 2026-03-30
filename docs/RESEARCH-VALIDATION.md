@@ -8,7 +8,7 @@ Validate official FIFA 2026 tournament rules and local CSV assumptions before im
 
 Primary regulation source used in this update:
 
-- `FWC26_Competition Regulations_EN.pdf` in the project root
+- `FWC26_Competition Regulations_EN.pdf` in the project root as a local non-versioned source
 
 ## Confirmed Facts
 
@@ -149,8 +149,8 @@ This means the correct implementation approach is:
 
 File reviewed:
 
-- `copa_do_mundo_2026.csv`
-- `matches.csv`
+- `data/copa_do_mundo_2026.csv`
+- `data/matches.csv`
 - `FWC26_Competition Regulations_EN.pdf`
 
 ### Reliable Structure
@@ -173,7 +173,7 @@ These parts look structurally reliable:
   - `Playoff Intercontinental 1-2`
   - `1º A`, `2º B`, `3º CEFHI`
   - `Venc. Oitavas 1`, `Perd. Semifinal 2`
-- `matches.csv` confirms which round-of-32 slots are reserved for group winners that will face one of several possible third-placed teams
+- `data/matches.csv` confirms which round-of-32 slots are reserved for group winners that will face one of several possible third-placed teams
 
 ### Normalization Still Required
 
@@ -203,9 +203,9 @@ Recommended separation:
 - bracket slot reference metadata on `matches`
 - optional placeholder teams only where a future real team truly replaces the placeholder identity
 
-### What `matches.csv` Adds
+### What `data/matches.csv` Adds
 
-`matches.csv` is useful because it makes 8 specific round-of-32 winner slots explicit:
+`data/matches.csv` is useful because it makes 8 specific round-of-32 winner slots explicit:
 
 - Match 74: `1º Grupo E` vs a third-placed qualifier from `A/B/C/D/F`
 - Match 77: `1º Grupo I` vs a third-placed qualifier from `C/D/F/G/H`
@@ -219,7 +219,7 @@ Recommended separation:
 This is valuable seed input for bracket-slot metadata.
 
 However, this file still does not encode the full Annex C allocation table.
-The PDF regulations do encode that table formally, so `matches.csv` should be treated as helpful reference data, not the source of truth for the full mapping.
+The PDF regulations do encode that table formally, so `data/matches.csv` should be treated as helpful reference data, not the source of truth for the full mapping.
 
 ## Safe Assumptions For Implementation
 

@@ -23,6 +23,8 @@
 # misc
 .DS_Store
 *.pem
+FWC26_Competition Regulations_EN.pdf
+/references/
 
 # debug
 npm-debug.log*
