@@ -2,6 +2,7 @@
 
 import { and, eq } from "drizzle-orm";
 import { redirect } from "next/navigation";
+import { z } from "zod";
 import { loginSchema } from "@/lib/auth/login-schema";
 import { createUserSession, deleteCurrentSession } from "@/lib/auth/session";
 import { verifyPassword } from "@/lib/auth/password";
@@ -29,7 +30,7 @@ export const loginAction = async (
   if (!parsed.success) {
     return {
       error: "Revise os campos e tente novamente.",
-      fieldErrors: parsed.error.flatten().fieldErrors,
+      fieldErrors: z.flattenError(parsed.error).fieldErrors,
     };
   }
 
@@ -43,7 +44,7 @@ export const loginAction = async (
     .where(and(eq(users.username, username), eq(users.isActive, true)))
     .limit(1);
 
-  if (!user || !verifyPassword(parsed.data.password, user.passwordHash)) {
+  if (!user || !(await verifyPassword(parsed.data.password, user.passwordHash))) {
     return {
       error: "Usuário ou senha inválidos.",
       fieldErrors: {},

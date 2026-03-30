@@ -31,6 +31,9 @@ const formatKickoff = (scheduledAt: string) =>
   formatInTimeZone(new Date(scheduledAt), "America/Sao_Paulo", "dd/MM • HH:mm");
 
 export function MatchCard({ match, onPredictionChange }: MatchCardProps) {
+  const homeInputId = `${match.id}-home-score`;
+  const awayInputId = `${match.id}-away-score`;
+  const validationMessageId = `${match.id}-validation-message`;
   const [values, setValues] = useState({
     homeScore: match.prediction?.homeScore?.toString() ?? "",
     awayScore: match.prediction?.awayScore?.toString() ?? "",
@@ -38,10 +41,11 @@ export function MatchCard({ match, onPredictionChange }: MatchCardProps) {
   const [status, setStatus] = useState<SaveStatus>("idle");
   const [serverMessage, setServerMessage] = useState<string | null>(null);
   const [isPending, startTransition] = useTransition();
+  const [isLocked, setIsLocked] = useState(false);
   const saveTimerRef = useRef<number | null>(null);
   const saveVersionRef = useRef(0);
   const valuesRef = useRef(values);
-  const isLocked = match.isLocked;
+  const scheduledTimestamp = new Date(match.scheduledAt).getTime();
 
   const parsed = predictionInputSchema.safeParse(values);
   const bothEmpty = values.homeScore === "" && values.awayScore === "";
@@ -51,6 +55,20 @@ export function MatchCard({ match, onPredictionChange }: MatchCardProps) {
     : !bothEmpty && !bothFilled
       ? "Preencha os dois placares."
       : null;
+
+  useEffect(() => {
+    const updateLockState = () => {
+      setIsLocked(scheduledTimestamp <= Date.now());
+    };
+
+    updateLockState();
+
+    const intervalId = window.setInterval(updateLockState, 30_000);
+
+    return () => {
+      window.clearInterval(intervalId);
+    };
+  }, [scheduledTimestamp]);
 
   useEffect(() => {
     return () => {
@@ -83,51 +101,59 @@ export function MatchCard({ match, onPredictionChange }: MatchCardProps) {
     saveTimerRef.current = window.setTimeout(() => {
       startTransition(async () => {
         setStatus("saving");
-        setServerMessage("Palpite salvo.");
 
-        const response = await fetch(routes.api.groupStagePredictions, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            matchId: match.id,
-            homeScore: nextValues.homeScore === "" ? null : Number(nextValues.homeScore),
-            awayScore: nextValues.awayScore === "" ? null : Number(nextValues.awayScore),
-          }),
-        });
-
-        const payload = (await response.json()) as SaveResponse;
-
-        if (saveVersion !== saveVersionRef.current) {
-          return;
-        }
-
-        if (!response.ok) {
-          setStatus("error");
-          setServerMessage(payload.error ?? "Não foi possível salvar agora.");
-          return;
-        }
-
-        if (payload.action === "deleted") {
-          setStatus("deleted");
-          setServerMessage("Palpite removido.");
-          onPredictionChange(null);
-          return;
-        }
-
-        if (payload.action === "created" || payload.action === "updated") {
-          setStatus("saved");
-          setServerMessage("Palpite salvo.");
-          onPredictionChange({
-            homeScore: Number(nextValues.homeScore),
-            awayScore: Number(nextValues.awayScore),
+        try {
+          const response = await fetch(routes.api.groupStagePredictions, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              matchId: match.id,
+              homeScore: nextValues.homeScore === "" ? null : Number(nextValues.homeScore),
+              awayScore: nextValues.awayScore === "" ? null : Number(nextValues.awayScore),
+            }),
           });
-          return;
-        }
 
-        setStatus("idle");
-        setServerMessage(null);
+          const payload = (await response.json()) as SaveResponse;
+
+          if (saveVersion !== saveVersionRef.current) {
+            return;
+          }
+
+          if (!response.ok) {
+            setStatus("error");
+            setServerMessage(payload.error ?? "Não foi possível salvar agora.");
+            return;
+          }
+
+          if (payload.action === "deleted") {
+            setStatus("deleted");
+            setServerMessage("Palpite removido.");
+            onPredictionChange(null);
+            return;
+          }
+
+          if (payload.action === "created" || payload.action === "updated") {
+            setStatus("saved");
+            setServerMessage("Palpite salvo.");
+            onPredictionChange({
+              homeScore: Number(nextValues.homeScore),
+              awayScore: Number(nextValues.awayScore),
+            });
+            return;
+          }
+
+          setStatus("idle");
+          setServerMessage(null);
+        } catch {
+          if (saveVersion !== saveVersionRef.current) {
+            return;
+          }
+
+          setStatus("error");
+          setServerMessage("Não foi possível salvar agora.");
+        }
       });
     }, 350);
   };
@@ -174,6 +200,7 @@ export function MatchCard({ match, onPredictionChange }: MatchCardProps) {
 
     return null;
   }, [serverMessage, status, validationMessage]);
+  const accessibleStatusMessage = validationMessage ?? statusIcon?.message ?? (isLocked ? "Fechado" : null);
 
   return (
     <Card className="relative overflow-visible">
@@ -189,15 +216,31 @@ export function MatchCard({ match, onPredictionChange }: MatchCardProps) {
         <div className="relative flex size-5 items-center justify-center">
           {validationMessage ? (
             <>
-              <AlertCircle className="peer size-4 text-destructive" />
-              <div className="pointer-events-none absolute bottom-full left-1/2 z-20 mb-2 -translate-x-1/2 rounded-md border border-border bg-card px-2.5 py-1.5 text-xs whitespace-nowrap text-card-foreground opacity-0 transition-opacity peer-hover:opacity-100">
+              <AlertCircle
+                tabIndex={0}
+                aria-describedby={validationMessageId}
+                className="peer size-4 text-destructive"
+              />
+              <div
+                id={validationMessageId}
+                className="pointer-events-none absolute bottom-full left-1/2 z-20 mb-2 -translate-x-1/2 rounded-md border border-border bg-card px-2.5 py-1.5 text-xs whitespace-nowrap text-card-foreground opacity-0 transition-opacity peer-hover:opacity-100 peer-focus:opacity-100 peer-focus-visible:opacity-100"
+              >
                 {validationMessage}
               </div>
             </>
           ) : statusIcon ? (
             <>
-              <div className="peer flex size-5 items-center justify-center">{statusIcon.icon}</div>
-              <div className="pointer-events-none absolute bottom-full left-1/2 z-20 mb-2 -translate-x-1/2 rounded-md border border-border bg-card px-2.5 py-1.5 text-xs whitespace-nowrap text-card-foreground opacity-0 transition-opacity peer-hover:opacity-100">
+              <div
+                tabIndex={0}
+                aria-describedby={validationMessageId}
+                className="peer flex size-5 items-center justify-center"
+              >
+                {statusIcon.icon}
+              </div>
+              <div
+                id={validationMessageId}
+                className="pointer-events-none absolute bottom-full left-1/2 z-20 mb-2 -translate-x-1/2 rounded-md border border-border bg-card px-2.5 py-1.5 text-xs whitespace-nowrap text-card-foreground opacity-0 transition-opacity peer-hover:opacity-100 peer-focus:opacity-100 peer-focus-visible:opacity-100"
+              >
                 {statusIcon.message}
               </div>
             </>
@@ -213,22 +256,30 @@ export function MatchCard({ match, onPredictionChange }: MatchCardProps) {
           </div>
 
           <Input
+            id={homeInputId}
             inputMode="numeric"
             maxLength={2}
             value={values.homeScore}
             disabled={isLocked || isPending}
             className="h-12 px-0 text-center text-lg font-semibold"
+            aria-label={`Placar de ${match.homeTeamName}`}
+            aria-invalid={Boolean(validationMessage)}
+            aria-describedby={validationMessage ? validationMessageId : undefined}
             onChange={(event) => handleScoreChange("homeScore", event.target.value)}
           />
 
           <span className="text-center text-sm text-muted-foreground">x</span>
 
           <Input
+            id={awayInputId}
             inputMode="numeric"
             maxLength={2}
             value={values.awayScore}
             disabled={isLocked || isPending}
             className="h-12 px-0 text-center text-lg font-semibold"
+            aria-label={`Placar de ${match.awayTeamName}`}
+            aria-invalid={Boolean(validationMessage)}
+            aria-describedby={validationMessage ? validationMessageId : undefined}
             onChange={(event) => handleScoreChange("awayScore", event.target.value)}
           />
 
@@ -236,6 +287,10 @@ export function MatchCard({ match, onPredictionChange }: MatchCardProps) {
             <TeamFlag code={match.awayTeamFlagCode} />
             <p className="truncate text-base font-medium text-foreground">{match.awayTeamName}</p>
           </div>
+        </div>
+
+        <div className="sr-only" aria-live="polite" role="status">
+          {accessibleStatusMessage}
         </div>
       </div>
     </Card>

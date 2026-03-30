@@ -9,7 +9,7 @@ import {
 
 export default function KnockoutPage() {
   return (
-    <Card className="mx-96">
+    <Card className="mx-auto w-full max-w-4xl">
       <CardHeader className="border-b border-border">
         <Badge className="w-fit">Mata-mata</Badge>
         <CardTitle className="text-2xl sm:text-3xl">

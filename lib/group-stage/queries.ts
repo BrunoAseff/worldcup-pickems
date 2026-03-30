@@ -23,7 +23,6 @@ export type GroupStageMatchView = {
   id: string;
   matchNumber: number;
   scheduledAt: string;
-  isLocked: boolean;
   venueName: string;
   homeTeamName: string;
   awayTeamName: string;
@@ -157,7 +156,6 @@ export const getGroupStageView = async (userId: string): Promise<GroupStageGroup
         id: match.id,
         matchNumber: match.matchNumber,
         scheduledAt: match.scheduledAt.toISOString(),
-        isLocked: match.scheduledAt.getTime() <= Date.now(),
         venueName: venue.name,
         homeTeamName: homeTeam.namePt,
         awayTeamName: awayTeam.namePt,

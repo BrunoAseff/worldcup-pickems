@@ -58,6 +58,7 @@ export function StandingsTable({ standings }: StandingsTableProps) {
                 {team.goalDifference}
               </TableCell>
               <TableCell className="py-4">
+                {/* Temporary placeholder until official results and standings logic land in the next task. */}
                 <div className="flex items-center justify-center gap-1.5">
                   {Array.from({ length: 5 }).map((_, index) => (
                     <span

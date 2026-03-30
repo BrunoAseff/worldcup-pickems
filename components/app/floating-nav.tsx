@@ -46,8 +46,10 @@ export function FloatingNav({ user, activeKey }: FloatingNavProps) {
               {user.displayName}
             </span>
             <span className="text-muted-foreground">|</span>
+            {/* TODO: replace placeholder points with the real ranking summary once scoring is implemented. */}
             <span className="text-muted-foreground">0 pts</span>
             <span className="text-muted-foreground">|</span>
+            {/* TODO: replace placeholder position with the real ranking summary once scoring is implemented. */}
             <span className="text-muted-foreground">4º lugar</span>
           </div>
           <LogoutForm />

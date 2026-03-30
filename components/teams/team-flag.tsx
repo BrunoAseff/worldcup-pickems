@@ -1,5 +1,8 @@
+import type { ComponentProps } from "react";
 import Flag from "react-flagpack";
 import { cn } from "@/lib/utils";
+
+type FlagCode = ComponentProps<typeof Flag>["code"];
 
 type TeamFlagProps = {
   code: string | null;
@@ -21,7 +24,7 @@ export function TeamFlag({ code, className }: TeamFlagProps) {
 
   return (
     <Flag
-      code={code.toUpperCase() as never}
+      code={code.toUpperCase() as FlagCode}
       size="m"
       hasBorder={false}
       hasBorderRadius={false}

@@ -36,7 +36,7 @@ const main = async () => {
     const value = {
       username,
       displayName: displayName || username,
-      passwordHash: hashPassword(password),
+      passwordHash: await hashPassword(password),
       role: parsedRole.data,
       isActive: true,
       updatedAt: now,

@@ -2,6 +2,7 @@
 
 import { Eye, EyeOff } from "lucide-react";
 import { useActionState, useState, useTransition } from "react";
+import { z } from "zod";
 import { loginAction, type LoginActionState } from "@/app/login/actions";
 import { loginSchema } from "@/lib/auth/login-schema";
 import { Button } from "@/components/ui/button";
@@ -32,7 +33,7 @@ export function LoginForm() {
     const parsed = loginSchema.safeParse(values);
 
     if (!parsed.success) {
-      setClientFieldErrors(parsed.error.flatten().fieldErrors);
+      setClientFieldErrors(z.flattenError(parsed.error).fieldErrors);
       return;
     }
 
@@ -47,8 +48,9 @@ export function LoginForm() {
     });
   };
 
-  const usernameError = clientFieldErrors.username?.[0] ?? state.fieldErrors.username?.[0];
-  const passwordError = clientFieldErrors.password?.[0] ?? state.fieldErrors.password?.[0];
+  const hasClientErrors = Object.keys(clientFieldErrors).length > 0;
+  const usernameError = clientFieldErrors.username?.[0] ?? (!hasClientErrors ? state.fieldErrors.username?.[0] : undefined);
+  const passwordError = clientFieldErrors.password?.[0] ?? (!hasClientErrors ? state.fieldErrors.password?.[0] : undefined);
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-4" noValidate>

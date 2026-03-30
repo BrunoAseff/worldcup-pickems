@@ -73,20 +73,26 @@ export async function POST(request: Request) {
     return NextResponse.json({ ok: true, action: "deleted" });
   }
 
+  const { homeScore, awayScore } = parsedBody.data;
+
+  if (homeScore === null || awayScore === null) {
+    return NextResponse.json({ error: "Preencha os dois placares." }, { status: 400 });
+  }
+
   await db
     .insert(matchPredictions)
     .values({
       userId: session.user.id,
       matchId: parsedBody.data.matchId,
-      predictedHomeScore: parsedBody.data.homeScore!,
-      predictedAwayScore: parsedBody.data.awayScore!,
+      predictedHomeScore: homeScore,
+      predictedAwayScore: awayScore,
       updatedAt: new Date(),
     })
     .onConflictDoUpdate({
       target: [matchPredictions.userId, matchPredictions.matchId],
       set: {
-        predictedHomeScore: parsedBody.data.homeScore!,
-        predictedAwayScore: parsedBody.data.awayScore!,
+        predictedHomeScore: homeScore,
+        predictedAwayScore: awayScore,
         updatedAt: new Date(),
       },
     });
