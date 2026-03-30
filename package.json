@@ -12,6 +12,7 @@
     "db:push": "drizzle-kit push",
     "db:studio": "drizzle-kit studio",
     "data:extract-round-of-32-best-third-place-allocations": "tsx scripts/extract-round-of-32-best-third-place-allocations.ts",
+    "auth:create-user": "tsx scripts/create-user.ts",
     "seed:teams": "tsx scripts/seed-teams.ts",
     "seed:tournament": "tsx scripts/seed-tournament.ts"
   },
