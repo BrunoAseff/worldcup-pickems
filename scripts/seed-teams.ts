@@ -1,3 +1,4 @@
+import "dotenv/config";
 import { getNormalizedTeams } from "./lib/tournament-source";
 
 const isDryRun = process.argv.includes("--dry-run");

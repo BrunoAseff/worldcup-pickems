@@ -1,3 +1,4 @@
+import "dotenv/config";
 import {
   getNormalizedGroupTeams,
   getNormalizedGroups,
@@ -32,14 +33,13 @@ const main = async () => {
           groupTeams: getNormalizedGroupTeams().length,
         },
         null,
-        2,
-      ),
+        2
+      )
     );
     return;
   }
 
-  const [{ eq }, { db }, schema] = await Promise.all([
-    import("drizzle-orm"),
+  const [{ db }, schema] = await Promise.all([
     import("@/lib/db/client"),
     import("@/lib/db/schema"),
   ]);
@@ -47,23 +47,17 @@ const main = async () => {
 
   await db.transaction(async (tx) => {
     for (const value of groupValues) {
-      await tx
-        .insert(groups)
-        .values(value)
-        .onConflictDoUpdate({
-          target: groups.code,
-          set: value,
-        });
+      await tx.insert(groups).values(value).onConflictDoUpdate({
+        target: groups.code,
+        set: value,
+      });
     }
 
     for (const value of venueValues) {
-      await tx
-        .insert(venues)
-        .values(value)
-        .onConflictDoUpdate({
-          target: venues.code,
-          set: value,
-        });
+      await tx.insert(venues).values(value).onConflictDoUpdate({
+        target: venues.code,
+        set: value,
+      });
     }
   });
 
@@ -71,16 +65,24 @@ const main = async () => {
   const teamRecords = await db.select().from(teams);
   const venueRecords = await db.select().from(venues);
 
-  const groupIdByCode = new Map(groupRecords.map((record) => [record.code, record.id]));
-  const teamIdByCode = new Map(teamRecords.map((record) => [record.code, record.id]));
-  const venueIdByCode = new Map(venueRecords.map((record) => [record.code, record.id]));
+  const groupIdByCode = new Map(
+    groupRecords.map((record) => [record.code, record.id])
+  );
+  const teamIdByCode = new Map(
+    teamRecords.map((record) => [record.code, record.id])
+  );
+  const venueIdByCode = new Map(
+    venueRecords.map((record) => [record.code, record.id])
+  );
 
   const groupTeamValues = getNormalizedGroupTeams().map((value) => {
     const groupId = groupIdByCode.get(value.groupCode);
     const teamId = teamIdByCode.get(value.teamCode);
 
     if (!groupId || !teamId) {
-      throw new Error(`Missing group/team relation for ${value.groupCode}:${value.teamCode}`);
+      throw new Error(
+        `Missing group/team relation for ${value.groupCode}:${value.teamCode}`
+      );
     }
 
     return {
@@ -89,10 +91,6 @@ const main = async () => {
       updatedAt: now,
     };
   });
-
-  for (const value of groupTeamValues) {
-    await db.insert(groupTeams).values(value).onConflictDoNothing();
-  }
 
   const matchValues = normalizedMatches.map((match) => {
     const venueId = venueIdByCode.get(match.venueCode);
@@ -107,14 +105,16 @@ const main = async () => {
       stage: match.stage,
       stageMatchNumber: match.stageMatchNumber,
       groupRound: match.groupRound,
-      groupId: match.groupCode ? (groupIdByCode.get(match.groupCode) ?? null) : null,
+      groupId: match.groupCode
+        ? groupIdByCode.get(match.groupCode) ?? null
+        : null,
       venueId,
       scheduledAt: match.scheduledAt,
       homeTeamId: match.homeSource.teamCode
-        ? (teamIdByCode.get(match.homeSource.teamCode) ?? null)
+        ? teamIdByCode.get(match.homeSource.teamCode) ?? null
         : null,
       awayTeamId: match.awaySource.teamCode
-        ? (teamIdByCode.get(match.awaySource.teamCode) ?? null)
+        ? teamIdByCode.get(match.awaySource.teamCode) ?? null
         : null,
       homeSourceType: match.homeSource.sourceType,
       homeSourceRef: match.homeSource.sourceRef,
@@ -125,23 +125,21 @@ const main = async () => {
     };
   });
 
-  for (const value of matchValues) {
-    const existing = await db
-      .select({ id: matches.id })
-      .from(matches)
-      .where(eq(matches.matchNumber, value.matchNumber))
-      .limit(1);
-
-    if (existing.length > 0) {
-      await db.update(matches).set(value).where(eq(matches.matchNumber, value.matchNumber));
-      continue;
+  await db.transaction(async (tx) => {
+    for (const value of groupTeamValues) {
+      await tx.insert(groupTeams).values(value).onConflictDoNothing();
     }
 
-    await db.insert(matches).values(value);
-  }
+    for (const value of matchValues) {
+      await tx.insert(matches).values(value).onConflictDoUpdate({
+        target: matches.matchNumber,
+        set: value,
+      });
+    }
+  });
 
   console.log(
-    `Seeded ${groupValues.length} groups, ${venueValues.length} venues, ${groupTeamValues.length} group-team relations, and ${matchValues.length} matches`,
+    `Seeded ${groupValues.length} groups, ${venueValues.length} venues, ${groupTeamValues.length} group-team relations, and ${matchValues.length} matches`
   );
 };
 

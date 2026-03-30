@@ -2,7 +2,10 @@ import { readFileSync } from "node:fs";
 import { parse as parseCsv } from "csv-parse/sync";
 import { parse as parseDate } from "date-fns";
 import { fromZonedTime } from "date-fns-tz";
-import { teamNormalizationBySourceName, teamNormalizations } from "./team-normalization";
+import {
+  teamNormalizationBySourceName,
+  teamNormalizations,
+} from "./team-normalization";
 
 export type RawMatchRow = {
   fase: string;
@@ -79,14 +82,19 @@ const slugify = (value: string) =>
     .toLowerCase();
 
 const parseKickoff = (dateValue: string, timeValue: string) => {
-  const normalizedTime = timeValue.includes("h30")
-    ? timeValue.replace("h30", ":30")
-    : timeValue.replace("h", ":00");
+  const match = timeValue.match(/^(\d{1,2})h(?:([0-5]?\d))?$/);
+
+  if (!match) {
+    throw new Error(`Unable to parse kickoff time "${timeValue}"`);
+  }
+
+  const [, hour, minute = "00"] = match;
+  const normalizedTime = `${hour.padStart(2, "0")}:${minute.padStart(2, "0")}`;
 
   const parsed = parseDate(
     `${dateValue} ${normalizedTime}`,
     "dd/MM/yyyy HH:mm",
-    new Date(),
+    new Date()
   );
 
   return fromZonedTime(parsed, "America/Sao_Paulo");
@@ -97,7 +105,9 @@ const parseStageMatchNumber = (row: RawMatchRow) => {
     const match = row.jogo.match(/Jogo (\d+)/);
 
     if (!match) {
-      throw new Error(`Unable to parse group-stage match number from "${row.jogo}"`);
+      throw new Error(
+        `Unable to parse group-stage match number from "${row.jogo}"`
+      );
     }
 
     return Number(match[1]);
@@ -203,12 +213,14 @@ const parseParticipantSource = (value: string): NormalizedParticipantSource => {
     };
   }
 
-  const winnerMatch = value.match(/^Venc\. (Segunda fase|Oitavas|Quartas|Semifinal) (\d+)$/);
+  const winnerMatch = value.match(
+    /^Venc\. (Segunda fase|Oitavas|Quartas|Semifinal) (\d+)$/
+  );
 
   if (winnerMatch) {
     const matchNumber = resolveKnockoutMatchReference(
       winnerMatch[1],
-      Number(winnerMatch[2]),
+      Number(winnerMatch[2])
     );
 
     return {
@@ -221,7 +233,10 @@ const parseParticipantSource = (value: string): NormalizedParticipantSource => {
   const loserMatch = value.match(/^Perd\. Semifinal (\d+)$/);
 
   if (loserMatch) {
-    const matchNumber = resolveKnockoutMatchReference("Semifinal", Number(loserMatch[1]));
+    const matchNumber = resolveKnockoutMatchReference(
+      "Semifinal",
+      Number(loserMatch[1])
+    );
 
     return {
       sourceType: "match_loser",
@@ -257,14 +272,22 @@ export const getNormalizedVenues = (): NormalizedVenue[] => {
     });
   }
 
-  return [...venueMap.values()].sort((left, right) => left.code.localeCompare(right.code));
+  return [...venueMap.values()].sort((left, right) =>
+    left.code.localeCompare(right.code)
+  );
 };
 
 export const getNormalizedGroups = () =>
-  [...new Set(loadRawMatchRows().map(resolveGroupCode).filter(Boolean) as string[])].sort();
+  [
+    ...new Set(
+      loadRawMatchRows().map(resolveGroupCode).filter(Boolean) as string[]
+    ),
+  ].sort();
 
 export const getNormalizedGroupTeams = () => {
-  const rows = loadRawMatchRows().filter((row) => row.fase === "Fase de Grupos");
+  const rows = loadRawMatchRows().filter(
+    (row) => row.fase === "Fase de Grupos"
+  );
   const seen = new Set<string>();
   const values: { groupCode: string; teamCode: string }[] = [];
 
@@ -274,7 +297,11 @@ export const getNormalizedGroupTeams = () => {
     const away = parseParticipantSource(row.visitante);
 
     for (const participant of [home, away]) {
-      if (participant.sourceType !== "team" || !participant.teamCode || !groupCode) {
+      if (
+        participant.sourceType !== "team" ||
+        !participant.teamCode ||
+        !groupCode
+      ) {
         continue;
       }
 
@@ -293,7 +320,9 @@ export const getNormalizedGroupTeams = () => {
   }
 
   return values.sort((left, right) =>
-    `${left.groupCode}:${left.teamCode}`.localeCompare(`${right.groupCode}:${right.teamCode}`),
+    `${left.groupCode}:${left.teamCode}`.localeCompare(
+      `${right.groupCode}:${right.teamCode}`
+    )
   );
 };
 
