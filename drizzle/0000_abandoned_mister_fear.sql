@@ -65,7 +65,7 @@ ALTER TABLE "matches" ADD CONSTRAINT "matches_group_id_groups_id_fk" FOREIGN KEY
 ALTER TABLE "matches" ADD CONSTRAINT "matches_venue_id_venues_id_fk" FOREIGN KEY ("venue_id") REFERENCES "public"."venues"("id") ON DELETE restrict ON UPDATE no action;--> statement-breakpoint
 ALTER TABLE "matches" ADD CONSTRAINT "matches_home_team_id_teams_id_fk" FOREIGN KEY ("home_team_id") REFERENCES "public"."teams"("id") ON DELETE set null ON UPDATE no action;--> statement-breakpoint
 ALTER TABLE "matches" ADD CONSTRAINT "matches_away_team_id_teams_id_fk" FOREIGN KEY ("away_team_id") REFERENCES "public"."teams"("id") ON DELETE set null ON UPDATE no action;--> statement-breakpoint
-CREATE UNIQUE INDEX "group_teams_group_team_idx" ON "group_teams" USING btree ("group_id","team_id");--> statement-breakpoint
+CREATE UNIQUE INDEX "group_teams_team_id_idx" ON "group_teams" USING btree ("team_id");--> statement-breakpoint
 CREATE UNIQUE INDEX "groups_code_idx" ON "groups" USING btree ("code");--> statement-breakpoint
 CREATE UNIQUE INDEX "matches_match_number_idx" ON "matches" USING btree ("match_number");--> statement-breakpoint
 CREATE UNIQUE INDEX "matches_bracket_code_idx" ON "matches" USING btree ("bracket_code");--> statement-breakpoint

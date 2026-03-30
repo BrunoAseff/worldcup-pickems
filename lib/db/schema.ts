@@ -69,7 +69,7 @@ export const groupTeams = pgTable(
     createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
     updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
   },
-  (table) => [uniqueIndex("group_teams_group_team_idx").on(table.groupId, table.teamId)],
+  (table) => [uniqueIndex("group_teams_team_id_idx").on(table.teamId)],
 );
 
 export const venues = pgTable(
