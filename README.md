@@ -70,7 +70,7 @@ pnpm db:push
 pnpm db:studio
 ```
 
-Se `pnpm db:studio` falhar, os dois problemas mais comuns sao:
+Se `pnpm db:studio` falhar, os dois problemas mais comuns são:
 - `DATABASE_URL` ausente: confirme que `.env.local` existe.
 - banco local desligado: rode `make db-up`.
 
