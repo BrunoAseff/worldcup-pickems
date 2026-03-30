@@ -10,7 +10,10 @@
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate",
     "db:push": "drizzle-kit push",
-    "db:studio": "drizzle-kit studio"
+    "db:studio": "drizzle-kit studio",
+    "data:extract-round-of-32-best-third-place-allocations": "tsx scripts/extract-round-of-32-best-third-place-allocations.ts",
+    "seed:teams": "tsx scripts/seed-teams.ts",
+    "seed:tournament": "tsx scripts/seed-tournament.ts"
   },
   "dependencies": {
     "@base-ui/react": "^1.3.0",
@@ -18,6 +21,9 @@
     "@fontsource/jetbrains-mono": "^5.2.8",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "csv-parse": "^6.2.1",
+    "date-fns": "^4.1.0",
+    "date-fns-tz": "^3.2.0",
     "dotenv": "^17.3.1",
     "drizzle-orm": "^0.45.2",
     "lucide-react": "^1.7.0",

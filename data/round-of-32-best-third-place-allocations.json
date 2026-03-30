@@ -1,0 +1,11387 @@
+[
+  {
+    "optionCode": 1,
+    "qualifiedThirdPlaceGroups": [
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "I",
+      "1E": "F",
+      "1G": "H",
+      "1I": "G",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 2,
+    "qualifiedThirdPlaceGroups": [
+      "D",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "I",
+      "1E": "D",
+      "1G": "J",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 3,
+    "qualifiedThirdPlaceGroups": [
+      "D",
+      "E",
+      "G",
+      "H",
+      "I",
+      "J",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "I",
+      "1E": "D",
+      "1G": "H",
+      "1I": "G",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 4,
+    "qualifiedThirdPlaceGroups": [
+      "D",
+      "E",
+      "F",
+      "H",
+      "I",
+      "J",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "I",
+      "1E": "D",
+      "1G": "H",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 5,
+    "qualifiedThirdPlaceGroups": [
+      "D",
+      "E",
+      "F",
+      "G",
+      "I",
+      "J",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "I",
+      "1E": "D",
+      "1G": "J",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 6,
+    "qualifiedThirdPlaceGroups": [
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "J",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "J",
+      "1E": "D",
+      "1G": "H",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 7,
+    "qualifiedThirdPlaceGroups": [
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "I",
+      "1E": "D",
+      "1G": "H",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 8,
+    "qualifiedThirdPlaceGroups": [
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J",
+      "L"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "J",
+      "1E": "D",
+      "1G": "H",
+      "1I": "F",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "optionCode": 9,
+    "qualifiedThirdPlaceGroups": [
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J",
+      "K"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "J",
+      "1E": "D",
+      "1G": "H",
+      "1I": "F",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 10,
+    "qualifiedThirdPlaceGroups": [
+      "C",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "I",
+      "1E": "C",
+      "1G": "J",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 11,
+    "qualifiedThirdPlaceGroups": [
+      "C",
+      "E",
+      "G",
+      "H",
+      "I",
+      "J",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "I",
+      "1E": "C",
+      "1G": "H",
+      "1I": "G",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 12,
+    "qualifiedThirdPlaceGroups": [
+      "C",
+      "E",
+      "F",
+      "H",
+      "I",
+      "J",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "I",
+      "1E": "C",
+      "1G": "H",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 13,
+    "qualifiedThirdPlaceGroups": [
+      "C",
+      "E",
+      "F",
+      "G",
+      "I",
+      "J",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "I",
+      "1E": "C",
+      "1G": "J",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 14,
+    "qualifiedThirdPlaceGroups": [
+      "C",
+      "E",
+      "F",
+      "G",
+      "H",
+      "J",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "J",
+      "1E": "C",
+      "1G": "H",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 15,
+    "qualifiedThirdPlaceGroups": [
+      "C",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "I",
+      "1E": "C",
+      "1G": "H",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 16,
+    "qualifiedThirdPlaceGroups": [
+      "C",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J",
+      "L"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "J",
+      "1E": "C",
+      "1G": "H",
+      "1I": "F",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "optionCode": 17,
+    "qualifiedThirdPlaceGroups": [
+      "C",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J",
+      "K"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "J",
+      "1E": "C",
+      "1G": "H",
+      "1I": "F",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 18,
+    "qualifiedThirdPlaceGroups": [
+      "C",
+      "D",
+      "G",
+      "H",
+      "I",
+      "J",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "I",
+      "1E": "C",
+      "1G": "J",
+      "1I": "D",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 19,
+    "qualifiedThirdPlaceGroups": [
+      "C",
+      "D",
+      "F",
+      "H",
+      "I",
+      "J",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "C",
+      "1B": "J",
+      "1D": "I",
+      "1E": "D",
+      "1G": "H",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 20,
+    "qualifiedThirdPlaceGroups": [
+      "C",
+      "D",
+      "F",
+      "G",
+      "I",
+      "J",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "C",
+      "1B": "G",
+      "1D": "I",
+      "1E": "D",
+      "1G": "J",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 21,
+    "qualifiedThirdPlaceGroups": [
+      "C",
+      "D",
+      "F",
+      "G",
+      "H",
+      "J",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "C",
+      "1B": "G",
+      "1D": "J",
+      "1E": "D",
+      "1G": "H",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 22,
+    "qualifiedThirdPlaceGroups": [
+      "C",
+      "D",
+      "F",
+      "G",
+      "H",
+      "I",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "C",
+      "1B": "G",
+      "1D": "I",
+      "1E": "D",
+      "1G": "H",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 23,
+    "qualifiedThirdPlaceGroups": [
+      "C",
+      "D",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J",
+      "L"
+    ],
+    "assignments": {
+      "1A": "C",
+      "1B": "G",
+      "1D": "J",
+      "1E": "D",
+      "1G": "H",
+      "1I": "F",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "optionCode": 24,
+    "qualifiedThirdPlaceGroups": [
+      "C",
+      "D",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J",
+      "K"
+    ],
+    "assignments": {
+      "1A": "C",
+      "1B": "G",
+      "1D": "J",
+      "1E": "D",
+      "1G": "H",
+      "1I": "F",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 25,
+    "qualifiedThirdPlaceGroups": [
+      "C",
+      "D",
+      "E",
+      "H",
+      "I",
+      "J",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "I",
+      "1E": "C",
+      "1G": "H",
+      "1I": "D",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 26,
+    "qualifiedThirdPlaceGroups": [
+      "C",
+      "D",
+      "E",
+      "G",
+      "I",
+      "J",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "I",
+      "1E": "C",
+      "1G": "J",
+      "1I": "D",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 27,
+    "qualifiedThirdPlaceGroups": [
+      "C",
+      "D",
+      "E",
+      "G",
+      "H",
+      "J",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "J",
+      "1E": "C",
+      "1G": "H",
+      "1I": "D",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 28,
+    "qualifiedThirdPlaceGroups": [
+      "C",
+      "D",
+      "E",
+      "G",
+      "H",
+      "I",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "I",
+      "1E": "C",
+      "1G": "H",
+      "1I": "D",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 29,
+    "qualifiedThirdPlaceGroups": [
+      "C",
+      "D",
+      "E",
+      "G",
+      "H",
+      "I",
+      "J",
+      "L"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "J",
+      "1E": "C",
+      "1G": "H",
+      "1I": "D",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "optionCode": 30,
+    "qualifiedThirdPlaceGroups": [
+      "C",
+      "D",
+      "E",
+      "G",
+      "H",
+      "I",
+      "J",
+      "K"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "J",
+      "1E": "C",
+      "1G": "H",
+      "1I": "D",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 31,
+    "qualifiedThirdPlaceGroups": [
+      "C",
+      "D",
+      "E",
+      "F",
+      "I",
+      "J",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "C",
+      "1B": "J",
+      "1D": "E",
+      "1E": "D",
+      "1G": "I",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 32,
+    "qualifiedThirdPlaceGroups": [
+      "C",
+      "D",
+      "E",
+      "F",
+      "H",
+      "J",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "C",
+      "1B": "J",
+      "1D": "E",
+      "1E": "D",
+      "1G": "H",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 33,
+    "qualifiedThirdPlaceGroups": [
+      "C",
+      "D",
+      "E",
+      "F",
+      "H",
+      "I",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "C",
+      "1B": "E",
+      "1D": "I",
+      "1E": "D",
+      "1G": "H",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 34,
+    "qualifiedThirdPlaceGroups": [
+      "C",
+      "D",
+      "E",
+      "F",
+      "H",
+      "I",
+      "J",
+      "L"
+    ],
+    "assignments": {
+      "1A": "C",
+      "1B": "J",
+      "1D": "E",
+      "1E": "D",
+      "1G": "H",
+      "1I": "F",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "optionCode": 35,
+    "qualifiedThirdPlaceGroups": [
+      "C",
+      "D",
+      "E",
+      "F",
+      "H",
+      "I",
+      "J",
+      "K"
+    ],
+    "assignments": {
+      "1A": "C",
+      "1B": "J",
+      "1D": "E",
+      "1E": "D",
+      "1G": "H",
+      "1I": "F",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 36,
+    "qualifiedThirdPlaceGroups": [
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "J",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "C",
+      "1B": "G",
+      "1D": "E",
+      "1E": "D",
+      "1G": "J",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 37,
+    "qualifiedThirdPlaceGroups": [
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "I",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "C",
+      "1B": "G",
+      "1D": "E",
+      "1E": "D",
+      "1G": "I",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 38,
+    "qualifiedThirdPlaceGroups": [
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "I",
+      "J",
+      "L"
+    ],
+    "assignments": {
+      "1A": "C",
+      "1B": "G",
+      "1D": "E",
+      "1E": "D",
+      "1G": "J",
+      "1I": "F",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "optionCode": 39,
+    "qualifiedThirdPlaceGroups": [
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "I",
+      "J",
+      "K"
+    ],
+    "assignments": {
+      "1A": "C",
+      "1B": "G",
+      "1D": "E",
+      "1E": "D",
+      "1G": "J",
+      "1I": "F",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 40,
+    "qualifiedThirdPlaceGroups": [
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "C",
+      "1B": "G",
+      "1D": "E",
+      "1E": "D",
+      "1G": "H",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 41,
+    "qualifiedThirdPlaceGroups": [
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "J",
+      "L"
+    ],
+    "assignments": {
+      "1A": "C",
+      "1B": "G",
+      "1D": "J",
+      "1E": "D",
+      "1G": "H",
+      "1I": "F",
+      "1K": "L",
+      "1L": "E"
+    }
+  },
+  {
+    "optionCode": 42,
+    "qualifiedThirdPlaceGroups": [
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "J",
+      "K"
+    ],
+    "assignments": {
+      "1A": "C",
+      "1B": "G",
+      "1D": "J",
+      "1E": "D",
+      "1G": "H",
+      "1I": "F",
+      "1K": "E",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 43,
+    "qualifiedThirdPlaceGroups": [
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "L"
+    ],
+    "assignments": {
+      "1A": "C",
+      "1B": "G",
+      "1D": "E",
+      "1E": "D",
+      "1G": "H",
+      "1I": "F",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "optionCode": 44,
+    "qualifiedThirdPlaceGroups": [
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "K"
+    ],
+    "assignments": {
+      "1A": "C",
+      "1B": "G",
+      "1D": "E",
+      "1E": "D",
+      "1G": "H",
+      "1I": "F",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 45,
+    "qualifiedThirdPlaceGroups": [
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J"
+    ],
+    "assignments": {
+      "1A": "C",
+      "1B": "G",
+      "1D": "J",
+      "1E": "D",
+      "1G": "H",
+      "1I": "F",
+      "1K": "E",
+      "1L": "I"
+    }
+  },
+  {
+    "optionCode": 46,
+    "qualifiedThirdPlaceGroups": [
+      "B",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "J",
+      "1D": "B",
+      "1E": "F",
+      "1G": "I",
+      "1I": "G",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 47,
+    "qualifiedThirdPlaceGroups": [
+      "B",
+      "E",
+      "G",
+      "H",
+      "I",
+      "J",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "I",
+      "1E": "B",
+      "1G": "H",
+      "1I": "G",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 48,
+    "qualifiedThirdPlaceGroups": [
+      "B",
+      "E",
+      "F",
+      "H",
+      "I",
+      "J",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "B",
+      "1E": "F",
+      "1G": "I",
+      "1I": "H",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 49,
+    "qualifiedThirdPlaceGroups": [
+      "B",
+      "E",
+      "F",
+      "G",
+      "I",
+      "J",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "B",
+      "1E": "F",
+      "1G": "I",
+      "1I": "G",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 50,
+    "qualifiedThirdPlaceGroups": [
+      "B",
+      "E",
+      "F",
+      "G",
+      "H",
+      "J",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "B",
+      "1E": "F",
+      "1G": "H",
+      "1I": "G",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 51,
+    "qualifiedThirdPlaceGroups": [
+      "B",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "B",
+      "1E": "F",
+      "1G": "I",
+      "1I": "H",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 52,
+    "qualifiedThirdPlaceGroups": [
+      "B",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J",
+      "L"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "B",
+      "1E": "F",
+      "1G": "H",
+      "1I": "G",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "optionCode": 53,
+    "qualifiedThirdPlaceGroups": [
+      "B",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J",
+      "K"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "B",
+      "1E": "F",
+      "1G": "H",
+      "1I": "G",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 54,
+    "qualifiedThirdPlaceGroups": [
+      "B",
+      "D",
+      "G",
+      "H",
+      "I",
+      "J",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "J",
+      "1D": "B",
+      "1E": "D",
+      "1G": "I",
+      "1I": "G",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 55,
+    "qualifiedThirdPlaceGroups": [
+      "B",
+      "D",
+      "F",
+      "H",
+      "I",
+      "J",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "J",
+      "1D": "B",
+      "1E": "D",
+      "1G": "I",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 56,
+    "qualifiedThirdPlaceGroups": [
+      "B",
+      "D",
+      "F",
+      "G",
+      "I",
+      "J",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "I",
+      "1B": "G",
+      "1D": "B",
+      "1E": "D",
+      "1G": "J",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 57,
+    "qualifiedThirdPlaceGroups": [
+      "B",
+      "D",
+      "F",
+      "G",
+      "H",
+      "J",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "B",
+      "1E": "D",
+      "1G": "J",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 58,
+    "qualifiedThirdPlaceGroups": [
+      "B",
+      "D",
+      "F",
+      "G",
+      "H",
+      "I",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "B",
+      "1E": "D",
+      "1G": "I",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 59,
+    "qualifiedThirdPlaceGroups": [
+      "B",
+      "D",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J",
+      "L"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "B",
+      "1E": "D",
+      "1G": "J",
+      "1I": "F",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "optionCode": 60,
+    "qualifiedThirdPlaceGroups": [
+      "B",
+      "D",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J",
+      "K"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "B",
+      "1E": "D",
+      "1G": "J",
+      "1I": "F",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 61,
+    "qualifiedThirdPlaceGroups": [
+      "B",
+      "D",
+      "E",
+      "H",
+      "I",
+      "J",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "B",
+      "1E": "D",
+      "1G": "I",
+      "1I": "H",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 62,
+    "qualifiedThirdPlaceGroups": [
+      "B",
+      "D",
+      "E",
+      "G",
+      "I",
+      "J",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "B",
+      "1E": "D",
+      "1G": "I",
+      "1I": "G",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 63,
+    "qualifiedThirdPlaceGroups": [
+      "B",
+      "D",
+      "E",
+      "G",
+      "H",
+      "J",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "B",
+      "1E": "D",
+      "1G": "H",
+      "1I": "G",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 64,
+    "qualifiedThirdPlaceGroups": [
+      "B",
+      "D",
+      "E",
+      "G",
+      "H",
+      "I",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "B",
+      "1E": "D",
+      "1G": "I",
+      "1I": "H",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 65,
+    "qualifiedThirdPlaceGroups": [
+      "B",
+      "D",
+      "E",
+      "G",
+      "H",
+      "I",
+      "J",
+      "L"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "B",
+      "1E": "D",
+      "1G": "H",
+      "1I": "G",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "optionCode": 66,
+    "qualifiedThirdPlaceGroups": [
+      "B",
+      "D",
+      "E",
+      "G",
+      "H",
+      "I",
+      "J",
+      "K"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "B",
+      "1E": "D",
+      "1G": "H",
+      "1I": "G",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 67,
+    "qualifiedThirdPlaceGroups": [
+      "B",
+      "D",
+      "E",
+      "F",
+      "I",
+      "J",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "B",
+      "1E": "D",
+      "1G": "I",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 68,
+    "qualifiedThirdPlaceGroups": [
+      "B",
+      "D",
+      "E",
+      "F",
+      "H",
+      "J",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "B",
+      "1E": "D",
+      "1G": "H",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 69,
+    "qualifiedThirdPlaceGroups": [
+      "B",
+      "D",
+      "E",
+      "F",
+      "H",
+      "I",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "I",
+      "1D": "B",
+      "1E": "D",
+      "1G": "H",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 70,
+    "qualifiedThirdPlaceGroups": [
+      "B",
+      "D",
+      "E",
+      "F",
+      "H",
+      "I",
+      "J",
+      "L"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "B",
+      "1E": "D",
+      "1G": "H",
+      "1I": "F",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "optionCode": 71,
+    "qualifiedThirdPlaceGroups": [
+      "B",
+      "D",
+      "E",
+      "F",
+      "H",
+      "I",
+      "J",
+      "K"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "B",
+      "1E": "D",
+      "1G": "H",
+      "1I": "F",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 72,
+    "qualifiedThirdPlaceGroups": [
+      "B",
+      "D",
+      "E",
+      "F",
+      "G",
+      "J",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "B",
+      "1E": "D",
+      "1G": "J",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 73,
+    "qualifiedThirdPlaceGroups": [
+      "B",
+      "D",
+      "E",
+      "F",
+      "G",
+      "I",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "B",
+      "1E": "D",
+      "1G": "I",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 74,
+    "qualifiedThirdPlaceGroups": [
+      "B",
+      "D",
+      "E",
+      "F",
+      "G",
+      "I",
+      "J",
+      "L"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "B",
+      "1E": "D",
+      "1G": "J",
+      "1I": "F",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "optionCode": 75,
+    "qualifiedThirdPlaceGroups": [
+      "B",
+      "D",
+      "E",
+      "F",
+      "G",
+      "I",
+      "J",
+      "K"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "B",
+      "1E": "D",
+      "1G": "J",
+      "1I": "F",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 76,
+    "qualifiedThirdPlaceGroups": [
+      "B",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "B",
+      "1E": "D",
+      "1G": "H",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 77,
+    "qualifiedThirdPlaceGroups": [
+      "B",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "J",
+      "L"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "B",
+      "1E": "D",
+      "1G": "J",
+      "1I": "F",
+      "1K": "L",
+      "1L": "E"
+    }
+  },
+  {
+    "optionCode": 78,
+    "qualifiedThirdPlaceGroups": [
+      "B",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "J",
+      "K"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "B",
+      "1E": "D",
+      "1G": "J",
+      "1I": "F",
+      "1K": "E",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 79,
+    "qualifiedThirdPlaceGroups": [
+      "B",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "L"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "B",
+      "1E": "D",
+      "1G": "H",
+      "1I": "F",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "optionCode": 80,
+    "qualifiedThirdPlaceGroups": [
+      "B",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "K"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "B",
+      "1E": "D",
+      "1G": "H",
+      "1I": "F",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 81,
+    "qualifiedThirdPlaceGroups": [
+      "B",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "B",
+      "1E": "D",
+      "1G": "J",
+      "1I": "F",
+      "1K": "E",
+      "1L": "I"
+    }
+  },
+  {
+    "optionCode": 82,
+    "qualifiedThirdPlaceGroups": [
+      "B",
+      "C",
+      "G",
+      "H",
+      "I",
+      "J",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "J",
+      "1D": "B",
+      "1E": "C",
+      "1G": "I",
+      "1I": "G",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 83,
+    "qualifiedThirdPlaceGroups": [
+      "B",
+      "C",
+      "F",
+      "H",
+      "I",
+      "J",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "J",
+      "1D": "B",
+      "1E": "C",
+      "1G": "I",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 84,
+    "qualifiedThirdPlaceGroups": [
+      "B",
+      "C",
+      "F",
+      "G",
+      "I",
+      "J",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "I",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "J",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 85,
+    "qualifiedThirdPlaceGroups": [
+      "B",
+      "C",
+      "F",
+      "G",
+      "H",
+      "J",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "J",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 86,
+    "qualifiedThirdPlaceGroups": [
+      "B",
+      "C",
+      "F",
+      "G",
+      "H",
+      "I",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "I",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 87,
+    "qualifiedThirdPlaceGroups": [
+      "B",
+      "C",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J",
+      "L"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "J",
+      "1I": "F",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "optionCode": 88,
+    "qualifiedThirdPlaceGroups": [
+      "B",
+      "C",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J",
+      "K"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "J",
+      "1I": "F",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 89,
+    "qualifiedThirdPlaceGroups": [
+      "B",
+      "C",
+      "E",
+      "H",
+      "I",
+      "J",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "B",
+      "1E": "C",
+      "1G": "I",
+      "1I": "H",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 90,
+    "qualifiedThirdPlaceGroups": [
+      "B",
+      "C",
+      "E",
+      "G",
+      "I",
+      "J",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "B",
+      "1E": "C",
+      "1G": "I",
+      "1I": "G",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 91,
+    "qualifiedThirdPlaceGroups": [
+      "B",
+      "C",
+      "E",
+      "G",
+      "H",
+      "J",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "B",
+      "1E": "C",
+      "1G": "H",
+      "1I": "G",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 92,
+    "qualifiedThirdPlaceGroups": [
+      "B",
+      "C",
+      "E",
+      "G",
+      "H",
+      "I",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "I",
+      "1I": "H",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 93,
+    "qualifiedThirdPlaceGroups": [
+      "B",
+      "C",
+      "E",
+      "G",
+      "H",
+      "I",
+      "J",
+      "L"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "B",
+      "1E": "C",
+      "1G": "H",
+      "1I": "G",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "optionCode": 94,
+    "qualifiedThirdPlaceGroups": [
+      "B",
+      "C",
+      "E",
+      "G",
+      "H",
+      "I",
+      "J",
+      "K"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "B",
+      "1E": "C",
+      "1G": "H",
+      "1I": "G",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 95,
+    "qualifiedThirdPlaceGroups": [
+      "B",
+      "C",
+      "E",
+      "F",
+      "I",
+      "J",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "B",
+      "1E": "C",
+      "1G": "I",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 96,
+    "qualifiedThirdPlaceGroups": [
+      "B",
+      "C",
+      "E",
+      "F",
+      "H",
+      "J",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "B",
+      "1E": "C",
+      "1G": "H",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 97,
+    "qualifiedThirdPlaceGroups": [
+      "B",
+      "C",
+      "E",
+      "F",
+      "H",
+      "I",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "I",
+      "1D": "B",
+      "1E": "C",
+      "1G": "H",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 98,
+    "qualifiedThirdPlaceGroups": [
+      "B",
+      "C",
+      "E",
+      "F",
+      "H",
+      "I",
+      "J",
+      "L"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "B",
+      "1E": "C",
+      "1G": "H",
+      "1I": "F",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "optionCode": 99,
+    "qualifiedThirdPlaceGroups": [
+      "B",
+      "C",
+      "E",
+      "F",
+      "H",
+      "I",
+      "J",
+      "K"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "B",
+      "1E": "C",
+      "1G": "H",
+      "1I": "F",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 100,
+    "qualifiedThirdPlaceGroups": [
+      "B",
+      "C",
+      "E",
+      "F",
+      "G",
+      "J",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "J",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 101,
+    "qualifiedThirdPlaceGroups": [
+      "B",
+      "C",
+      "E",
+      "F",
+      "G",
+      "I",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "I",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 102,
+    "qualifiedThirdPlaceGroups": [
+      "B",
+      "C",
+      "E",
+      "F",
+      "G",
+      "I",
+      "J",
+      "L"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "J",
+      "1I": "F",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "optionCode": 103,
+    "qualifiedThirdPlaceGroups": [
+      "B",
+      "C",
+      "E",
+      "F",
+      "G",
+      "I",
+      "J",
+      "K"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "J",
+      "1I": "F",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 104,
+    "qualifiedThirdPlaceGroups": [
+      "B",
+      "C",
+      "E",
+      "F",
+      "G",
+      "H",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "H",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 105,
+    "qualifiedThirdPlaceGroups": [
+      "B",
+      "C",
+      "E",
+      "F",
+      "G",
+      "H",
+      "J",
+      "L"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "J",
+      "1I": "F",
+      "1K": "L",
+      "1L": "E"
+    }
+  },
+  {
+    "optionCode": 106,
+    "qualifiedThirdPlaceGroups": [
+      "B",
+      "C",
+      "E",
+      "F",
+      "G",
+      "H",
+      "J",
+      "K"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "J",
+      "1I": "F",
+      "1K": "E",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 107,
+    "qualifiedThirdPlaceGroups": [
+      "B",
+      "C",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "L"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "H",
+      "1I": "F",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "optionCode": 108,
+    "qualifiedThirdPlaceGroups": [
+      "B",
+      "C",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "K"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "H",
+      "1I": "F",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 109,
+    "qualifiedThirdPlaceGroups": [
+      "B",
+      "C",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "J",
+      "1I": "F",
+      "1K": "E",
+      "1L": "I"
+    }
+  },
+  {
+    "optionCode": 110,
+    "qualifiedThirdPlaceGroups": [
+      "B",
+      "C",
+      "D",
+      "H",
+      "I",
+      "J",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "J",
+      "1D": "B",
+      "1E": "C",
+      "1G": "I",
+      "1I": "D",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 111,
+    "qualifiedThirdPlaceGroups": [
+      "B",
+      "C",
+      "D",
+      "G",
+      "I",
+      "J",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "I",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "J",
+      "1I": "D",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 112,
+    "qualifiedThirdPlaceGroups": [
+      "B",
+      "C",
+      "D",
+      "G",
+      "H",
+      "J",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "J",
+      "1I": "D",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 113,
+    "qualifiedThirdPlaceGroups": [
+      "B",
+      "C",
+      "D",
+      "G",
+      "H",
+      "I",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "I",
+      "1I": "D",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 114,
+    "qualifiedThirdPlaceGroups": [
+      "B",
+      "C",
+      "D",
+      "G",
+      "H",
+      "I",
+      "J",
+      "L"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "J",
+      "1I": "D",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "optionCode": 115,
+    "qualifiedThirdPlaceGroups": [
+      "B",
+      "C",
+      "D",
+      "G",
+      "H",
+      "I",
+      "J",
+      "K"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "J",
+      "1I": "D",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 116,
+    "qualifiedThirdPlaceGroups": [
+      "B",
+      "C",
+      "D",
+      "F",
+      "I",
+      "J",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "C",
+      "1B": "J",
+      "1D": "B",
+      "1E": "D",
+      "1G": "I",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 117,
+    "qualifiedThirdPlaceGroups": [
+      "B",
+      "C",
+      "D",
+      "F",
+      "H",
+      "J",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "C",
+      "1B": "J",
+      "1D": "B",
+      "1E": "D",
+      "1G": "H",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 118,
+    "qualifiedThirdPlaceGroups": [
+      "B",
+      "C",
+      "D",
+      "F",
+      "H",
+      "I",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "C",
+      "1B": "I",
+      "1D": "B",
+      "1E": "D",
+      "1G": "H",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 119,
+    "qualifiedThirdPlaceGroups": [
+      "B",
+      "C",
+      "D",
+      "F",
+      "H",
+      "I",
+      "J",
+      "L"
+    ],
+    "assignments": {
+      "1A": "C",
+      "1B": "J",
+      "1D": "B",
+      "1E": "D",
+      "1G": "H",
+      "1I": "F",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "optionCode": 120,
+    "qualifiedThirdPlaceGroups": [
+      "B",
+      "C",
+      "D",
+      "F",
+      "H",
+      "I",
+      "J",
+      "K"
+    ],
+    "assignments": {
+      "1A": "C",
+      "1B": "J",
+      "1D": "B",
+      "1E": "D",
+      "1G": "H",
+      "1I": "F",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 121,
+    "qualifiedThirdPlaceGroups": [
+      "B",
+      "C",
+      "D",
+      "F",
+      "G",
+      "J",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "C",
+      "1B": "G",
+      "1D": "B",
+      "1E": "D",
+      "1G": "J",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 122,
+    "qualifiedThirdPlaceGroups": [
+      "B",
+      "C",
+      "D",
+      "F",
+      "G",
+      "I",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "C",
+      "1B": "G",
+      "1D": "B",
+      "1E": "D",
+      "1G": "I",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 123,
+    "qualifiedThirdPlaceGroups": [
+      "B",
+      "C",
+      "D",
+      "F",
+      "G",
+      "I",
+      "J",
+      "L"
+    ],
+    "assignments": {
+      "1A": "C",
+      "1B": "G",
+      "1D": "B",
+      "1E": "D",
+      "1G": "J",
+      "1I": "F",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "optionCode": 124,
+    "qualifiedThirdPlaceGroups": [
+      "B",
+      "C",
+      "D",
+      "F",
+      "G",
+      "I",
+      "J",
+      "K"
+    ],
+    "assignments": {
+      "1A": "C",
+      "1B": "G",
+      "1D": "B",
+      "1E": "D",
+      "1G": "J",
+      "1I": "F",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 125,
+    "qualifiedThirdPlaceGroups": [
+      "B",
+      "C",
+      "D",
+      "F",
+      "G",
+      "H",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "C",
+      "1B": "G",
+      "1D": "B",
+      "1E": "D",
+      "1G": "H",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 126,
+    "qualifiedThirdPlaceGroups": [
+      "B",
+      "C",
+      "D",
+      "F",
+      "G",
+      "H",
+      "J",
+      "L"
+    ],
+    "assignments": {
+      "1A": "C",
+      "1B": "G",
+      "1D": "B",
+      "1E": "D",
+      "1G": "H",
+      "1I": "F",
+      "1K": "L",
+      "1L": "J"
+    }
+  },
+  {
+    "optionCode": 127,
+    "qualifiedThirdPlaceGroups": [
+      "B",
+      "C",
+      "D",
+      "F",
+      "G",
+      "H",
+      "J",
+      "K"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "J",
+      "1I": "F",
+      "1K": "D",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 128,
+    "qualifiedThirdPlaceGroups": [
+      "B",
+      "C",
+      "D",
+      "F",
+      "G",
+      "H",
+      "I",
+      "L"
+    ],
+    "assignments": {
+      "1A": "C",
+      "1B": "G",
+      "1D": "B",
+      "1E": "D",
+      "1G": "H",
+      "1I": "F",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "optionCode": 129,
+    "qualifiedThirdPlaceGroups": [
+      "B",
+      "C",
+      "D",
+      "F",
+      "G",
+      "H",
+      "I",
+      "K"
+    ],
+    "assignments": {
+      "1A": "C",
+      "1B": "G",
+      "1D": "B",
+      "1E": "D",
+      "1G": "H",
+      "1I": "F",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 130,
+    "qualifiedThirdPlaceGroups": [
+      "B",
+      "C",
+      "D",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "J",
+      "1I": "F",
+      "1K": "D",
+      "1L": "I"
+    }
+  },
+  {
+    "optionCode": 131,
+    "qualifiedThirdPlaceGroups": [
+      "B",
+      "C",
+      "D",
+      "E",
+      "I",
+      "J",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "B",
+      "1E": "C",
+      "1G": "I",
+      "1I": "D",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 132,
+    "qualifiedThirdPlaceGroups": [
+      "B",
+      "C",
+      "D",
+      "E",
+      "H",
+      "J",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "B",
+      "1E": "C",
+      "1G": "H",
+      "1I": "D",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 133,
+    "qualifiedThirdPlaceGroups": [
+      "B",
+      "C",
+      "D",
+      "E",
+      "H",
+      "I",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "I",
+      "1D": "B",
+      "1E": "C",
+      "1G": "H",
+      "1I": "D",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 134,
+    "qualifiedThirdPlaceGroups": [
+      "B",
+      "C",
+      "D",
+      "E",
+      "H",
+      "I",
+      "J",
+      "L"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "B",
+      "1E": "C",
+      "1G": "H",
+      "1I": "D",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "optionCode": 135,
+    "qualifiedThirdPlaceGroups": [
+      "B",
+      "C",
+      "D",
+      "E",
+      "H",
+      "I",
+      "J",
+      "K"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "B",
+      "1E": "C",
+      "1G": "H",
+      "1I": "D",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 136,
+    "qualifiedThirdPlaceGroups": [
+      "B",
+      "C",
+      "D",
+      "E",
+      "G",
+      "J",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "J",
+      "1I": "D",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 137,
+    "qualifiedThirdPlaceGroups": [
+      "B",
+      "C",
+      "D",
+      "E",
+      "G",
+      "I",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "I",
+      "1I": "D",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 138,
+    "qualifiedThirdPlaceGroups": [
+      "B",
+      "C",
+      "D",
+      "E",
+      "G",
+      "I",
+      "J",
+      "L"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "J",
+      "1I": "D",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "optionCode": 139,
+    "qualifiedThirdPlaceGroups": [
+      "B",
+      "C",
+      "D",
+      "E",
+      "G",
+      "I",
+      "J",
+      "K"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "J",
+      "1I": "D",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 140,
+    "qualifiedThirdPlaceGroups": [
+      "B",
+      "C",
+      "D",
+      "E",
+      "G",
+      "H",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "H",
+      "1I": "D",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 141,
+    "qualifiedThirdPlaceGroups": [
+      "B",
+      "C",
+      "D",
+      "E",
+      "G",
+      "H",
+      "J",
+      "L"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "J",
+      "1I": "D",
+      "1K": "L",
+      "1L": "E"
+    }
+  },
+  {
+    "optionCode": 142,
+    "qualifiedThirdPlaceGroups": [
+      "B",
+      "C",
+      "D",
+      "E",
+      "G",
+      "H",
+      "J",
+      "K"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "J",
+      "1I": "D",
+      "1K": "E",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 143,
+    "qualifiedThirdPlaceGroups": [
+      "B",
+      "C",
+      "D",
+      "E",
+      "G",
+      "H",
+      "I",
+      "L"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "H",
+      "1I": "D",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "optionCode": 144,
+    "qualifiedThirdPlaceGroups": [
+      "B",
+      "C",
+      "D",
+      "E",
+      "G",
+      "H",
+      "I",
+      "K"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "H",
+      "1I": "D",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 145,
+    "qualifiedThirdPlaceGroups": [
+      "B",
+      "C",
+      "D",
+      "E",
+      "G",
+      "H",
+      "I",
+      "J"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "J",
+      "1I": "D",
+      "1K": "E",
+      "1L": "I"
+    }
+  },
+  {
+    "optionCode": 146,
+    "qualifiedThirdPlaceGroups": [
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "J",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "C",
+      "1B": "J",
+      "1D": "B",
+      "1E": "D",
+      "1G": "E",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 147,
+    "qualifiedThirdPlaceGroups": [
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "I",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "C",
+      "1B": "E",
+      "1D": "B",
+      "1E": "D",
+      "1G": "I",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 148,
+    "qualifiedThirdPlaceGroups": [
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "I",
+      "J",
+      "L"
+    ],
+    "assignments": {
+      "1A": "C",
+      "1B": "J",
+      "1D": "B",
+      "1E": "D",
+      "1G": "E",
+      "1I": "F",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "optionCode": 149,
+    "qualifiedThirdPlaceGroups": [
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "I",
+      "J",
+      "K"
+    ],
+    "assignments": {
+      "1A": "C",
+      "1B": "J",
+      "1D": "B",
+      "1E": "D",
+      "1G": "E",
+      "1I": "F",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 150,
+    "qualifiedThirdPlaceGroups": [
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "H",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "C",
+      "1B": "E",
+      "1D": "B",
+      "1E": "D",
+      "1G": "H",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 151,
+    "qualifiedThirdPlaceGroups": [
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "H",
+      "J",
+      "L"
+    ],
+    "assignments": {
+      "1A": "C",
+      "1B": "J",
+      "1D": "B",
+      "1E": "D",
+      "1G": "H",
+      "1I": "F",
+      "1K": "L",
+      "1L": "E"
+    }
+  },
+  {
+    "optionCode": 152,
+    "qualifiedThirdPlaceGroups": [
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "H",
+      "J",
+      "K"
+    ],
+    "assignments": {
+      "1A": "C",
+      "1B": "J",
+      "1D": "B",
+      "1E": "D",
+      "1G": "H",
+      "1I": "F",
+      "1K": "E",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 153,
+    "qualifiedThirdPlaceGroups": [
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "H",
+      "I",
+      "L"
+    ],
+    "assignments": {
+      "1A": "C",
+      "1B": "E",
+      "1D": "B",
+      "1E": "D",
+      "1G": "H",
+      "1I": "F",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "optionCode": 154,
+    "qualifiedThirdPlaceGroups": [
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "H",
+      "I",
+      "K"
+    ],
+    "assignments": {
+      "1A": "C",
+      "1B": "E",
+      "1D": "B",
+      "1E": "D",
+      "1G": "H",
+      "1I": "F",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 155,
+    "qualifiedThirdPlaceGroups": [
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "H",
+      "I",
+      "J"
+    ],
+    "assignments": {
+      "1A": "C",
+      "1B": "J",
+      "1D": "B",
+      "1E": "D",
+      "1G": "H",
+      "1I": "F",
+      "1K": "E",
+      "1L": "I"
+    }
+  },
+  {
+    "optionCode": 156,
+    "qualifiedThirdPlaceGroups": [
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "C",
+      "1B": "G",
+      "1D": "B",
+      "1E": "D",
+      "1G": "E",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 157,
+    "qualifiedThirdPlaceGroups": [
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "J",
+      "L"
+    ],
+    "assignments": {
+      "1A": "C",
+      "1B": "G",
+      "1D": "B",
+      "1E": "D",
+      "1G": "J",
+      "1I": "F",
+      "1K": "L",
+      "1L": "E"
+    }
+  },
+  {
+    "optionCode": 158,
+    "qualifiedThirdPlaceGroups": [
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "J",
+      "K"
+    ],
+    "assignments": {
+      "1A": "C",
+      "1B": "G",
+      "1D": "B",
+      "1E": "D",
+      "1G": "J",
+      "1I": "F",
+      "1K": "E",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 159,
+    "qualifiedThirdPlaceGroups": [
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "I",
+      "L"
+    ],
+    "assignments": {
+      "1A": "C",
+      "1B": "G",
+      "1D": "B",
+      "1E": "D",
+      "1G": "E",
+      "1I": "F",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "optionCode": 160,
+    "qualifiedThirdPlaceGroups": [
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "I",
+      "K"
+    ],
+    "assignments": {
+      "1A": "C",
+      "1B": "G",
+      "1D": "B",
+      "1E": "D",
+      "1G": "E",
+      "1I": "F",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 161,
+    "qualifiedThirdPlaceGroups": [
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "I",
+      "J"
+    ],
+    "assignments": {
+      "1A": "C",
+      "1B": "G",
+      "1D": "B",
+      "1E": "D",
+      "1G": "J",
+      "1I": "F",
+      "1K": "E",
+      "1L": "I"
+    }
+  },
+  {
+    "optionCode": 162,
+    "qualifiedThirdPlaceGroups": [
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "L"
+    ],
+    "assignments": {
+      "1A": "C",
+      "1B": "G",
+      "1D": "B",
+      "1E": "D",
+      "1G": "H",
+      "1I": "F",
+      "1K": "L",
+      "1L": "E"
+    }
+  },
+  {
+    "optionCode": 163,
+    "qualifiedThirdPlaceGroups": [
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "K"
+    ],
+    "assignments": {
+      "1A": "C",
+      "1B": "G",
+      "1D": "B",
+      "1E": "D",
+      "1G": "H",
+      "1I": "F",
+      "1K": "E",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 164,
+    "qualifiedThirdPlaceGroups": [
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "J"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "J",
+      "1I": "F",
+      "1K": "D",
+      "1L": "E"
+    }
+  },
+  {
+    "optionCode": 165,
+    "qualifiedThirdPlaceGroups": [
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I"
+    ],
+    "assignments": {
+      "1A": "C",
+      "1B": "G",
+      "1D": "B",
+      "1E": "D",
+      "1G": "H",
+      "1I": "F",
+      "1K": "E",
+      "1L": "I"
+    }
+  },
+  {
+    "optionCode": 166,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "J",
+      "1D": "I",
+      "1E": "F",
+      "1G": "A",
+      "1I": "G",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 167,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "E",
+      "G",
+      "H",
+      "I",
+      "J",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "I",
+      "1E": "A",
+      "1G": "H",
+      "1I": "G",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 168,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "E",
+      "F",
+      "H",
+      "I",
+      "J",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "I",
+      "1E": "F",
+      "1G": "A",
+      "1I": "H",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 169,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "E",
+      "F",
+      "G",
+      "I",
+      "J",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "I",
+      "1E": "F",
+      "1G": "A",
+      "1I": "G",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 170,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "E",
+      "F",
+      "G",
+      "H",
+      "J",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "J",
+      "1E": "F",
+      "1G": "A",
+      "1I": "H",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 171,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "I",
+      "1E": "F",
+      "1G": "A",
+      "1I": "H",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 172,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J",
+      "L"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "J",
+      "1E": "F",
+      "1G": "A",
+      "1I": "H",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "optionCode": 173,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J",
+      "K"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "J",
+      "1E": "F",
+      "1G": "A",
+      "1I": "H",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 174,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "D",
+      "G",
+      "H",
+      "I",
+      "J",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "J",
+      "1D": "I",
+      "1E": "D",
+      "1G": "A",
+      "1I": "G",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 175,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "D",
+      "F",
+      "H",
+      "I",
+      "J",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "J",
+      "1D": "I",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 176,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "D",
+      "F",
+      "G",
+      "I",
+      "J",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "I",
+      "1B": "G",
+      "1D": "J",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 177,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "D",
+      "F",
+      "G",
+      "H",
+      "J",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "J",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 178,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "D",
+      "F",
+      "G",
+      "H",
+      "I",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "I",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 179,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "D",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J",
+      "L"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "J",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "optionCode": 180,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "D",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J",
+      "K"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "J",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 181,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "D",
+      "E",
+      "H",
+      "I",
+      "J",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "I",
+      "1E": "D",
+      "1G": "A",
+      "1I": "H",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 182,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "D",
+      "E",
+      "G",
+      "I",
+      "J",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "I",
+      "1E": "D",
+      "1G": "A",
+      "1I": "G",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 183,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "D",
+      "E",
+      "G",
+      "H",
+      "J",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "J",
+      "1E": "D",
+      "1G": "A",
+      "1I": "H",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 184,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "D",
+      "E",
+      "G",
+      "H",
+      "I",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "I",
+      "1E": "D",
+      "1G": "A",
+      "1I": "H",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 185,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "D",
+      "E",
+      "G",
+      "H",
+      "I",
+      "J",
+      "L"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "J",
+      "1E": "D",
+      "1G": "A",
+      "1I": "H",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "optionCode": 186,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "D",
+      "E",
+      "G",
+      "H",
+      "I",
+      "J",
+      "K"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "J",
+      "1E": "D",
+      "1G": "A",
+      "1I": "H",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 187,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "D",
+      "E",
+      "F",
+      "I",
+      "J",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "I",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 188,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "D",
+      "E",
+      "F",
+      "H",
+      "J",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "J",
+      "1D": "E",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 189,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "D",
+      "E",
+      "F",
+      "H",
+      "I",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "E",
+      "1D": "I",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 190,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "D",
+      "E",
+      "F",
+      "H",
+      "I",
+      "J",
+      "L"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "J",
+      "1D": "E",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "optionCode": 191,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "D",
+      "E",
+      "F",
+      "H",
+      "I",
+      "J",
+      "K"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "J",
+      "1D": "E",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 192,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "D",
+      "E",
+      "F",
+      "G",
+      "J",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "J",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 193,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "D",
+      "E",
+      "F",
+      "G",
+      "I",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "I",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 194,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "D",
+      "E",
+      "F",
+      "G",
+      "I",
+      "J",
+      "L"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "J",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "optionCode": 195,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "D",
+      "E",
+      "F",
+      "G",
+      "I",
+      "J",
+      "K"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "J",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 196,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "E",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 197,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "J",
+      "L"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "J",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "E"
+    }
+  },
+  {
+    "optionCode": 198,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "J",
+      "K"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "J",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "E",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 199,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "L"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "E",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "optionCode": 200,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "K"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "E",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 201,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "J",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "E",
+      "1L": "I"
+    }
+  },
+  {
+    "optionCode": 202,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "C",
+      "G",
+      "H",
+      "I",
+      "J",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "J",
+      "1D": "I",
+      "1E": "C",
+      "1G": "A",
+      "1I": "G",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 203,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "C",
+      "F",
+      "H",
+      "I",
+      "J",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "J",
+      "1D": "I",
+      "1E": "C",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 204,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "C",
+      "F",
+      "G",
+      "I",
+      "J",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "I",
+      "1B": "G",
+      "1D": "J",
+      "1E": "C",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 205,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "C",
+      "F",
+      "G",
+      "H",
+      "J",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "J",
+      "1E": "C",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 206,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "C",
+      "F",
+      "G",
+      "H",
+      "I",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "I",
+      "1E": "C",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 207,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "C",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J",
+      "L"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "J",
+      "1E": "C",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "optionCode": 208,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "C",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J",
+      "K"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "J",
+      "1E": "C",
+      "1G": "A",
+      "1I": "F",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 209,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "C",
+      "E",
+      "H",
+      "I",
+      "J",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "I",
+      "1E": "C",
+      "1G": "A",
+      "1I": "H",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 210,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "C",
+      "E",
+      "G",
+      "I",
+      "J",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "I",
+      "1E": "C",
+      "1G": "A",
+      "1I": "G",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 211,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "C",
+      "E",
+      "G",
+      "H",
+      "J",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "J",
+      "1E": "C",
+      "1G": "A",
+      "1I": "H",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 212,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "C",
+      "E",
+      "G",
+      "H",
+      "I",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "I",
+      "1E": "C",
+      "1G": "A",
+      "1I": "H",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 213,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "C",
+      "E",
+      "G",
+      "H",
+      "I",
+      "J",
+      "L"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "J",
+      "1E": "C",
+      "1G": "A",
+      "1I": "H",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "optionCode": 214,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "C",
+      "E",
+      "G",
+      "H",
+      "I",
+      "J",
+      "K"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "J",
+      "1E": "C",
+      "1G": "A",
+      "1I": "H",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 215,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "C",
+      "E",
+      "F",
+      "I",
+      "J",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "I",
+      "1E": "C",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 216,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "C",
+      "E",
+      "F",
+      "H",
+      "J",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "J",
+      "1D": "E",
+      "1E": "C",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 217,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "C",
+      "E",
+      "F",
+      "H",
+      "I",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "E",
+      "1D": "I",
+      "1E": "C",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 218,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "C",
+      "E",
+      "F",
+      "H",
+      "I",
+      "J",
+      "L"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "J",
+      "1D": "E",
+      "1E": "C",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "optionCode": 219,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "C",
+      "E",
+      "F",
+      "H",
+      "I",
+      "J",
+      "K"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "J",
+      "1D": "E",
+      "1E": "C",
+      "1G": "A",
+      "1I": "F",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 220,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "C",
+      "E",
+      "F",
+      "G",
+      "J",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "J",
+      "1E": "C",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 221,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "C",
+      "E",
+      "F",
+      "G",
+      "I",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "I",
+      "1E": "C",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 222,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "C",
+      "E",
+      "F",
+      "G",
+      "I",
+      "J",
+      "L"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "J",
+      "1E": "C",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "optionCode": 223,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "C",
+      "E",
+      "F",
+      "G",
+      "I",
+      "J",
+      "K"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "J",
+      "1E": "C",
+      "1G": "A",
+      "1I": "F",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 224,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "C",
+      "E",
+      "F",
+      "G",
+      "H",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "E",
+      "1E": "C",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 225,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "C",
+      "E",
+      "F",
+      "G",
+      "H",
+      "J",
+      "L"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "J",
+      "1E": "C",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "E"
+    }
+  },
+  {
+    "optionCode": 226,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "C",
+      "E",
+      "F",
+      "G",
+      "H",
+      "J",
+      "K"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "J",
+      "1E": "C",
+      "1G": "A",
+      "1I": "F",
+      "1K": "E",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 227,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "C",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "L"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "E",
+      "1E": "C",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "optionCode": 228,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "C",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "K"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "E",
+      "1E": "C",
+      "1G": "A",
+      "1I": "F",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 229,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "C",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "J",
+      "1E": "C",
+      "1G": "A",
+      "1I": "F",
+      "1K": "E",
+      "1L": "I"
+    }
+  },
+  {
+    "optionCode": 230,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "C",
+      "D",
+      "H",
+      "I",
+      "J",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "J",
+      "1D": "I",
+      "1E": "C",
+      "1G": "A",
+      "1I": "D",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 231,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "C",
+      "D",
+      "G",
+      "I",
+      "J",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "I",
+      "1B": "G",
+      "1D": "J",
+      "1E": "C",
+      "1G": "A",
+      "1I": "D",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 232,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "C",
+      "D",
+      "G",
+      "H",
+      "J",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "J",
+      "1E": "C",
+      "1G": "A",
+      "1I": "D",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 233,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "C",
+      "D",
+      "G",
+      "H",
+      "I",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "I",
+      "1E": "C",
+      "1G": "A",
+      "1I": "D",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 234,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "C",
+      "D",
+      "G",
+      "H",
+      "I",
+      "J",
+      "L"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "J",
+      "1E": "C",
+      "1G": "A",
+      "1I": "D",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "optionCode": 235,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "C",
+      "D",
+      "G",
+      "H",
+      "I",
+      "J",
+      "K"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "J",
+      "1E": "C",
+      "1G": "A",
+      "1I": "D",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 236,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "C",
+      "D",
+      "F",
+      "I",
+      "J",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "C",
+      "1B": "J",
+      "1D": "I",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 237,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "C",
+      "D",
+      "F",
+      "H",
+      "J",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "J",
+      "1D": "F",
+      "1E": "C",
+      "1G": "A",
+      "1I": "D",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 238,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "C",
+      "D",
+      "F",
+      "H",
+      "I",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "F",
+      "1D": "I",
+      "1E": "C",
+      "1G": "A",
+      "1I": "D",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 239,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "C",
+      "D",
+      "F",
+      "H",
+      "I",
+      "J",
+      "L"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "J",
+      "1D": "F",
+      "1E": "C",
+      "1G": "A",
+      "1I": "D",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "optionCode": 240,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "C",
+      "D",
+      "F",
+      "H",
+      "I",
+      "J",
+      "K"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "J",
+      "1D": "F",
+      "1E": "C",
+      "1G": "A",
+      "1I": "D",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 241,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "C",
+      "D",
+      "F",
+      "G",
+      "J",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "C",
+      "1B": "G",
+      "1D": "J",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 242,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "C",
+      "D",
+      "F",
+      "G",
+      "I",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "C",
+      "1B": "G",
+      "1D": "I",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 243,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "C",
+      "D",
+      "F",
+      "G",
+      "I",
+      "J",
+      "L"
+    ],
+    "assignments": {
+      "1A": "C",
+      "1B": "G",
+      "1D": "J",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "optionCode": 244,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "C",
+      "D",
+      "F",
+      "G",
+      "I",
+      "J",
+      "K"
+    ],
+    "assignments": {
+      "1A": "C",
+      "1B": "G",
+      "1D": "J",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 245,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "C",
+      "D",
+      "F",
+      "G",
+      "H",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "F",
+      "1E": "C",
+      "1G": "A",
+      "1I": "D",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 246,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "C",
+      "D",
+      "F",
+      "G",
+      "H",
+      "J",
+      "L"
+    ],
+    "assignments": {
+      "1A": "C",
+      "1B": "G",
+      "1D": "J",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "H"
+    }
+  },
+  {
+    "optionCode": 247,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "C",
+      "D",
+      "F",
+      "G",
+      "H",
+      "J",
+      "K"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "J",
+      "1E": "C",
+      "1G": "A",
+      "1I": "F",
+      "1K": "D",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 248,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "C",
+      "D",
+      "F",
+      "G",
+      "H",
+      "I",
+      "L"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "F",
+      "1E": "C",
+      "1G": "A",
+      "1I": "D",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "optionCode": 249,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "C",
+      "D",
+      "F",
+      "G",
+      "H",
+      "I",
+      "K"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "F",
+      "1E": "C",
+      "1G": "A",
+      "1I": "D",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 250,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "C",
+      "D",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "J",
+      "1E": "C",
+      "1G": "A",
+      "1I": "F",
+      "1K": "D",
+      "1L": "I"
+    }
+  },
+  {
+    "optionCode": 251,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "C",
+      "D",
+      "E",
+      "I",
+      "J",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "I",
+      "1E": "C",
+      "1G": "A",
+      "1I": "D",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 252,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "C",
+      "D",
+      "E",
+      "H",
+      "J",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "J",
+      "1D": "E",
+      "1E": "C",
+      "1G": "A",
+      "1I": "D",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 253,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "C",
+      "D",
+      "E",
+      "H",
+      "I",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "E",
+      "1D": "I",
+      "1E": "C",
+      "1G": "A",
+      "1I": "D",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 254,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "C",
+      "D",
+      "E",
+      "H",
+      "I",
+      "J",
+      "L"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "J",
+      "1D": "E",
+      "1E": "C",
+      "1G": "A",
+      "1I": "D",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "optionCode": 255,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "C",
+      "D",
+      "E",
+      "H",
+      "I",
+      "J",
+      "K"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "J",
+      "1D": "E",
+      "1E": "C",
+      "1G": "A",
+      "1I": "D",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 256,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "C",
+      "D",
+      "E",
+      "G",
+      "J",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "J",
+      "1E": "C",
+      "1G": "A",
+      "1I": "D",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 257,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "C",
+      "D",
+      "E",
+      "G",
+      "I",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "I",
+      "1E": "C",
+      "1G": "A",
+      "1I": "D",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 258,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "C",
+      "D",
+      "E",
+      "G",
+      "I",
+      "J",
+      "L"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "J",
+      "1E": "C",
+      "1G": "A",
+      "1I": "D",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "optionCode": 259,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "C",
+      "D",
+      "E",
+      "G",
+      "I",
+      "J",
+      "K"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "J",
+      "1E": "C",
+      "1G": "A",
+      "1I": "D",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 260,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "C",
+      "D",
+      "E",
+      "G",
+      "H",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "E",
+      "1E": "C",
+      "1G": "A",
+      "1I": "D",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 261,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "C",
+      "D",
+      "E",
+      "G",
+      "H",
+      "J",
+      "L"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "J",
+      "1E": "C",
+      "1G": "A",
+      "1I": "D",
+      "1K": "L",
+      "1L": "E"
+    }
+  },
+  {
+    "optionCode": 262,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "C",
+      "D",
+      "E",
+      "G",
+      "H",
+      "J",
+      "K"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "J",
+      "1E": "C",
+      "1G": "A",
+      "1I": "D",
+      "1K": "E",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 263,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "C",
+      "D",
+      "E",
+      "G",
+      "H",
+      "I",
+      "L"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "E",
+      "1E": "C",
+      "1G": "A",
+      "1I": "D",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "optionCode": 264,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "C",
+      "D",
+      "E",
+      "G",
+      "H",
+      "I",
+      "K"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "E",
+      "1E": "C",
+      "1G": "A",
+      "1I": "D",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 265,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "C",
+      "D",
+      "E",
+      "G",
+      "H",
+      "I",
+      "J"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "J",
+      "1E": "C",
+      "1G": "A",
+      "1I": "D",
+      "1K": "E",
+      "1L": "I"
+    }
+  },
+  {
+    "optionCode": 266,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "C",
+      "D",
+      "E",
+      "F",
+      "J",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "C",
+      "1B": "J",
+      "1D": "E",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 267,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "C",
+      "D",
+      "E",
+      "F",
+      "I",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "C",
+      "1B": "E",
+      "1D": "I",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 268,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "C",
+      "D",
+      "E",
+      "F",
+      "I",
+      "J",
+      "L"
+    ],
+    "assignments": {
+      "1A": "C",
+      "1B": "J",
+      "1D": "E",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "optionCode": 269,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "C",
+      "D",
+      "E",
+      "F",
+      "I",
+      "J",
+      "K"
+    ],
+    "assignments": {
+      "1A": "C",
+      "1B": "J",
+      "1D": "E",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 270,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "C",
+      "D",
+      "E",
+      "F",
+      "H",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "E",
+      "1D": "F",
+      "1E": "C",
+      "1G": "A",
+      "1I": "D",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 271,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "C",
+      "D",
+      "E",
+      "F",
+      "H",
+      "J",
+      "L"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "J",
+      "1D": "F",
+      "1E": "C",
+      "1G": "A",
+      "1I": "D",
+      "1K": "L",
+      "1L": "E"
+    }
+  },
+  {
+    "optionCode": 272,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "C",
+      "D",
+      "E",
+      "F",
+      "H",
+      "J",
+      "K"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "J",
+      "1D": "E",
+      "1E": "C",
+      "1G": "A",
+      "1I": "F",
+      "1K": "D",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 273,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "C",
+      "D",
+      "E",
+      "F",
+      "H",
+      "I",
+      "L"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "E",
+      "1D": "F",
+      "1E": "C",
+      "1G": "A",
+      "1I": "D",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "optionCode": 274,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "C",
+      "D",
+      "E",
+      "F",
+      "H",
+      "I",
+      "K"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "E",
+      "1D": "F",
+      "1E": "C",
+      "1G": "A",
+      "1I": "D",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 275,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "C",
+      "D",
+      "E",
+      "F",
+      "H",
+      "I",
+      "J"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "J",
+      "1D": "E",
+      "1E": "C",
+      "1G": "A",
+      "1I": "F",
+      "1K": "D",
+      "1L": "I"
+    }
+  },
+  {
+    "optionCode": 276,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "C",
+      "1B": "G",
+      "1D": "E",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 277,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "J",
+      "L"
+    ],
+    "assignments": {
+      "1A": "C",
+      "1B": "G",
+      "1D": "J",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "E"
+    }
+  },
+  {
+    "optionCode": 278,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "J",
+      "K"
+    ],
+    "assignments": {
+      "1A": "C",
+      "1B": "G",
+      "1D": "J",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "E",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 279,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "I",
+      "L"
+    ],
+    "assignments": {
+      "1A": "C",
+      "1B": "G",
+      "1D": "E",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "optionCode": 280,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "I",
+      "K"
+    ],
+    "assignments": {
+      "1A": "C",
+      "1B": "G",
+      "1D": "E",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 281,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "I",
+      "J"
+    ],
+    "assignments": {
+      "1A": "C",
+      "1B": "G",
+      "1D": "J",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "E",
+      "1L": "I"
+    }
+  },
+  {
+    "optionCode": 282,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "L"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "F",
+      "1E": "C",
+      "1G": "A",
+      "1I": "D",
+      "1K": "L",
+      "1L": "E"
+    }
+  },
+  {
+    "optionCode": 283,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "K"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "E",
+      "1E": "C",
+      "1G": "A",
+      "1I": "F",
+      "1K": "D",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 284,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "J"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "J",
+      "1E": "C",
+      "1G": "A",
+      "1I": "F",
+      "1K": "D",
+      "1L": "E"
+    }
+  },
+  {
+    "optionCode": 285,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "E",
+      "1E": "C",
+      "1G": "A",
+      "1I": "F",
+      "1K": "D",
+      "1L": "I"
+    }
+  },
+  {
+    "optionCode": 286,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "G",
+      "H",
+      "I",
+      "J",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "J",
+      "1D": "B",
+      "1E": "A",
+      "1G": "I",
+      "1I": "G",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 287,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "F",
+      "H",
+      "I",
+      "J",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "J",
+      "1D": "B",
+      "1E": "A",
+      "1G": "I",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 288,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "F",
+      "G",
+      "I",
+      "J",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "I",
+      "1B": "J",
+      "1D": "B",
+      "1E": "F",
+      "1G": "A",
+      "1I": "G",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 289,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "F",
+      "G",
+      "H",
+      "J",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "J",
+      "1D": "B",
+      "1E": "F",
+      "1G": "A",
+      "1I": "G",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 290,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "F",
+      "G",
+      "H",
+      "I",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "B",
+      "1E": "A",
+      "1G": "I",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 291,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J",
+      "L"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "J",
+      "1D": "B",
+      "1E": "F",
+      "1G": "A",
+      "1I": "G",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "optionCode": 292,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J",
+      "K"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "J",
+      "1D": "B",
+      "1E": "F",
+      "1G": "A",
+      "1I": "G",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 293,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "E",
+      "H",
+      "I",
+      "J",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "B",
+      "1E": "A",
+      "1G": "I",
+      "1I": "H",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 294,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "E",
+      "G",
+      "I",
+      "J",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "B",
+      "1E": "A",
+      "1G": "I",
+      "1I": "G",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 295,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "E",
+      "G",
+      "H",
+      "J",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "B",
+      "1E": "A",
+      "1G": "H",
+      "1I": "G",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 296,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "E",
+      "G",
+      "H",
+      "I",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "B",
+      "1E": "A",
+      "1G": "I",
+      "1I": "H",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 297,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "E",
+      "G",
+      "H",
+      "I",
+      "J",
+      "L"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "B",
+      "1E": "A",
+      "1G": "H",
+      "1I": "G",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "optionCode": 298,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "E",
+      "G",
+      "H",
+      "I",
+      "J",
+      "K"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "B",
+      "1E": "A",
+      "1G": "H",
+      "1I": "G",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 299,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "E",
+      "F",
+      "I",
+      "J",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "B",
+      "1E": "A",
+      "1G": "I",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 300,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "E",
+      "F",
+      "H",
+      "J",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "B",
+      "1E": "F",
+      "1G": "A",
+      "1I": "H",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 301,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "E",
+      "F",
+      "H",
+      "I",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "I",
+      "1D": "B",
+      "1E": "F",
+      "1G": "A",
+      "1I": "H",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 302,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "E",
+      "F",
+      "H",
+      "I",
+      "J",
+      "L"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "B",
+      "1E": "F",
+      "1G": "A",
+      "1I": "H",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "optionCode": 303,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "E",
+      "F",
+      "H",
+      "I",
+      "J",
+      "K"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "B",
+      "1E": "F",
+      "1G": "A",
+      "1I": "H",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 304,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "E",
+      "F",
+      "G",
+      "J",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "B",
+      "1E": "F",
+      "1G": "A",
+      "1I": "G",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 305,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "E",
+      "F",
+      "G",
+      "I",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "B",
+      "1E": "A",
+      "1G": "I",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 306,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "E",
+      "F",
+      "G",
+      "I",
+      "J",
+      "L"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "B",
+      "1E": "F",
+      "1G": "A",
+      "1I": "G",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "optionCode": 307,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "E",
+      "F",
+      "G",
+      "I",
+      "J",
+      "K"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "B",
+      "1E": "F",
+      "1G": "A",
+      "1I": "G",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 308,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "E",
+      "F",
+      "G",
+      "H",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "B",
+      "1E": "F",
+      "1G": "A",
+      "1I": "H",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 309,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "E",
+      "F",
+      "G",
+      "H",
+      "J",
+      "L"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "J",
+      "1D": "B",
+      "1E": "F",
+      "1G": "A",
+      "1I": "G",
+      "1K": "L",
+      "1L": "E"
+    }
+  },
+  {
+    "optionCode": 310,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "E",
+      "F",
+      "G",
+      "H",
+      "J",
+      "K"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "J",
+      "1D": "B",
+      "1E": "F",
+      "1G": "A",
+      "1I": "G",
+      "1K": "E",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 311,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "L"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "B",
+      "1E": "F",
+      "1G": "A",
+      "1I": "H",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "optionCode": 312,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "K"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "B",
+      "1E": "F",
+      "1G": "A",
+      "1I": "H",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 313,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "J",
+      "1D": "B",
+      "1E": "F",
+      "1G": "A",
+      "1I": "G",
+      "1K": "E",
+      "1L": "I"
+    }
+  },
+  {
+    "optionCode": 314,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "D",
+      "H",
+      "I",
+      "J",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "I",
+      "1B": "J",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "H",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 315,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "D",
+      "G",
+      "I",
+      "J",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "I",
+      "1B": "J",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "G",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 316,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "D",
+      "G",
+      "H",
+      "J",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "J",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "G",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 317,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "D",
+      "G",
+      "H",
+      "I",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "I",
+      "1B": "G",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "H",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 318,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "D",
+      "G",
+      "H",
+      "I",
+      "J",
+      "L"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "J",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "G",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "optionCode": 319,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "D",
+      "G",
+      "H",
+      "I",
+      "J",
+      "K"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "J",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "G",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 320,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "D",
+      "F",
+      "I",
+      "J",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "I",
+      "1B": "J",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 321,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "D",
+      "F",
+      "H",
+      "J",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "J",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 322,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "D",
+      "F",
+      "H",
+      "I",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "I",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 323,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "D",
+      "F",
+      "H",
+      "I",
+      "J",
+      "L"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "J",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "optionCode": 324,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "D",
+      "F",
+      "H",
+      "I",
+      "J",
+      "K"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "J",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 325,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "D",
+      "F",
+      "G",
+      "J",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "F",
+      "1B": "J",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "G",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 326,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "D",
+      "F",
+      "G",
+      "I",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "I",
+      "1B": "G",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 327,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "D",
+      "F",
+      "G",
+      "I",
+      "J",
+      "L"
+    ],
+    "assignments": {
+      "1A": "F",
+      "1B": "J",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "G",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "optionCode": 328,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "D",
+      "F",
+      "G",
+      "I",
+      "J",
+      "K"
+    ],
+    "assignments": {
+      "1A": "F",
+      "1B": "J",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "G",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 329,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "D",
+      "F",
+      "G",
+      "H",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 330,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "D",
+      "F",
+      "G",
+      "H",
+      "J",
+      "L"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "J"
+    }
+  },
+  {
+    "optionCode": 331,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "D",
+      "F",
+      "G",
+      "H",
+      "J",
+      "K"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "J",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 332,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "D",
+      "F",
+      "G",
+      "H",
+      "I",
+      "L"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "optionCode": 333,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "D",
+      "F",
+      "G",
+      "H",
+      "I",
+      "K"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 334,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "D",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "I",
+      "1L": "J"
+    }
+  },
+  {
+    "optionCode": 335,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "D",
+      "E",
+      "I",
+      "J",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "B",
+      "1E": "A",
+      "1G": "I",
+      "1I": "D",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 336,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "D",
+      "E",
+      "H",
+      "J",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "H",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 337,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "D",
+      "E",
+      "H",
+      "I",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "I",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "H",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 338,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "D",
+      "E",
+      "H",
+      "I",
+      "J",
+      "L"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "H",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "optionCode": 339,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "D",
+      "E",
+      "H",
+      "I",
+      "J",
+      "K"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "H",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 340,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "D",
+      "E",
+      "G",
+      "J",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "G",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 341,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "D",
+      "E",
+      "G",
+      "I",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "B",
+      "1E": "A",
+      "1G": "I",
+      "1I": "D",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 342,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "D",
+      "E",
+      "G",
+      "I",
+      "J",
+      "L"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "G",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "optionCode": 343,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "D",
+      "E",
+      "G",
+      "I",
+      "J",
+      "K"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "G",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 344,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "D",
+      "E",
+      "G",
+      "H",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "H",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 345,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "D",
+      "E",
+      "G",
+      "H",
+      "J",
+      "L"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "J",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "G",
+      "1K": "L",
+      "1L": "E"
+    }
+  },
+  {
+    "optionCode": 346,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "D",
+      "E",
+      "G",
+      "H",
+      "J",
+      "K"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "J",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "G",
+      "1K": "E",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 347,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "D",
+      "E",
+      "G",
+      "H",
+      "I",
+      "L"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "H",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "optionCode": 348,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "D",
+      "E",
+      "G",
+      "H",
+      "I",
+      "K"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "H",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 349,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "D",
+      "E",
+      "G",
+      "H",
+      "I",
+      "J"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "J",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "G",
+      "1K": "E",
+      "1L": "I"
+    }
+  },
+  {
+    "optionCode": 350,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "D",
+      "E",
+      "F",
+      "J",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 351,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "D",
+      "E",
+      "F",
+      "I",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "I",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 352,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "D",
+      "E",
+      "F",
+      "I",
+      "J",
+      "L"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "optionCode": 353,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "D",
+      "E",
+      "F",
+      "I",
+      "J",
+      "K"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 354,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "D",
+      "E",
+      "F",
+      "H",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "E",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 355,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "D",
+      "E",
+      "F",
+      "H",
+      "J",
+      "L"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "J",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "E"
+    }
+  },
+  {
+    "optionCode": 356,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "D",
+      "E",
+      "F",
+      "H",
+      "J",
+      "K"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "J",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "E",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 357,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "D",
+      "E",
+      "F",
+      "H",
+      "I",
+      "L"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "E",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "optionCode": 358,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "D",
+      "E",
+      "F",
+      "H",
+      "I",
+      "K"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "E",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 359,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "D",
+      "E",
+      "F",
+      "H",
+      "I",
+      "J"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "J",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "E",
+      "1L": "I"
+    }
+  },
+  {
+    "optionCode": 360,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "D",
+      "E",
+      "F",
+      "G",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 361,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "D",
+      "E",
+      "F",
+      "G",
+      "J",
+      "L"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "J"
+    }
+  },
+  {
+    "optionCode": 362,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "D",
+      "E",
+      "F",
+      "G",
+      "J",
+      "K"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "J",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 363,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "D",
+      "E",
+      "F",
+      "G",
+      "I",
+      "L"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "optionCode": 364,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "D",
+      "E",
+      "F",
+      "G",
+      "I",
+      "K"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 365,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "D",
+      "E",
+      "F",
+      "G",
+      "I",
+      "J"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "I",
+      "1L": "J"
+    }
+  },
+  {
+    "optionCode": 366,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "L"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "E"
+    }
+  },
+  {
+    "optionCode": 367,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "K"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "E",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 368,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "J"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "E",
+      "1L": "J"
+    }
+  },
+  {
+    "optionCode": 369,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "E",
+      "1L": "I"
+    }
+  },
+  {
+    "optionCode": 370,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "C",
+      "H",
+      "I",
+      "J",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "I",
+      "1B": "J",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "H",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 371,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "C",
+      "G",
+      "I",
+      "J",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "I",
+      "1B": "J",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "G",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 372,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "C",
+      "G",
+      "H",
+      "J",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "J",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "G",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 373,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "C",
+      "G",
+      "H",
+      "I",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "I",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "H",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 374,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "C",
+      "G",
+      "H",
+      "I",
+      "J",
+      "L"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "J",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "G",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "optionCode": 375,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "C",
+      "G",
+      "H",
+      "I",
+      "J",
+      "K"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "J",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "G",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 376,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "C",
+      "F",
+      "I",
+      "J",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "I",
+      "1B": "J",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 377,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "C",
+      "F",
+      "H",
+      "J",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "J",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 378,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "C",
+      "F",
+      "H",
+      "I",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "I",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 379,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "C",
+      "F",
+      "H",
+      "I",
+      "J",
+      "L"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "J",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "optionCode": 380,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "C",
+      "F",
+      "H",
+      "I",
+      "J",
+      "K"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "J",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "F",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 381,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "C",
+      "F",
+      "G",
+      "J",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "C",
+      "1B": "J",
+      "1D": "B",
+      "1E": "F",
+      "1G": "A",
+      "1I": "G",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 382,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "C",
+      "F",
+      "G",
+      "I",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "I",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 383,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "C",
+      "F",
+      "G",
+      "I",
+      "J",
+      "L"
+    ],
+    "assignments": {
+      "1A": "C",
+      "1B": "J",
+      "1D": "B",
+      "1E": "F",
+      "1G": "A",
+      "1I": "G",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "optionCode": 384,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "C",
+      "F",
+      "G",
+      "I",
+      "J",
+      "K"
+    ],
+    "assignments": {
+      "1A": "C",
+      "1B": "J",
+      "1D": "B",
+      "1E": "F",
+      "1G": "A",
+      "1I": "G",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 385,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "C",
+      "F",
+      "G",
+      "H",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 386,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "C",
+      "F",
+      "G",
+      "H",
+      "J",
+      "L"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "J"
+    }
+  },
+  {
+    "optionCode": 387,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "C",
+      "F",
+      "G",
+      "H",
+      "J",
+      "K"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "F",
+      "1K": "J",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 388,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "C",
+      "F",
+      "G",
+      "H",
+      "I",
+      "L"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "optionCode": 389,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "C",
+      "F",
+      "G",
+      "H",
+      "I",
+      "K"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "F",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 390,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "C",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "F",
+      "1K": "I",
+      "1L": "J"
+    }
+  },
+  {
+    "optionCode": 391,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "C",
+      "E",
+      "I",
+      "J",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "B",
+      "1E": "A",
+      "1G": "I",
+      "1I": "C",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 392,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "C",
+      "E",
+      "H",
+      "J",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "H",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 393,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "C",
+      "E",
+      "H",
+      "I",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "I",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "H",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 394,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "C",
+      "E",
+      "H",
+      "I",
+      "J",
+      "L"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "H",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "optionCode": 395,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "C",
+      "E",
+      "H",
+      "I",
+      "J",
+      "K"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "H",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 396,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "C",
+      "E",
+      "G",
+      "J",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "G",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 397,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "C",
+      "E",
+      "G",
+      "I",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "B",
+      "1E": "A",
+      "1G": "I",
+      "1I": "C",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 398,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "C",
+      "E",
+      "G",
+      "I",
+      "J",
+      "L"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "G",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "optionCode": 399,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "C",
+      "E",
+      "G",
+      "I",
+      "J",
+      "K"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "G",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 400,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "C",
+      "E",
+      "G",
+      "H",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "H",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 401,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "C",
+      "E",
+      "G",
+      "H",
+      "J",
+      "L"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "J",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "G",
+      "1K": "L",
+      "1L": "E"
+    }
+  },
+  {
+    "optionCode": 402,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "C",
+      "E",
+      "G",
+      "H",
+      "J",
+      "K"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "J",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "G",
+      "1K": "E",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 403,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "C",
+      "E",
+      "G",
+      "H",
+      "I",
+      "L"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "H",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "optionCode": 404,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "C",
+      "E",
+      "G",
+      "H",
+      "I",
+      "K"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "H",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 405,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "C",
+      "E",
+      "G",
+      "H",
+      "I",
+      "J"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "J",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "G",
+      "1K": "E",
+      "1L": "I"
+    }
+  },
+  {
+    "optionCode": 406,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "C",
+      "E",
+      "F",
+      "J",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 407,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "C",
+      "E",
+      "F",
+      "I",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "I",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 408,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "C",
+      "E",
+      "F",
+      "I",
+      "J",
+      "L"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "optionCode": 409,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "C",
+      "E",
+      "F",
+      "I",
+      "J",
+      "K"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "F",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 410,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "C",
+      "E",
+      "F",
+      "H",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "E",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 411,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "C",
+      "E",
+      "F",
+      "H",
+      "J",
+      "L"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "J",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "E"
+    }
+  },
+  {
+    "optionCode": 412,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "C",
+      "E",
+      "F",
+      "H",
+      "J",
+      "K"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "J",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "F",
+      "1K": "E",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 413,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "C",
+      "E",
+      "F",
+      "H",
+      "I",
+      "L"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "E",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "optionCode": 414,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "C",
+      "E",
+      "F",
+      "H",
+      "I",
+      "K"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "E",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "F",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 415,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "C",
+      "E",
+      "F",
+      "H",
+      "I",
+      "J"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "J",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "F",
+      "1K": "E",
+      "1L": "I"
+    }
+  },
+  {
+    "optionCode": 416,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "C",
+      "E",
+      "F",
+      "G",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 417,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "C",
+      "E",
+      "F",
+      "G",
+      "J",
+      "L"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "J"
+    }
+  },
+  {
+    "optionCode": 418,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "C",
+      "E",
+      "F",
+      "G",
+      "J",
+      "K"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "F",
+      "1K": "J",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 419,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "C",
+      "E",
+      "F",
+      "G",
+      "I",
+      "L"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "optionCode": 420,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "C",
+      "E",
+      "F",
+      "G",
+      "I",
+      "K"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "F",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 421,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "C",
+      "E",
+      "F",
+      "G",
+      "I",
+      "J"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "F",
+      "1K": "I",
+      "1L": "J"
+    }
+  },
+  {
+    "optionCode": 422,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "C",
+      "E",
+      "F",
+      "G",
+      "H",
+      "L"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "E"
+    }
+  },
+  {
+    "optionCode": 423,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "C",
+      "E",
+      "F",
+      "G",
+      "H",
+      "K"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "F",
+      "1K": "E",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 424,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "C",
+      "E",
+      "F",
+      "G",
+      "H",
+      "J"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "F",
+      "1K": "E",
+      "1L": "J"
+    }
+  },
+  {
+    "optionCode": 425,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "C",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "F",
+      "1K": "E",
+      "1L": "I"
+    }
+  },
+  {
+    "optionCode": 426,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "I",
+      "J",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "I",
+      "1B": "J",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "D",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 427,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "H",
+      "J",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "J",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "D",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 428,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "H",
+      "I",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "I",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "D",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 429,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "H",
+      "I",
+      "J",
+      "L"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "J",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "D",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "optionCode": 430,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "H",
+      "I",
+      "J",
+      "K"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "J",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "D",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 431,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "G",
+      "J",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "C",
+      "1B": "J",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "G",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 432,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "G",
+      "I",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "I",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "D",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 433,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "G",
+      "I",
+      "J",
+      "L"
+    ],
+    "assignments": {
+      "1A": "C",
+      "1B": "J",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "G",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "optionCode": 434,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "G",
+      "I",
+      "J",
+      "K"
+    ],
+    "assignments": {
+      "1A": "C",
+      "1B": "J",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "G",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 435,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "G",
+      "H",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "D",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 436,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "G",
+      "H",
+      "J",
+      "L"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "D",
+      "1K": "L",
+      "1L": "J"
+    }
+  },
+  {
+    "optionCode": 437,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "G",
+      "H",
+      "J",
+      "K"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "D",
+      "1K": "J",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 438,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "G",
+      "H",
+      "I",
+      "L"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "D",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "optionCode": 439,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "G",
+      "H",
+      "I",
+      "K"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "D",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 440,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "G",
+      "H",
+      "I",
+      "J"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "D",
+      "1K": "I",
+      "1L": "J"
+    }
+  },
+  {
+    "optionCode": 441,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "F",
+      "J",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "C",
+      "1B": "J",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 442,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "F",
+      "I",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "C",
+      "1B": "I",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 443,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "F",
+      "I",
+      "J",
+      "L"
+    ],
+    "assignments": {
+      "1A": "C",
+      "1B": "J",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "optionCode": 444,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "F",
+      "I",
+      "J",
+      "K"
+    ],
+    "assignments": {
+      "1A": "C",
+      "1B": "J",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 445,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "F",
+      "H",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "F",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "D",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 446,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "F",
+      "H",
+      "J",
+      "L"
+    ],
+    "assignments": {
+      "1A": "C",
+      "1B": "J",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "H"
+    }
+  },
+  {
+    "optionCode": 447,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "F",
+      "H",
+      "J",
+      "K"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "J",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "F",
+      "1K": "D",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 448,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "F",
+      "H",
+      "I",
+      "L"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "F",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "D",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "optionCode": 449,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "F",
+      "H",
+      "I",
+      "K"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "F",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "D",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 450,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "F",
+      "H",
+      "I",
+      "J"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "J",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "F",
+      "1K": "D",
+      "1L": "I"
+    }
+  },
+  {
+    "optionCode": 451,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "F",
+      "G",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "C",
+      "1B": "G",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 452,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "F",
+      "G",
+      "J",
+      "L"
+    ],
+    "assignments": {
+      "1A": "C",
+      "1B": "G",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "J"
+    }
+  },
+  {
+    "optionCode": 453,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "F",
+      "G",
+      "J",
+      "K"
+    ],
+    "assignments": {
+      "1A": "C",
+      "1B": "G",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "J",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 454,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "F",
+      "G",
+      "I",
+      "L"
+    ],
+    "assignments": {
+      "1A": "C",
+      "1B": "G",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "optionCode": 455,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "F",
+      "G",
+      "I",
+      "K"
+    ],
+    "assignments": {
+      "1A": "C",
+      "1B": "G",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 456,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "F",
+      "G",
+      "I",
+      "J"
+    ],
+    "assignments": {
+      "1A": "C",
+      "1B": "G",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "I",
+      "1L": "J"
+    }
+  },
+  {
+    "optionCode": 457,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "F",
+      "G",
+      "H",
+      "L"
+    ],
+    "assignments": {
+      "1A": "C",
+      "1B": "G",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "H"
+    }
+  },
+  {
+    "optionCode": 458,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "F",
+      "G",
+      "H",
+      "K"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "F",
+      "1K": "D",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 459,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "F",
+      "G",
+      "H",
+      "J"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "F",
+      "1K": "D",
+      "1L": "J"
+    }
+  },
+  {
+    "optionCode": 460,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "F",
+      "G",
+      "H",
+      "I"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "F",
+      "1K": "D",
+      "1L": "I"
+    }
+  },
+  {
+    "optionCode": 461,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "J",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "D",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 462,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "I",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "I",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "D",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 463,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "I",
+      "J",
+      "L"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "D",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "optionCode": 464,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "I",
+      "J",
+      "K"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "J",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "D",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 465,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "H",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "E",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "D",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 466,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "H",
+      "J",
+      "L"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "J",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "D",
+      "1K": "L",
+      "1L": "E"
+    }
+  },
+  {
+    "optionCode": 467,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "H",
+      "J",
+      "K"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "J",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "D",
+      "1K": "E",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 468,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "H",
+      "I",
+      "L"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "E",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "D",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "optionCode": 469,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "H",
+      "I",
+      "K"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "E",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "D",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 470,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "H",
+      "I",
+      "J"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "J",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "D",
+      "1K": "E",
+      "1L": "I"
+    }
+  },
+  {
+    "optionCode": 471,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "G",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "D",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 472,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "G",
+      "J",
+      "L"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "D",
+      "1K": "L",
+      "1L": "J"
+    }
+  },
+  {
+    "optionCode": 473,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "G",
+      "J",
+      "K"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "D",
+      "1K": "J",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 474,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "G",
+      "I",
+      "L"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "D",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "optionCode": 475,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "G",
+      "I",
+      "K"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "D",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 476,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "G",
+      "I",
+      "J"
+    ],
+    "assignments": {
+      "1A": "E",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "D",
+      "1K": "I",
+      "1L": "J"
+    }
+  },
+  {
+    "optionCode": 477,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "G",
+      "H",
+      "L"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "D",
+      "1K": "L",
+      "1L": "E"
+    }
+  },
+  {
+    "optionCode": 478,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "G",
+      "H",
+      "K"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "D",
+      "1K": "E",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 479,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "G",
+      "H",
+      "J"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "D",
+      "1K": "E",
+      "1L": "J"
+    }
+  },
+  {
+    "optionCode": 480,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "G",
+      "H",
+      "I"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "D",
+      "1K": "E",
+      "1L": "I"
+    }
+  },
+  {
+    "optionCode": 481,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "K",
+      "L"
+    ],
+    "assignments": {
+      "1A": "C",
+      "1B": "E",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 482,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "J",
+      "L"
+    ],
+    "assignments": {
+      "1A": "C",
+      "1B": "J",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "E"
+    }
+  },
+  {
+    "optionCode": 483,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "J",
+      "K"
+    ],
+    "assignments": {
+      "1A": "C",
+      "1B": "J",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "E",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 484,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "I",
+      "L"
+    ],
+    "assignments": {
+      "1A": "C",
+      "1B": "E",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "I"
+    }
+  },
+  {
+    "optionCode": 485,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "I",
+      "K"
+    ],
+    "assignments": {
+      "1A": "C",
+      "1B": "E",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "I",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 486,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "I",
+      "J"
+    ],
+    "assignments": {
+      "1A": "C",
+      "1B": "J",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "E",
+      "1L": "I"
+    }
+  },
+  {
+    "optionCode": 487,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "H",
+      "L"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "F",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "D",
+      "1K": "L",
+      "1L": "E"
+    }
+  },
+  {
+    "optionCode": 488,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "H",
+      "K"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "E",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "F",
+      "1K": "D",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 489,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "H",
+      "J"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "J",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "F",
+      "1K": "D",
+      "1L": "E"
+    }
+  },
+  {
+    "optionCode": 490,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "H",
+      "I"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "E",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "F",
+      "1K": "D",
+      "1L": "I"
+    }
+  },
+  {
+    "optionCode": 491,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "L"
+    ],
+    "assignments": {
+      "1A": "C",
+      "1B": "G",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "L",
+      "1L": "E"
+    }
+  },
+  {
+    "optionCode": 492,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "K"
+    ],
+    "assignments": {
+      "1A": "C",
+      "1B": "G",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "E",
+      "1L": "K"
+    }
+  },
+  {
+    "optionCode": 493,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "J"
+    ],
+    "assignments": {
+      "1A": "C",
+      "1B": "G",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "E",
+      "1L": "J"
+    }
+  },
+  {
+    "optionCode": 494,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "I"
+    ],
+    "assignments": {
+      "1A": "C",
+      "1B": "G",
+      "1D": "B",
+      "1E": "D",
+      "1G": "A",
+      "1I": "F",
+      "1K": "E",
+      "1L": "I"
+    }
+  },
+  {
+    "optionCode": 495,
+    "qualifiedThirdPlaceGroups": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H"
+    ],
+    "assignments": {
+      "1A": "H",
+      "1B": "G",
+      "1D": "B",
+      "1E": "C",
+      "1G": "A",
+      "1I": "F",
+      "1K": "D",
+      "1L": "E"
+    }
+  }
+]
