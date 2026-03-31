@@ -30,6 +30,11 @@ export const participantSourceTypeEnum = pgEnum("participant_source_type", [
 ]);
 
 export const userRoleEnum = pgEnum("user_role", ["player", "admin"]);
+export const qualificationStatusEnum = pgEnum("qualification_status", [
+  "qualified",
+  "third_place",
+  "eliminated",
+]);
 
 export const teams = pgTable(
   "teams",
@@ -162,8 +167,17 @@ export const matchPredictions = pgTable(
     matchId: uuid("match_id")
       .notNull()
       .references(() => matches.id, { onDelete: "cascade" }),
+    predictedHomeTeamId: uuid("predicted_home_team_id").references(() => teams.id, {
+      onDelete: "set null",
+    }),
+    predictedAwayTeamId: uuid("predicted_away_team_id").references(() => teams.id, {
+      onDelete: "set null",
+    }),
     predictedHomeScore: integer("predicted_home_score").notNull(),
     predictedAwayScore: integer("predicted_away_score").notNull(),
+    predictedAdvancingTeamId: uuid("predicted_advancing_team_id").references(() => teams.id, {
+      onDelete: "set null",
+    }),
     createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
     updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
   },
@@ -171,5 +185,100 @@ export const matchPredictions = pgTable(
     uniqueIndex("match_predictions_user_match_idx").on(table.userId, table.matchId),
     index("match_predictions_user_id_idx").on(table.userId),
     index("match_predictions_match_id_idx").on(table.matchId),
+  ],
+);
+
+export const officialResults = pgTable(
+  "official_results",
+  {
+    id: uuid("id").defaultRandom().primaryKey(),
+    matchId: uuid("match_id")
+      .notNull()
+      .references(() => matches.id, { onDelete: "cascade" }),
+    homeScore: integer("home_score").notNull(),
+    awayScore: integer("away_score").notNull(),
+    advancingTeamId: uuid("advancing_team_id").references(() => teams.id, {
+      onDelete: "set null",
+    }),
+    enteredByUserId: uuid("entered_by_user_id")
+      .notNull()
+      .references(() => users.id, { onDelete: "restrict" }),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+    updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [
+    uniqueIndex("official_results_match_id_idx").on(table.matchId),
+    index("official_results_entered_by_user_id_idx").on(table.enteredByUserId),
+  ],
+);
+
+export const recalculationRuns = pgTable(
+  "recalculation_runs",
+  {
+    id: uuid("id").defaultRandom().primaryKey(),
+    pipelineKey: varchar("pipeline_key", { length: 64 }).notNull(),
+    triggeredByUserId: uuid("triggered_by_user_id")
+      .notNull()
+      .references(() => users.id, { onDelete: "restrict" }),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [
+    index("recalculation_runs_pipeline_key_idx").on(table.pipelineKey),
+    index("recalculation_runs_triggered_by_user_id_idx").on(table.triggeredByUserId),
+  ],
+);
+
+export const groupStandings = pgTable(
+  "group_standings",
+  {
+    id: uuid("id").defaultRandom().primaryKey(),
+    groupId: uuid("group_id")
+      .notNull()
+      .references(() => groups.id, { onDelete: "cascade" }),
+    teamId: uuid("team_id")
+      .notNull()
+      .references(() => teams.id, { onDelete: "cascade" }),
+    position: integer("position").notNull(),
+    points: integer("points").notNull(),
+    played: integer("played").notNull(),
+    wins: integer("wins").notNull(),
+    draws: integer("draws").notNull(),
+    losses: integer("losses").notNull(),
+    goalsFor: integer("goals_for").notNull(),
+    goalsAgainst: integer("goals_against").notNull(),
+    goalDifference: integer("goal_difference").notNull(),
+    recentResults: varchar("recent_results", { length: 8 }).notNull().default(""),
+    qualificationStatus: qualificationStatusEnum("qualification_status").notNull(),
+    recalculationRunId: uuid("recalculation_run_id")
+      .notNull()
+      .references(() => recalculationRuns.id, { onDelete: "cascade" }),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+    updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [
+    uniqueIndex("group_standings_group_team_idx").on(table.groupId, table.teamId),
+    index("group_standings_group_id_idx").on(table.groupId),
+    index("group_standings_team_id_idx").on(table.teamId),
+    index("group_standings_recalculation_run_id_idx").on(table.recalculationRunId),
+  ],
+);
+
+export const groupTiebreakOverrides = pgTable(
+  "group_tiebreak_overrides",
+  {
+    id: uuid("id").defaultRandom().primaryKey(),
+    groupId: uuid("group_id")
+      .notNull()
+      .references(() => groups.id, { onDelete: "cascade" }),
+    orderedTeamIds: text("ordered_team_ids").notNull(),
+    decidedByUserId: uuid("decided_by_user_id")
+      .notNull()
+      .references(() => users.id, { onDelete: "restrict" }),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+    updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [
+    uniqueIndex("group_tiebreak_overrides_group_id_idx").on(table.groupId),
+    index("group_tiebreak_overrides_decided_by_user_id_idx").on(table.decidedByUserId),
   ],
 );

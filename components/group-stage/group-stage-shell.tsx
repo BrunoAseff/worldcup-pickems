@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { GroupStageGroupView } from "@/lib/group-stage/queries";
 import { MatchCard } from "./match-card";
@@ -11,14 +12,22 @@ type GroupStageShellProps = {
 };
 
 export function GroupStageShell({ groups }: GroupStageShellProps) {
-  const [selectedGroupCode, setSelectedGroupCode] = useState(
-    groups[0]?.code ?? "A"
-  );
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const defaultGroupCode = groups[0]?.code ?? "A";
+  const requestedGroupCode = searchParams.get("grupo");
+  const selectedGroupCode =
+    groups.some((group) => group.code === requestedGroupCode) && requestedGroupCode
+      ? requestedGroupCode
+      : defaultGroupCode;
   const selectedGroup =
     groups.find((group) => group.code === selectedGroupCode) ?? groups[0];
-  const [selectedRound, setSelectedRound] = useState(
-    groups[0]?.defaultRound ?? 1
-  );
+  const requestedRound = Number(searchParams.get("rodada"));
+  const selectedRound =
+    selectedGroup?.rounds.some((round) => round.round === requestedRound)
+      ? requestedRound
+      : selectedGroup?.defaultRound ?? 1;
   const [predictionOverrides, setPredictionOverrides] = useState<
     Record<string, { homeScore: number; awayScore: number } | null>
   >({});
@@ -30,6 +39,13 @@ export function GroupStageShell({ groups }: GroupStageShellProps) {
   const activeRound = selectedGroup.rounds.find(
     (round) => round.round === selectedRound
   );
+
+  const updateUrl = (groupCode: string, round: number) => {
+    const params = new URLSearchParams(searchParams.toString());
+    params.set("grupo", groupCode);
+    params.set("rodada", String(round));
+    router.replace(`${pathname}?${params.toString()}`, { scroll: false });
+  };
 
   return (
     <div className="mx-auto w-full max-w-360 space-y-8 px-5 pb-6 pt-2 md:px-8 md:pt-3 xl:px-10">
@@ -49,8 +65,7 @@ export function GroupStageShell({ groups }: GroupStageShellProps) {
             key={group.code}
             type="button"
             onClick={() => {
-              setSelectedGroupCode(group.code);
-              setSelectedRound(group.defaultRound);
+              updateUrl(group.code, group.defaultRound);
             }}
             variant="outline"
             className={
@@ -86,7 +101,9 @@ export function GroupStageShell({ groups }: GroupStageShellProps) {
               <Button
                 key={round.round}
                 type="button"
-                onClick={() => setSelectedRound(round.round)}
+                onClick={() => {
+                  updateUrl(selectedGroup.code, round.round);
+                }}
                 variant="outline"
                 className={
                   selectedRound === round.round
@@ -99,7 +116,7 @@ export function GroupStageShell({ groups }: GroupStageShellProps) {
             ))}
           </div>
 
-          <div className="grid gap-2.5 mt-5">
+          <div className="mt-5 grid gap-2.5">
             {activeRound?.matches.map((match) => {
               const effectivePrediction = Object.prototype.hasOwnProperty.call(
                 predictionOverrides,

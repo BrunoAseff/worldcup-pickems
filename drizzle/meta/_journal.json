@@ -22,6 +22,27 @@
       "when": 1774882460855,
       "tag": "0002_last_lightspeed",
       "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1774902446532,
+      "tag": "0003_absent_bastion",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1774903410401,
+      "tag": "0004_smooth_harpoon",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1774907796774,
+      "tag": "0005_redundant_talisman",
+      "breakpoints": true
     }
   ]
 }

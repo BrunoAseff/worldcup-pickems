@@ -5,6 +5,11 @@ export const routes = {
   ranking: "/ranking",
   api: {
     groupStagePredictions: "/api/group-stage-predictions",
+    groupStageResults: "/api/group-stage-results",
+    groupStageRecalculations: "/api/group-stage-recalculations",
+    groupStageTiebreakOverrides: "/api/group-stage-tiebreak-overrides",
+    knockoutPredictions: "/api/knockout-predictions",
+    knockoutResults: "/api/knockout-results",
   },
 } as const;
 

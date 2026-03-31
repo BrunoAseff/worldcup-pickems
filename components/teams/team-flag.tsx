@@ -15,7 +15,7 @@ export function TeamFlag({ code, className }: TeamFlagProps) {
       <span
         aria-hidden="true"
         className={cn(
-          "inline-flex h-4.5 w-6 rounded-xs border border-border bg-muted",
+          "inline-flex h-4.5 w-6 shrink-0 rounded-xs border border-border bg-muted",
           className
         )}
       />
@@ -29,7 +29,7 @@ export function TeamFlag({ code, className }: TeamFlagProps) {
       hasBorder={false}
       hasBorderRadius={false}
       className={cn(
-        "inline-flex h-4.5 w-6 overflow-hidden rounded-xs",
+        "inline-flex h-4.5 w-6 shrink-0 overflow-hidden rounded-xs",
         className
       )}
     />

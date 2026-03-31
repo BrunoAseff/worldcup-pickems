@@ -1,5 +1,6 @@
 @import "@fontsource-variable/manrope";
 @import "@fontsource/jetbrains-mono";
+@import "@xyflow/react/dist/style.css";
 @import "react-flagpack/dist/style.css";
 @import "tailwindcss";
 @import "tw-animate-css";
@@ -90,8 +91,64 @@
   }
   html {
     @apply font-sans;
+    scrollbar-gutter: stable;
   }
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+@layer components {
+  .knockout-flow .react-flow__pane {
+    cursor: grab;
+  }
+
+  .knockout-flow .react-flow__pane.dragging {
+    cursor: grabbing;
+  }
+
+  .knockout-flow .react-flow__node {
+    background: transparent;
+    border: 0;
+    padding: 0;
+  }
+
+  .knockout-flow .react-flow__node-knockoutMatch {
+    width: 14rem;
+  }
+
+  .knockout-flow .react-flow__edge-path {
+    stroke: color-mix(in oklch, var(--foreground) 22%, var(--border));
+    stroke-width: 1.75;
+  }
+
+  .knockout-flow .react-flow__controls {
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: none;
+  }
+
+  .knockout-flow .react-flow__controls-button {
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+    color: var(--foreground);
+  }
+
+  .knockout-flow .react-flow__controls-button:last-child {
+    border-bottom: 0;
+  }
+
+  .knockout-flow .react-flow__viewport-portal {
+    pointer-events: none;
+  }
+
+  .knockout-flow .react-flow__viewport-portal > * {
+    pointer-events: all;
+  }
+
+  .knockout-flow .react-flow__background path,
+  .knockout-flow .react-flow__background circle {
+    stroke: transparent;
   }
 }
