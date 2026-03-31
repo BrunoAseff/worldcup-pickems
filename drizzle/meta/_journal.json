@@ -43,6 +43,13 @@
       "when": 1774907796774,
       "tag": "0005_redundant_talisman",
       "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1774985845976,
+      "tag": "0006_rare_blob",
+      "breakpoints": true
     }
   ]
 }
