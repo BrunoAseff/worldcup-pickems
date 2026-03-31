@@ -13,6 +13,7 @@
     "db:push": "drizzle-kit push",
     "db:studio": "drizzle-kit studio",
     "data:extract-round-of-32-best-third-place-allocations": "tsx scripts/extract-round-of-32-best-third-place-allocations.ts",
+    "mock:knockout": "tsx scripts/mock-knockout.ts",
     "auth:create-user": "tsx scripts/create-user.ts",
     "seed:teams": "tsx scripts/seed-teams.ts",
     "seed:tournament": "tsx scripts/seed-tournament.ts"
@@ -21,6 +22,7 @@
     "@base-ui/react": "^1.3.0",
     "@fontsource-variable/manrope": "^5.2.8",
     "@fontsource/jetbrains-mono": "^5.2.8",
+    "@xyflow/react": "^12.10.2",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "csv-parse": "^6.2.1",
