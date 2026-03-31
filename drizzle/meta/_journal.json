@@ -36,6 +36,13 @@
       "when": 1774903410401,
       "tag": "0004_smooth_harpoon",
       "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1774907796774,
+      "tag": "0005_redundant_talisman",
+      "breakpoints": true
     }
   ]
 }
