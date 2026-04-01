@@ -282,3 +282,25 @@ export const groupTiebreakOverrides = pgTable(
     index("group_tiebreak_overrides_decided_by_user_id_idx").on(table.decidedByUserId),
   ],
 );
+
+export const userScoreSnapshots = pgTable(
+  "user_score_snapshots",
+  {
+    id: uuid("id").defaultRandom().primaryKey(),
+    userId: uuid("user_id")
+      .notNull()
+      .references(() => users.id, { onDelete: "cascade" }),
+    totalPoints: integer("total_points").notNull(),
+    rankPosition: integer("rank_position").notNull(),
+    recalculationRunId: uuid("recalculation_run_id")
+      .notNull()
+      .references(() => recalculationRuns.id, { onDelete: "cascade" }),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+    updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [
+    uniqueIndex("user_score_snapshots_user_id_idx").on(table.userId),
+    index("user_score_snapshots_rank_position_idx").on(table.rankPosition),
+    index("user_score_snapshots_recalculation_run_id_idx").on(table.recalculationRunId),
+  ],
+);

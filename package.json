@@ -8,6 +8,8 @@
     "start": "next start",
     "postinstall": "react-flagpack",
     "lint": "eslint .",
+    "test": "vitest",
+    "test:run": "vitest run",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate",
     "db:push": "drizzle-kit push",
@@ -15,6 +17,7 @@
     "data:extract-round-of-32-best-third-place-allocations": "tsx scripts/extract-round-of-32-best-third-place-allocations.ts",
     "mock:knockout": "tsx scripts/mock-knockout.ts",
     "auth:create-user": "tsx scripts/create-user.ts",
+    "recalculate:core": "node --import tsx scripts/recalculate-core.ts",
     "seed:teams": "tsx scripts/seed-teams.ts",
     "seed:tournament": "tsx scripts/seed-tournament.ts"
   },
@@ -51,6 +54,7 @@
     "eslint-config-next": "16.2.1",
     "tailwindcss": "^4",
     "tsx": "^4.21.0",
-    "typescript": "^5"
+    "typescript": "^5",
+    "vitest": "^4.1.2"
   }
 }

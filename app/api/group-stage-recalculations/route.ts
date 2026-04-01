@@ -1,9 +1,9 @@
 import { NextResponse } from "next/server";
 import { getCurrentSession } from "@/lib/auth/session";
 import {
-  GroupStageRecalculationConflictError,
-  recalculateGroupStageStandings,
-} from "@/lib/group-stage/recalculation";
+  ApplicationRecalculationConflictError,
+  recalculateApplicationCore,
+} from "@/lib/recalculation/core";
 
 export async function POST() {
   const session = await getCurrentSession();
@@ -17,11 +17,11 @@ export async function POST() {
   }
 
   try {
-    const recalculatedAt = await recalculateGroupStageStandings(session.user.id);
+    const recalculatedAt = await recalculateApplicationCore(session.user.id);
 
     return NextResponse.json({ ok: true, recalculatedAt });
   } catch (error) {
-    if (error instanceof GroupStageRecalculationConflictError) {
+    if (error instanceof ApplicationRecalculationConflictError) {
       return NextResponse.json(
         {
           error: `Defina manualmente o desempate dos grupos: ${error.groupCodes.join(", ")}.`,
