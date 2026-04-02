@@ -4,21 +4,24 @@ import { RefreshCw } from "lucide-react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useState, useTransition } from "react";
 import { AdminMatchCard } from "@/components/group-stage/admin-match-card";
+import { BestThirdSlotOverrideCard } from "@/components/group-stage/best-third-slot-override-card";
 import { GroupTiebreakOverrideCard } from "@/components/group-stage/group-tiebreak-override-card";
 import { Button } from "@/components/ui/button";
 import { formatKickoff } from "@/lib/formatters/kickoff";
-import { GroupStageGroupView } from "@/lib/group-stage/queries";
+import { GroupStageAdminView, GroupStageGroupView } from "@/lib/group-stage/queries";
 import { routes } from "@/lib/routes";
 import { StandingsTable } from "./standings-table";
 
 type GroupStageAdminShellProps = {
   groups: GroupStageGroupView[];
   lastRecalculatedAt: string | null;
+  bestThirdSelection: GroupStageAdminView["bestThirdSelection"];
 };
 
 export function GroupStageAdminShell({
   groups,
   lastRecalculatedAt,
+  bestThirdSelection,
 }: GroupStageAdminShellProps) {
   const router = useRouter();
   const pathname = usePathname();
@@ -134,6 +137,13 @@ export function GroupStageAdminShell({
           groupCode={selectedGroup.code}
           teams={selectedGroup.standings}
           initialOrderedTeamIds={selectedGroup.tiebreak.orderedTeamIds}
+        />
+      ) : null}
+
+      {bestThirdSelection.requiresManualDecision ? (
+        <BestThirdSlotOverrideCard
+          slots={bestThirdSelection.slots}
+          options={bestThirdSelection.options}
         />
       ) : null}
 

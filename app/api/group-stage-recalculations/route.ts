@@ -24,8 +24,11 @@ export async function POST() {
     if (error instanceof ApplicationRecalculationConflictError) {
       return NextResponse.json(
         {
-          error: `Defina manualmente o desempate dos grupos: ${error.groupCodes.join(", ")}.`,
+          error: error.requiresManualBestThirdSelection
+            ? "Defina manualmente quais terceiros colocados entram no mata-mata."
+            : `Defina manualmente o desempate dos grupos: ${error.groupCodes.join(", ")}.`,
           groupCodes: error.groupCodes,
+          requiresManualBestThirdSelection: error.requiresManualBestThirdSelection,
         },
         { status: 409 },
       );

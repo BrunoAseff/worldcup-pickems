@@ -12,6 +12,7 @@ export default async function GroupStagePage() {
       <GroupStageAdminShell
         groups={adminView.groups}
         lastRecalculatedAt={adminView.lastRecalculatedAt}
+        bestThirdSelection={adminView.bestThirdSelection}
       />
     );
   }

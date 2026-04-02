@@ -40,12 +40,18 @@ export function StandingsTable({ standings }: StandingsTableProps) {
         </TableHeader>
         <TableBody>
           {standings.map((team) => (
-            <TableRow key={team.teamId}>
+            <TableRow
+              key={team.teamId}
+              className={team.predictionFeedback === "exact_position" ? "bg-primary/6" : undefined}
+            >
               <TableCell className="py-4 text-sm font-semibold text-muted-foreground">
                 {team.position}
               </TableCell>
               <TableCell className="w-64 py-4">
                 <div className="flex min-w-0 items-center gap-3">
+                  {team.predictionFeedback === "qualified_only" ? (
+                    <span className="size-2 rounded-full bg-chart-4 shrink-0" />
+                  ) : null}
                   <TeamFlag code={team.flagCode} className="shrink-0" />
                   <p
                     className="block max-w-48 truncate text-[15px] font-medium text-foreground md:max-w-52 lg:max-w-56"

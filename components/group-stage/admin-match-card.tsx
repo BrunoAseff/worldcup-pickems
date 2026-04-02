@@ -142,15 +142,15 @@ export function AdminMatchCard({ match }: AdminMatchCardProps) {
   };
 
   const statusIcon = useMemo(() => {
-    if (validationMessage || !serverMessage) {
-      return null;
-    }
-
     if (status === "saving") {
       return {
         tone: "saving" as const,
         message: "Salvando...",
       };
+    }
+
+    if (validationMessage || !serverMessage) {
+      return null;
     }
 
     if (status === "saved" || status === "deleted") {
