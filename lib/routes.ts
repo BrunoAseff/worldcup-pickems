@@ -8,6 +8,7 @@ export const routes = {
     groupStageResults: "/api/group-stage-results",
     groupStageRecalculations: "/api/group-stage-recalculations",
     groupStageTiebreakOverrides: "/api/group-stage-tiebreak-overrides",
+    groupStageBestThirdOverrides: "/api/group-stage-best-third-overrides",
     knockoutPredictions: "/api/knockout-predictions",
     knockoutResults: "/api/knockout-results",
   },

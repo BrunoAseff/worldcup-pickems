@@ -283,6 +283,27 @@ export const groupTiebreakOverrides = pgTable(
   ],
 );
 
+export const bestThirdSlotOverrides = pgTable(
+  "best_third_slot_overrides",
+  {
+    id: uuid("id").defaultRandom().primaryKey(),
+    slotKey: varchar("slot_key", { length: 8 }).notNull(),
+    teamId: uuid("team_id")
+      .notNull()
+      .references(() => teams.id, { onDelete: "cascade" }),
+    decidedByUserId: uuid("decided_by_user_id")
+      .notNull()
+      .references(() => users.id, { onDelete: "restrict" }),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+    updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [
+    uniqueIndex("best_third_slot_overrides_slot_key_idx").on(table.slotKey),
+    uniqueIndex("best_third_slot_overrides_team_id_idx").on(table.teamId),
+    index("best_third_slot_overrides_decided_by_user_id_idx").on(table.decidedByUserId),
+  ],
+);
+
 export const userScoreSnapshots = pgTable(
   "user_score_snapshots",
   {

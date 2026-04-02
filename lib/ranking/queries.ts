@@ -99,7 +99,7 @@ export const getRankingPageView = async (
       medal: getMedal(entry.rankPosition),
     })),
     viewerStatus,
-    finalCompleted: Boolean(finalResult),
-    showConfetti: role === "player" && Boolean(finalResult),
+    finalCompleted: finalResult.length > 0,
+    showConfetti: role === "player" && finalResult.length > 0,
   };
 };
