@@ -17,6 +17,16 @@ export type ScoringParticipants = {
   awayTeamId: string | null;
 };
 
+export const groupStagePoints = {
+  exact: 10,
+  winner: 5,
+} as const;
+
+export const groupStandingsPoints = {
+  exactOrder: 30,
+  qualifiedTeams: 15,
+} as const;
+
 export const scoreGroupStageMatch = (
   prediction:
     | Pick<ScoringPrediction, "predictedHomeScore" | "predictedAwayScore">
@@ -51,7 +61,7 @@ export const knockoutStagePoints = {
   final: { winner: 50, exact: 100 },
 } as const;
 
-const getOfficialAdvancingTeamId = (
+export const resolveAdvancingTeam = (
   participants: ScoringParticipants,
   result: ScoringOfficialResult | undefined,
 ) => {
@@ -70,6 +80,33 @@ const getOfficialAdvancingTeamId = (
   return result.advancingTeamId;
 };
 
+export const scoringRuleSections = [
+  {
+    title: "Partidas da fase de grupos",
+    items: [
+      `Placar exato: ${groupStagePoints.exact} pontos.`,
+      `Mesmo vencedor ou empate: ${groupStagePoints.winner} pontos.`,
+    ],
+  },
+  {
+    title: "Classificação dos grupos",
+    items: [
+      `Ordem completa das quatro seleções: ${groupStandingsPoints.exactOrder} pontos.`,
+      `Duas seleções classificadas corretas, em qualquer ordem: ${groupStandingsPoints.qualifiedTeams} pontos.`,
+    ],
+  },
+  {
+    title: "Mata-mata",
+    items: [
+      `16-avos: ${knockoutStagePoints.round_of_32.exact} no placar exato ou ${knockoutStagePoints.round_of_32.winner} ao acertar quem avança.`,
+      `Oitavas: ${knockoutStagePoints.round_of_16.exact} no placar exato ou ${knockoutStagePoints.round_of_16.winner} ao acertar quem avança.`,
+      `Quartas: ${knockoutStagePoints.quarterfinal.exact} no placar exato ou ${knockoutStagePoints.quarterfinal.winner} ao acertar quem avança.`,
+      `Semifinais e disputa de 3º lugar: ${knockoutStagePoints.semifinal.exact} no placar exato ou ${knockoutStagePoints.semifinal.winner} ao acertar quem avança.`,
+      `Final: ${knockoutStagePoints.final.exact} no placar exato ou ${knockoutStagePoints.final.winner} ao acertar o campeão.`,
+    ],
+  },
+] as const;
+
 export const scoreKnockoutMatch = (
   stage: keyof typeof knockoutStagePoints,
   prediction: ScoringPrediction | null,
@@ -80,7 +117,7 @@ export const scoreKnockoutMatch = (
     return 0;
   }
 
-  const officialAdvancingTeamId = getOfficialAdvancingTeamId(participants, official);
+  const officialAdvancingTeamId = resolveAdvancingTeam(participants, official);
 
   if (!officialAdvancingTeamId) {
     return 0;

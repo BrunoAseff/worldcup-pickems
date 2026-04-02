@@ -1,10 +1,17 @@
 import { computeGroupStandings } from "@/lib/group-stage/standings";
 import { findRoundOf32BestThirdPlaceAllocation } from "@/lib/knockout/annex-c";
+import { getBestThirdSlotKey, getBestThirdStatus } from "@/lib/knockout/best-third";
 import {
+  resolveAdvancingTeam,
   scoreGroupStageMatch,
   scoreKnockoutMatch,
 } from "@/lib/recalculation/scoring";
-export { scoreGroupStageMatch, scoreKnockoutMatch } from "@/lib/recalculation/scoring";
+export {
+  resolveAdvancingTeam,
+  scoreGroupStageMatch,
+  scoreKnockoutMatch,
+} from "@/lib/recalculation/scoring";
+export { compareBestThird } from "@/lib/knockout/best-third";
 
 export type TeamRecord = {
   id: string;
@@ -99,6 +106,11 @@ export type GroupTiebreakOverrideRecord = {
   orderedTeamIds: string;
 };
 
+export type BestThirdSlotOverrideRecord = {
+  slotKey: string;
+  teamId: string;
+};
+
 export type ParticipantPair = {
   homeTeamId: string | null;
   awayTeamId: string | null;
@@ -112,27 +124,12 @@ export type RankedUserScore = {
 
 export type ApplicationRecalculationSnapshot = {
   unresolvedGroupCodes: string[];
+  requiresManualBestThirdSelection: boolean;
   flatStandings: GroupStandingRecord[];
   bestThirdQualifiedGroupCodes: string[];
   officialParticipantsByKnockoutMatchId: Map<string, ParticipantPair>;
   invalidPredictionIds: Set<string>;
   rankedUserScores: RankedUserScore[];
-};
-
-export const compareBestThird = (left: GroupStandingRecord, right: GroupStandingRecord) => {
-  if (right.points !== left.points) {
-    return right.points - left.points;
-  }
-
-  if (right.goalDifference !== left.goalDifference) {
-    return right.goalDifference - left.goalDifference;
-  }
-
-  if (right.goalsFor !== left.goalsFor) {
-    return right.goalsFor - left.goalsFor;
-  }
-
-  return left.groupCode.localeCompare(right.groupCode);
 };
 
 export const isGroupComplete = (
@@ -148,27 +145,14 @@ export const isGroupComplete = (
 export const getOfficialAdvancingTeamId = (
   participants: ParticipantPair,
   result: OfficialResultRecord | undefined,
-) => {
-  if (!result || !participants.homeTeamId || !participants.awayTeamId) {
-    return null;
-  }
-
-  if (result.homeScore > result.awayScore) {
-    return participants.homeTeamId;
-  }
-
-  if (result.awayScore > result.homeScore) {
-    return participants.awayTeamId;
-  }
-
-  return result.advancingTeamId;
-};
+) => resolveAdvancingTeam(participants, result);
 
 export const buildOfficialKnockoutParticipants = (
   knockoutMatches: MatchRecord[],
   standingByGroupPosition: Map<string, GroupStandingRecord>,
   officialResultByMatchId: Map<string, OfficialResultRecord>,
   bestThirdQualifiedGroupCodes: string[],
+  bestThirdSlotAssignments?: Map<string, string>,
 ) => {
   const allocation =
     bestThirdQualifiedGroupCodes.length === 8
@@ -199,11 +183,17 @@ export const buildOfficialKnockoutParticipants = (
       }
 
       if (sourceType === "best_third_place") {
+        const slotKey = getBestThirdSlotKey(oppositeSourceRef);
+        const assignedTeamId = bestThirdSlotAssignments?.get(slotKey);
+
+        if (assignedTeamId) {
+          return assignedTeamId;
+        }
+
         if (!allocation) {
           return null;
         }
 
-        const slotKey = `1${oppositeSourceRef[0]}`;
         const assignedGroupCode = allocation.assignments[slotKey];
         return assignedGroupCode
           ? standingByGroupPosition.get(`${assignedGroupCode}3`)?.teamId ?? null
@@ -275,7 +265,11 @@ export const buildNormalizedPredictionResolver = (
     }
   >();
 
+  const isDirectSlotSource = (sourceType: MatchRecord["homeSourceType"]) =>
+    sourceType === "group_position" || sourceType === "best_third_place";
+
   const normalizePrediction = (
+    match: MatchRecord,
     prediction: MatchPredictionRecord | null,
     participants: ParticipantPair,
   ) => {
@@ -283,16 +277,25 @@ export const buildNormalizedPredictionResolver = (
       return null;
     }
 
+    const homeSlotUnresolved =
+      isDirectSlotSource(match.homeSourceType) && !participants.homeTeamId;
+    const awaySlotUnresolved =
+      isDirectSlotSource(match.awaySourceType) && !participants.awayTeamId;
+
     if (
-      !participants.homeTeamId ||
-      !participants.awayTeamId ||
-      prediction.predictedHomeTeamId !== participants.homeTeamId ||
-      prediction.predictedAwayTeamId !== participants.awayTeamId
+      (!homeSlotUnresolved &&
+        (!participants.homeTeamId ||
+          prediction.predictedHomeTeamId !== participants.homeTeamId)) ||
+      (!awaySlotUnresolved &&
+        (!participants.awayTeamId ||
+          prediction.predictedAwayTeamId !== participants.awayTeamId))
     ) {
       return null;
     }
 
     if (
+      participants.homeTeamId &&
+      participants.awayTeamId &&
       prediction.predictedAdvancingTeamId &&
       prediction.predictedAdvancingTeamId !== participants.homeTeamId &&
       prediction.predictedAdvancingTeamId !== participants.awayTeamId
@@ -394,7 +397,11 @@ export const buildNormalizedPredictionResolver = (
 
     const state = {
       participants,
-      prediction: normalizePrediction(predictionByMatchId.get(match.id) ?? null, participants),
+      prediction: normalizePrediction(
+        match,
+        predictionByMatchId.get(match.id) ?? null,
+        participants,
+      ),
     };
 
     cache.set(match.id, state);
@@ -439,6 +446,7 @@ export const buildApplicationRecalculationSnapshot = ({
   officialResultRecords,
   predictionRecords,
   tiebreakOverrideRecords,
+  bestThirdSlotOverrideRecords = [],
 }: {
   groupRecords: GroupRecord[];
   groupTeamRecords: GroupTeamRecord[];
@@ -448,6 +456,7 @@ export const buildApplicationRecalculationSnapshot = ({
   officialResultRecords: OfficialResultRecord[];
   predictionRecords: MatchPredictionRecord[];
   tiebreakOverrideRecords: GroupTiebreakOverrideRecord[];
+  bestThirdSlotOverrideRecords?: BestThirdSlotOverrideRecord[];
 }): ApplicationRecalculationSnapshot => {
   const teamById = new Map(teamRecords.map((team) => [team.id, team]));
   const officialResultByMatchId = new Map(
@@ -458,6 +467,9 @@ export const buildApplicationRecalculationSnapshot = ({
       override.groupId,
       override.orderedTeamIds.split(",").filter(Boolean),
     ]),
+  );
+  const bestThirdSlotAssignments = new Map(
+    bestThirdSlotOverrideRecords.map((override) => [override.slotKey, override.teamId]),
   );
   const groupStageMatches = matchRecords.filter((match) => match.stage === "group_stage");
   const knockoutMatches = matchRecords.filter(
@@ -525,20 +537,65 @@ export const buildApplicationRecalculationSnapshot = ({
     }) satisfies GroupStandingRecord),
   );
 
+  const completedGroupIds = new Set(
+    groupRecords
+      .filter((group) => isGroupComplete(groupStageMatches, officialResultByMatchId, group.id))
+      .map((group) => group.id),
+  );
   const standingByGroupPosition = new Map(
-    flatStandings.map((standing) => [`${standing.groupCode}${standing.position}`, standing]),
+    flatStandings
+      .filter((standing) => completedGroupIds.has(standing.groupId))
+      .map((standing) => [`${standing.groupCode}${standing.position}`, standing]),
   );
 
-  const completedGroupCount = groupRecords.filter((group) =>
-    isGroupComplete(groupStageMatches, officialResultByMatchId, group.id),
-  ).length;
-  const bestThirdQualifiedGroupCodes =
+  const completedGroupCount = completedGroupIds.size;
+  const bestThirdStatus =
     completedGroupCount === groupRecords.length
-      ? flatStandings
-          .filter((standing) => standing.position === 3)
-          .sort(compareBestThird)
-          .slice(0, 8)
-          .map((standing) => standing.groupCode)
+      ? getBestThirdStatus(flatStandings)
+      : {
+          resolved: false,
+          qualifiedGroupCodes: [] as string[],
+          thirdPlaced: [] as GroupStandingRecord[],
+          hasBoundaryTie: false,
+        };
+  const requiredBestThirdSlotKeys = knockoutMatches
+    .flatMap((match) => {
+      const slotKeys: string[] = [];
+
+      if (match.homeSourceType === "best_third_place") {
+        slotKeys.push(getBestThirdSlotKey(match.awaySourceRef));
+      }
+
+      if (match.awaySourceType === "best_third_place") {
+        slotKeys.push(getBestThirdSlotKey(match.homeSourceRef));
+      }
+
+      return slotKeys;
+    })
+    .sort();
+  const hasCompleteBestThirdSlotAssignments =
+    requiredBestThirdSlotKeys.length > 0 &&
+    requiredBestThirdSlotKeys.every((slotKey) => bestThirdSlotAssignments.has(slotKey));
+  const requiresManualBestThirdSelection =
+    completedGroupCount === groupRecords.length &&
+    !bestThirdStatus.resolved &&
+    bestThirdStatus.hasBoundaryTie &&
+    !hasCompleteBestThirdSlotAssignments;
+  const bestThirdQualifiedGroupCodes = bestThirdStatus.resolved
+    ? bestThirdStatus.qualifiedGroupCodes
+    : hasCompleteBestThirdSlotAssignments
+      ? requiredBestThirdSlotKeys
+          .map((slotKey) => bestThirdSlotAssignments.get(slotKey)!)
+          .map((teamId) => teamRecords.find((team) => team.id === teamId))
+          .filter((team): team is TeamRecord => Boolean(team))
+          .map((team) => {
+            const standing = flatStandings.find(
+              (entry) => entry.position === 3 && entry.teamId === team.id,
+            );
+
+            return standing?.groupCode ?? "";
+          })
+          .filter(Boolean)
       : [];
 
   const officialParticipantsByKnockoutMatchId = buildOfficialKnockoutParticipants(
@@ -546,6 +603,7 @@ export const buildApplicationRecalculationSnapshot = ({
     standingByGroupPosition,
     officialResultByMatchId,
     bestThirdQualifiedGroupCodes,
+    hasCompleteBestThirdSlotAssignments ? bestThirdSlotAssignments : undefined,
   );
 
   const predictionsByUserId = new Map<string, MatchPredictionRecord[]>();
@@ -661,6 +719,7 @@ export const buildApplicationRecalculationSnapshot = ({
 
   return {
     unresolvedGroupCodes,
+    requiresManualBestThirdSelection,
     flatStandings,
     bestThirdQualifiedGroupCodes,
     officialParticipantsByKnockoutMatchId,

@@ -345,6 +345,58 @@ describe("recalculation core logic", () => {
     expect(changedResolver(knockoutMatches[1]!).prediction).toBeNull();
   });
 
+  it("preserves direct-slot predictions while the official slot is still unresolved", () => {
+    const knockoutMatches: MatchRecord[] = [
+      {
+        id: "m73",
+        matchNumber: 73,
+        bracketCode: "M073",
+        stage: "round_of_32",
+        groupId: null,
+        scheduledAt: new Date("2026-06-28T10:00:00Z"),
+        homeTeamId: null,
+        awayTeamId: "bra",
+        homeSourceType: "group_position",
+        homeSourceRef: "A1",
+        awaySourceType: "team",
+        awaySourceRef: "BRA",
+      },
+    ];
+
+    const predictionByMatchId = new Map<string, MatchPredictionRecord>([
+      [
+        "m73",
+        {
+          id: "p73",
+          userId: "u1",
+          matchId: "m73",
+          predictedHomeTeamId: "hol",
+          predictedAwayTeamId: "bra",
+          predictedHomeScore: 2,
+          predictedAwayScore: 1,
+          predictedAdvancingTeamId: "hol",
+        },
+      ],
+    ]);
+
+    const unresolvedResolver = buildNormalizedPredictionResolver(
+      knockoutMatches,
+      new Map([["m73", { homeTeamId: null, awayTeamId: "bra" }]]),
+      predictionByMatchId,
+    );
+
+    expect(unresolvedResolver(knockoutMatches[0]!).prediction).not.toBeNull();
+    expect(unresolvedResolver(knockoutMatches[0]!).prediction?.predictedHomeTeamId).toBe("hol");
+
+    const resolvedResolver = buildNormalizedPredictionResolver(
+      knockoutMatches,
+      new Map([["m73", { homeTeamId: "arg", awayTeamId: "bra" }]]),
+      predictionByMatchId,
+    );
+
+    expect(resolvedResolver(knockoutMatches[0]!).prediction).toBeNull();
+  });
+
   it("builds a full-pass snapshot with standings, scores and invalidation", () => {
     const groupRecords: GroupRecord[] = [{ id: "group-a", code: "A" }];
     const teamRecords = [
@@ -418,7 +470,7 @@ describe("recalculation core logic", () => {
       ["A", "d", 3],
       ["A", "c", 4],
     ]);
-    expect(snapshot.bestThirdQualifiedGroupCodes).toEqual(["A"]);
+    expect(snapshot.bestThirdQualifiedGroupCodes).toEqual([]);
     expect(snapshot.officialParticipantsByKnockoutMatchId.get("k1")).toEqual({
       homeTeamId: "a",
       awayTeamId: "sco",
