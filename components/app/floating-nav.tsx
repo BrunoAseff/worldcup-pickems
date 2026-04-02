@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Trophy, UserCircle2 } from "lucide-react";
 import { LogoutForm } from "@/components/auth/logout-form";
+import { ViewerRankingStatus } from "@/lib/ranking/queries";
 import { primaryNavItems, type PrimaryRouteKey } from "@/lib/routes";
 import { cn } from "@/lib/utils";
 
@@ -9,10 +10,18 @@ type FloatingNavProps = {
     displayName: string;
     role: "player" | "admin";
   };
+  rankingStatus?: ViewerRankingStatus;
   activeKey: PrimaryRouteKey;
 };
 
-export function FloatingNav({ user, activeKey }: FloatingNavProps) {
+export function FloatingNav({ user, rankingStatus, activeKey }: FloatingNavProps) {
+  const hasPlayerRankingStatus =
+    user.role === "player" &&
+    rankingStatus?.totalPoints !== null &&
+    rankingStatus?.totalPoints !== undefined &&
+    rankingStatus?.rankPosition !== null &&
+    rankingStatus?.rankPosition !== undefined;
+
   return (
     <div className="sticky top-4 z-40 mb-8 px-5 md:px-8 xl:px-10">
       <div className="mx-auto flex w-full max-w-360 items-center justify-between gap-4 rounded-md border border-border bg-card/95 px-4 py-3 backdrop-blur">
@@ -45,12 +54,12 @@ export function FloatingNav({ user, activeKey }: FloatingNavProps) {
             <span className="font-medium text-foreground">
               {user.displayName}
             </span>
-            {user.role === "player" ? (
+            {hasPlayerRankingStatus ? (
               <>
                 <span className="text-muted-foreground">|</span>
-                <span className="text-muted-foreground">
-                  Ranking em breve
-                </span>
+                <span className="text-muted-foreground">{rankingStatus!.totalPoints} pts</span>
+                <span className="text-muted-foreground">|</span>
+                <span className="text-muted-foreground">{rankingStatus!.rankPosition}º lugar</span>
               </>
             ) : null}
           </div>

@@ -1,5 +1,10 @@
 import { computeGroupStandings } from "@/lib/group-stage/standings";
 import { findRoundOf32BestThirdPlaceAllocation } from "@/lib/knockout/annex-c";
+import {
+  scoreGroupStageMatch,
+  scoreKnockoutMatch,
+} from "@/lib/recalculation/scoring";
+export { scoreGroupStageMatch, scoreKnockoutMatch } from "@/lib/recalculation/scoring";
 
 export type TeamRecord = {
   id: string;
@@ -397,81 +402,6 @@ export const buildNormalizedPredictionResolver = (
   };
 
   return resolve;
-};
-
-export const scoreGroupStageMatch = (
-  prediction: MatchPredictionRecord | undefined,
-  official: OfficialResultRecord | undefined,
-) => {
-  if (!prediction || !official) {
-    return 0;
-  }
-
-  if (
-    prediction.predictedHomeScore === official.homeScore &&
-    prediction.predictedAwayScore === official.awayScore
-  ) {
-    return 10;
-  }
-
-  const predictedOutcome = Math.sign(
-    prediction.predictedHomeScore - prediction.predictedAwayScore,
-  );
-  const officialOutcome = Math.sign(official.homeScore - official.awayScore);
-
-  return predictedOutcome === officialOutcome ? 5 : 0;
-};
-
-export const knockoutStagePoints = {
-  round_of_32: { winner: 10, exact: 20 },
-  round_of_16: { winner: 15, exact: 30 },
-  quarterfinal: { winner: 20, exact: 40 },
-  semifinal: { winner: 25, exact: 50 },
-  third_place: { winner: 25, exact: 50 },
-  final: { winner: 50, exact: 100 },
-} as const;
-
-export const scoreKnockoutMatch = (
-  stage: Exclude<MatchRecord["stage"], "group_stage">,
-  prediction: MatchPredictionRecord | null,
-  official: OfficialResultRecord | undefined,
-  participants: ParticipantPair,
-) => {
-  if (!prediction || !official || !participants.homeTeamId || !participants.awayTeamId) {
-    return 0;
-  }
-
-  const officialAdvancingTeamId = getOfficialAdvancingTeamId(participants, official);
-
-  if (!officialAdvancingTeamId) {
-    return 0;
-  }
-
-  const exactRegularTime =
-    prediction.predictedHomeScore === official.homeScore &&
-    prediction.predictedAwayScore === official.awayScore;
-  const predictedAdvancingTeamId =
-    prediction.predictedHomeScore > prediction.predictedAwayScore
-      ? prediction.predictedHomeTeamId
-      : prediction.predictedAwayScore > prediction.predictedHomeScore
-        ? prediction.predictedAwayTeamId
-        : prediction.predictedAdvancingTeamId;
-  const correctAdvancingTeam = predictedAdvancingTeamId === officialAdvancingTeamId;
-  const stagePoints = knockoutStagePoints[stage];
-
-  if (official.homeScore === official.awayScore) {
-    if (exactRegularTime && correctAdvancingTeam) {
-      return stagePoints.exact;
-    }
-
-    return correctAdvancingTeam ? stagePoints.winner : 0;
-  }
-
-  if (exactRegularTime) {
-    return stagePoints.exact;
-  }
-
-  return correctAdvancingTeam ? stagePoints.winner : 0;
 };
 
 export const computeRankingPositions = (userScores: Array<{ userId: string; totalPoints: number }>) => {
