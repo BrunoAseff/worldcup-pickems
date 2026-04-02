@@ -1,20 +1,18 @@
 "use client";
 
-import { formatInTimeZone } from "date-fns-tz";
 import {
-  AlertCircle,
-  Check,
-  LoaderCircle,
-  LockKeyhole,
   Trophy,
 } from "lucide-react";
 import { useMemo, useRef, useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
+import { SaveStateIndicator } from "@/components/predictions/save-state-indicator";
 import { TeamFlag } from "@/components/teams/team-flag";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
+import { formatKickoff } from "@/lib/formatters/kickoff";
 import { KnockoutMatchView } from "@/lib/knockout/queries";
+import { getKnockoutMatchFeedback } from "@/lib/predictions/feedback";
 import { routes } from "@/lib/routes";
 import { cn } from "@/lib/utils";
 
@@ -37,9 +35,6 @@ type Draft = {
   awayScore: string;
   advancingTeamId: string | null;
 };
-
-const formatKickoff = (scheduledAt: string) =>
-  formatInTimeZone(new Date(scheduledAt), "America/Sao_Paulo", "dd/MM • HH:mm");
 
 export function KnockoutMatchCard({
   match,
@@ -246,43 +241,74 @@ export function KnockoutMatchCard({
   const headerIcon = useMemo(() => {
     if (validationMessage) {
       return {
-        icon: <AlertCircle className="size-3.5 text-destructive" />,
         message: validationMessage,
+        tone: "error" as const,
       };
     }
 
     if (status === "saving") {
       return {
-        icon: (
-          <LoaderCircle className="size-3.5 animate-spin text-muted-foreground" />
-        ),
         message: "Salvando...",
+        tone: "saving" as const,
       };
     }
 
     if (status === "saved" || status === "deleted") {
       return {
-        icon: <Check className="size-3.5 text-primary" />,
         message: serverMessage,
+        tone: "success" as const,
       };
     }
 
     if (status === "error") {
       return {
-        icon: <AlertCircle className="size-3.5 text-destructive" />,
         message: serverMessage,
+        tone: "error" as const,
       };
     }
 
     if (mode === "player" && isLocked) {
       return {
-        icon: <LockKeyhole className="size-3.5 text-muted-foreground" />,
         message: "Mata-mata travado.",
+        tone: "locked" as const,
       };
     }
 
     return null;
   }, [isLocked, mode, serverMessage, status, validationMessage]);
+  const feedback =
+    mode === "player"
+      ? getKnockoutMatchFeedback({
+          stage: match.stage,
+          prediction: match.prediction,
+          officialResult: match.officialResult,
+          participants: {
+            homeTeamId: match.homeParticipant.teamId,
+            awayTeamId: match.awayParticipant.teamId,
+          },
+        })
+      : null;
+  const hasOfficialResult = Boolean(mode === "player" && match.officialResult);
+  const pointsLabel = feedback ? `${feedback.points}pts` : null;
+  const predictedScoreDiffersFromOfficial = Boolean(
+    hasOfficialResult &&
+      match.prediction &&
+      match.prediction.homeScore !== null &&
+      match.prediction.awayScore !== null &&
+      match.officialResult &&
+      (match.prediction.homeScore !== match.officialResult.homeScore ||
+        match.prediction.awayScore !== match.officialResult.awayScore),
+  );
+  const displayAdvancingTeamId =
+    match.officialResult &&
+    match.homeParticipant.teamId &&
+    match.awayParticipant.teamId
+      ? match.officialResult.homeScore > match.officialResult.awayScore
+        ? match.homeParticipant.teamId
+        : match.officialResult.awayScore > match.officialResult.homeScore
+          ? match.awayParticipant.teamId
+          : match.officialResult.advancingTeamId
+      : values.advancingTeamId;
 
   return (
     <Card
@@ -295,32 +321,29 @@ export function KnockoutMatchCard({
       onClickCapture={(event) => event.stopPropagation()}
     >
       <div className="border-b border-border px-3 py-2">
-        <div className="flex items-center justify-between gap-2">
-          <p className="truncate text-[12px] font-semibold uppercase tracking-[0.14em] text-foreground">
-            {match.bracketCode} <span className="text-muted-foreground">•</span>{" "}
+        <div className="relative flex items-center">
+          <p className="min-w-0 flex-1 truncate pr-20 text-[12px] font-semibold uppercase tracking-[0.14em] text-foreground">
             <span className="text-muted-foreground">
               {formatKickoff(match.scheduledAt)}
             </span>
           </p>
-          <div className="relative flex items-center gap-1.5">
-            {match.officialResult ? (
-              <span className="text-[10px] font-semibold uppercase tracking-[0.14em] text-muted-foreground">
-                oficial
-              </span>
+          <div className="absolute top-1/2 right-0 flex -translate-y-1/2 items-center gap-2">
+            {hasOfficialResult && feedback && pointsLabel ? (
+              <div
+                className={cn(
+                  "shrink-0 rounded-sm border px-2 py-0.5 text-xs font-semibold normal-case tracking-normal whitespace-nowrap",
+                  feedback.points > 0
+                    ? "border-primary/35 bg-primary/8 text-primary"
+                    : "border-red-200 bg-red-50 text-destructive",
+                )}
+              >
+                {pointsLabel}
+              </div>
             ) : null}
-            {headerIcon ? (
-              <>
-                <div
-                  tabIndex={0}
-                  className="peer flex size-4 items-center justify-center"
-                >
-                  {headerIcon.icon}
-                </div>
-                <div className="pointer-events-none absolute bottom-full left-1/2 z-20 mb-2 -translate-x-1/2 rounded-md border border-border bg-card px-2.5 py-1.5 text-xs whitespace-nowrap text-card-foreground opacity-0 transition-opacity peer-hover:opacity-100 peer-focus:opacity-100 peer-focus-visible:opacity-100">
-                  {headerIcon.message}
-                </div>
-              </>
-            ) : null}
+            <SaveStateIndicator
+              message={validationMessage ?? headerIcon?.message ?? null}
+              tone={validationMessage ? "error" : (headerIcon?.tone ?? null)}
+            />
           </div>
         </div>
       </div>
@@ -340,7 +363,22 @@ export function KnockoutMatchCard({
         ].map((entry) => {
           const isSelectedAdvancer =
             Boolean(entry.participant.teamId) &&
-            values.advancingTeamId === entry.participant.teamId;
+            displayAdvancingTeamId === entry.participant.teamId;
+          const predictedScore =
+            entry.side === "home"
+              ? match.prediction?.homeScore
+              : match.prediction?.awayScore;
+          const officialScore =
+            hasOfficialResult && match.officialResult
+              ? entry.side === "home"
+                ? match.officialResult.homeScore
+                : match.officialResult.awayScore
+              : null;
+          const showHistoricPrediction =
+            predictedScoreDiffersFromOfficial &&
+            predictedScore !== null &&
+            predictedScore !== undefined &&
+            officialScore !== null;
 
           return (
             <div
@@ -387,7 +425,23 @@ export function KnockoutMatchCard({
                   </Button>
                 ) : null}
 
-                {showScores ? (
+                {hasOfficialResult && officialScore !== null ? (
+                  <>
+                    {showHistoricPrediction ? (
+                      <span className="inline-flex h-7 min-w-7 items-center justify-center rounded-sm bg-muted/55 px-1 text-xs font-semibold text-muted-foreground line-through opacity-65">
+                        {predictedScore}
+                      </span>
+                    ) : null}
+                    <span
+                      className={cn(
+                        "inline-flex h-8 min-w-10 items-center justify-center rounded-sm border border-input bg-background px-0 text-center text-sm font-semibold text-foreground",
+                        feedback?.kind === "exact" && "border-primary/35 text-primary",
+                      )}
+                    >
+                      {officialScore}
+                    </span>
+                  </>
+                ) : showScores ? (
                   <Input
                     inputMode="numeric"
                     maxLength={2}

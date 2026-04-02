@@ -161,4 +161,80 @@
   .knockout-flow .react-flow__background circle {
     stroke: transparent;
   }
+
+  .ranking-medal-gold-shell {
+    border-color: color-mix(in oklch, oklch(0.86 0.12 92) 58%, var(--border));
+    background: color-mix(in oklch, oklch(0.97 0.03 96) 80%, white);
+  }
+
+  .ranking-medal-gold-icon {
+    background: color-mix(in oklch, oklch(0.88 0.14 92) 78%, white);
+    color: oklch(0.42 0.09 75);
+  }
+
+  .ranking-medal-gold-rank {
+    color: oklch(0.56 0.11 75);
+  }
+
+  .ranking-medal-silver-shell {
+    border-color: color-mix(in oklch, oklch(0.88 0.01 260) 56%, var(--border));
+    background: color-mix(in oklch, oklch(0.97 0.004 250) 78%, white);
+  }
+
+  .ranking-medal-silver-icon {
+    background: color-mix(in oklch, oklch(0.87 0.01 250) 72%, white);
+    color: oklch(0.46 0.01 250);
+  }
+
+  .ranking-medal-silver-rank {
+    color: oklch(0.5 0.01 250);
+  }
+
+  .ranking-medal-bronze-shell {
+    border-color: color-mix(in oklch, oklch(0.83 0.08 52) 56%, var(--border));
+    background: color-mix(in oklch, oklch(0.96 0.025 56) 82%, white);
+  }
+
+  .ranking-medal-bronze-icon {
+    background: color-mix(in oklch, oklch(0.82 0.08 52) 74%, white);
+    color: oklch(0.45 0.07 45);
+  }
+
+  .ranking-medal-bronze-rank {
+    color: oklch(0.52 0.07 45);
+  }
+
+  .ranking-medal-cesium-shell {
+    border-color: color-mix(in oklch, oklch(0.85 0.09 130) 56%, var(--border));
+    background: color-mix(in oklch, oklch(0.97 0.035 128) 82%, white);
+  }
+
+  .ranking-medal-cesium-icon {
+    background: color-mix(in oklch, oklch(0.84 0.09 128) 74%, white);
+    color: oklch(0.38 0.08 128);
+  }
+
+  .ranking-medal-cesium-rank {
+    color: oklch(0.44 0.08 128);
+  }
+
+  .ranking-confetti-primary {
+    background: var(--primary);
+  }
+
+  .ranking-confetti-gold {
+    background: oklch(0.84 0.14 92);
+  }
+
+  .ranking-confetti-dark {
+    background: color-mix(in oklch, var(--foreground) 88%, black);
+  }
+
+  .ranking-confetti-silver {
+    background: oklch(0.78 0.01 250);
+  }
+
+  .ranking-confetti-emerald {
+    background: oklch(0.74 0.16 156);
+  }
 }

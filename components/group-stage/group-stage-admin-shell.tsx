@@ -1,12 +1,12 @@
 "use client";
 
-import { formatInTimeZone } from "date-fns-tz";
 import { RefreshCw } from "lucide-react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useState, useTransition } from "react";
 import { AdminMatchCard } from "@/components/group-stage/admin-match-card";
 import { GroupTiebreakOverrideCard } from "@/components/group-stage/group-tiebreak-override-card";
 import { Button } from "@/components/ui/button";
+import { formatKickoff } from "@/lib/formatters/kickoff";
 import { GroupStageGroupView } from "@/lib/group-stage/queries";
 import { routes } from "@/lib/routes";
 import { StandingsTable } from "./standings-table";
@@ -15,9 +15,6 @@ type GroupStageAdminShellProps = {
   groups: GroupStageGroupView[];
   lastRecalculatedAt: string | null;
 };
-
-const formatRecalculatedAt = (value: string) =>
-  formatInTimeZone(new Date(value), "America/Sao_Paulo", "dd/MM • HH:mm");
 
 export function GroupStageAdminShell({
   groups,
@@ -29,24 +26,33 @@ export function GroupStageAdminShell({
   const defaultGroupCode = groups[0]?.code ?? "A";
   const requestedGroupCode = searchParams.get("grupo");
   const selectedGroupCode =
-    groups.some((group) => group.code === requestedGroupCode) && requestedGroupCode
+    groups.some((group) => group.code === requestedGroupCode) &&
+    requestedGroupCode
       ? requestedGroupCode
       : defaultGroupCode;
-  const selectedGroup = groups.find((group) => group.code === selectedGroupCode) ?? groups[0];
+  const selectedGroup =
+    groups.find((group) => group.code === selectedGroupCode) ?? groups[0];
   const requestedRound = Number(searchParams.get("rodada"));
-  const selectedRound =
-    selectedGroup?.rounds.some((round) => round.round === requestedRound)
-      ? requestedRound
-      : selectedGroup?.defaultRound ?? 1;
-  const [recalculationMessage, setRecalculationMessage] = useState<string | null>(null);
+  const selectedRound = selectedGroup?.rounds.some(
+    (round) => round.round === requestedRound
+  )
+    ? requestedRound
+    : selectedGroup?.defaultRound ?? 1;
+  const [recalculationMessage, setRecalculationMessage] = useState<
+    string | null
+  >(null);
   const [isPending, startTransition] = useTransition();
 
   if (!selectedGroup) {
     return null;
   }
 
-  const activeRound = selectedGroup.rounds.find((round) => round.round === selectedRound);
-  const selectedGroupIsComplete = selectedGroup.standings.every((team) => team.played === 3);
+  const activeRound = selectedGroup.rounds.find(
+    (round) => round.round === selectedRound
+  );
+  const selectedGroupIsComplete = selectedGroup.standings.every(
+    (team) => team.played === 3
+  );
 
   const updateUrl = (groupCode: string, round: number) => {
     const params = new URLSearchParams(searchParams.toString());
@@ -63,10 +69,15 @@ export function GroupStageAdminShell({
         const response = await fetch(routes.api.groupStageRecalculations, {
           method: "POST",
         });
-        const payload = (await response.json()) as { error?: string; recalculatedAt?: string };
+        const payload = (await response.json()) as {
+          error?: string;
+          recalculatedAt?: string;
+        };
 
         if (!response.ok) {
-          setRecalculationMessage(payload.error ?? "Não foi possível recalcular agora.");
+          setRecalculationMessage(
+            payload.error ?? "Não foi possível recalcular agora."
+          );
           return;
         }
 
@@ -79,15 +90,15 @@ export function GroupStageAdminShell({
   };
 
   return (
-    <div className="mx-auto w-full max-w-[90rem] space-y-8 px-5 pb-6 pt-2 md:px-8 md:pt-3 xl:px-10">
+    <div className="mx-auto w-full max-w-360 space-y-8 px-5 pb-6 pt-2 md:px-8 md:pt-3 xl:px-10">
       <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
         <div className="space-y-2">
           <h1 className="text-4xl font-semibold tracking-[-0.03em] text-foreground">
             Fase de grupos
           </h1>
           <p className="max-w-2xl text-sm leading-6 text-muted-foreground">
-            Lance os resultados oficiais e recalcule a classificação quando quiser refletir os
-            novos dados nas tabelas.
+            Lance os resultados oficiais e recalcule a classificação quando
+            quiser refletir os novos dados nas tabelas.
           </p>
         </div>
 
@@ -98,12 +109,14 @@ export function GroupStageAdminShell({
             disabled={isPending}
             className="h-11 rounded-md px-4"
           >
-            <RefreshCw className={isPending ? "size-4 animate-spin" : "size-4"} />
+            <RefreshCw
+              className={isPending ? "size-4 animate-spin" : "size-4"}
+            />
             Recalcular classificação
           </Button>
           <p className="text-xs uppercase tracking-[0.14em] text-muted-foreground">
             {lastRecalculatedAt
-              ? `Último recálculo: ${formatRecalculatedAt(lastRecalculatedAt)}`
+              ? `Último recálculo: ${formatKickoff(lastRecalculatedAt)}`
               : "Ainda não houve recálculo manual."}
           </p>
           {recalculationMessage ? (
@@ -114,7 +127,8 @@ export function GroupStageAdminShell({
         </div>
       </div>
 
-      {selectedGroupIsComplete && selectedGroup.tiebreak.requiresManualDecision ? (
+      {selectedGroupIsComplete &&
+      selectedGroup.tiebreak.requiresManualDecision ? (
         <GroupTiebreakOverrideCard
           groupId={selectedGroup.id}
           groupCode={selectedGroup.code}
@@ -181,7 +195,9 @@ export function GroupStageAdminShell({
           </div>
 
           <div className="grid gap-4">
-            {activeRound?.matches.map((match) => <AdminMatchCard key={match.id} match={match} />)}
+            {activeRound?.matches.map((match) => (
+              <AdminMatchCard key={match.id} match={match} />
+            ))}
           </div>
         </section>
       </div>

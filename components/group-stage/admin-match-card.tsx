@@ -1,11 +1,11 @@
 "use client";
 
-import { formatInTimeZone } from "date-fns-tz";
-import { AlertCircle, Check, LoaderCircle } from "lucide-react";
 import { useEffect, useMemo, useRef, useState, useTransition } from "react";
+import { SaveStateIndicator } from "@/components/predictions/save-state-indicator";
 import { TeamFlag } from "@/components/teams/team-flag";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
+import { formatKickoff } from "@/lib/formatters/kickoff";
 import { groupStageOfficialResultRequestSchema } from "@/lib/group-stage/result-schema";
 import { GroupStageMatchView } from "@/lib/group-stage/queries";
 import { routes } from "@/lib/routes";
@@ -25,9 +25,6 @@ type ResultDraft = {
   homeScore: string;
   awayScore: string;
 };
-
-const formatKickoff = (scheduledAt: string) =>
-  formatInTimeZone(new Date(scheduledAt), "America/Sao_Paulo", "dd/MM • HH:mm");
 
 export function AdminMatchCard({ match }: AdminMatchCardProps) {
   const validationMessageId = `${match.id}-admin-validation-message`;
@@ -151,21 +148,21 @@ export function AdminMatchCard({ match }: AdminMatchCardProps) {
 
     if (status === "saving") {
       return {
-        icon: <LoaderCircle className="size-4 animate-spin text-muted-foreground" />,
+        tone: "saving" as const,
         message: "Salvando...",
       };
     }
 
     if (status === "saved" || status === "deleted") {
       return {
-        icon: <Check className="size-4 text-primary" />,
+        tone: "success" as const,
         message: serverMessage,
       };
     }
 
     if (status === "error") {
       return {
-        icon: <AlertCircle className="size-4 text-destructive" />,
+        tone: "error" as const,
         message: serverMessage,
       };
     }
@@ -187,29 +184,10 @@ export function AdminMatchCard({ match }: AdminMatchCardProps) {
         </div>
 
         <div className="relative flex size-5 items-center justify-center">
-          {validationMessage ? (
-            <>
-              <AlertCircle tabIndex={0} aria-describedby={validationMessageId} className="peer size-4 text-destructive" />
-              <div
-                id={validationMessageId}
-                className="pointer-events-none absolute bottom-full left-1/2 z-20 mb-2 -translate-x-1/2 rounded-md border border-border bg-card px-2.5 py-1.5 text-xs whitespace-nowrap text-card-foreground opacity-0 transition-opacity peer-hover:opacity-100 peer-focus:opacity-100 peer-focus-visible:opacity-100"
-              >
-                {validationMessage}
-              </div>
-            </>
-          ) : statusIcon ? (
-            <>
-              <div tabIndex={0} aria-describedby={validationMessageId} className="peer flex size-5 items-center justify-center">
-                {statusIcon.icon}
-              </div>
-              <div
-                id={validationMessageId}
-                className="pointer-events-none absolute bottom-full left-1/2 z-20 mb-2 -translate-x-1/2 rounded-md border border-border bg-card px-2.5 py-1.5 text-xs whitespace-nowrap text-card-foreground opacity-0 transition-opacity peer-hover:opacity-100 peer-focus:opacity-100 peer-focus-visible:opacity-100"
-              >
-                {statusIcon.message}
-              </div>
-            </>
-          ) : null}
+          <SaveStateIndicator
+            message={validationMessage ?? statusIcon?.message ?? null}
+            tone={validationMessage ? "error" : (statusIcon?.tone ?? null)}
+          />
         </div>
       </div>
 
