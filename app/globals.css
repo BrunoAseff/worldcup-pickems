@@ -99,6 +99,16 @@
 }
 
 @layer components {
+  @keyframes ranking-confetti {
+    0% {
+      transform: translate3d(0, -10%, 0) rotate(0deg);
+    }
+
+    100% {
+      transform: translate3d(0, 80vh, 0) rotate(320deg);
+    }
+  }
+
   .knockout-flow .react-flow__pane {
     cursor: grab;
   }
