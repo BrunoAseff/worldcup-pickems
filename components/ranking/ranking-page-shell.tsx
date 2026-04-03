@@ -1,5 +1,6 @@
 import { RankingPageView } from "@/lib/ranking/queries";
 import { rankingMedalMeta } from "@/lib/ranking/presentation";
+import { scoringRuleSections } from "@/lib/recalculation/scoring";
 import { RankingConfetti } from "./ranking-confetti";
 import { Card } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
@@ -100,27 +101,14 @@ export function RankingPageShell({ ranking }: { ranking: RankingPageView }) {
             Regras de pontuação
           </h2>
           <div className="mt-4 grid gap-4 md:grid-cols-2">
-            <div className="space-y-1.5 text-sm leading-6 text-foreground">
-              <h3 className="font-medium text-foreground">Partidas da fase de grupos</h3>
-              <p>10 pontos ao acertar o placar exato.</p>
-              <p>5 pontos ao acertar apenas o vencedor da partida ou o empate.</p>
-            </div>
-            <div className="space-y-1.5 text-sm leading-6 text-foreground">
-              <h3 className="font-medium text-foreground">Classificação dos grupos</h3>
-              <p>30 pontos ao acertar a ordem completa das quatro seleções.</p>
-              <p>15 pontos ao acertar somente as duas seleções classificadas.</p>
-            </div>
-            <div className="space-y-1.5 text-sm leading-6 text-foreground">
-              <h3 className="font-medium text-foreground">Mata-mata</h3>
-              <p>16-avos: 20 pontos no placar exato e 10 ao acertar quem avança.</p>
-              <p>Oitavas: 30 pontos no placar exato e 15 ao acertar quem avança.</p>
-              <p>Quartas: 40 pontos no placar exato e 20 ao acertar quem avança.</p>
-            </div>
-            <div className="space-y-1.5 text-sm leading-6 text-foreground">
-              <h3 className="font-medium text-foreground">Finais</h3>
-              <p>Semifinais e disputa de 3º lugar: 50 pontos no placar exato e 25 ao acertar quem avança ou vence.</p>
-              <p>Final: 100 pontos no placar exato e 50 ao acertar o campeão.</p>
-            </div>
+            {scoringRuleSections.map((section) => (
+              <div key={section.title} className="space-y-1.5 text-sm leading-6 text-foreground">
+                <h3 className="font-medium text-foreground">{section.title}</h3>
+                {section.items.map((item) => (
+                  <p key={item}>{item}</p>
+                ))}
+              </div>
+            ))}
           </div>
         </Card>
       </div>

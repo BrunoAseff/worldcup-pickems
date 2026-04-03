@@ -289,6 +289,11 @@ export function KnockoutMatchCard({
         })
       : null;
   const hasOfficialResult = Boolean(mode === "player" && match.officialResult);
+  const showAdvancingSelector =
+    showScores &&
+    isDraw &&
+    !hasOfficialResult &&
+    mode === "player";
   const pointsLabel = feedback ? `${feedback.points}pts` : null;
   const predictedScoreDiffersFromOfficial = Boolean(
     hasOfficialResult &&
@@ -300,7 +305,8 @@ export function KnockoutMatchCard({
         match.prediction.awayScore !== match.officialResult.awayScore),
   );
   const displayAdvancingTeamId =
-    match.officialResult &&
+    values.advancingTeamId ??
+    (match.officialResult &&
     match.homeParticipant.teamId &&
     match.awayParticipant.teamId
       ? match.officialResult.homeScore > match.officialResult.awayScore
@@ -308,7 +314,7 @@ export function KnockoutMatchCard({
         : match.officialResult.awayScore > match.officialResult.homeScore
           ? match.awayParticipant.teamId
           : match.officialResult.advancingTeamId
-      : values.advancingTeamId;
+      : null);
 
   return (
     <Card
@@ -399,7 +405,7 @@ export function KnockoutMatchCard({
               </div>
 
               <div className="flex items-center justify-end gap-1.5">
-                {showScores && isDraw && entry.participant.teamId ? (
+                {showAdvancingSelector && entry.participant.teamId ? (
                   <Button
                     type="button"
                     variant={isSelectedAdvancer ? "default" : "outline"}

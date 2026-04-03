@@ -4,14 +4,15 @@ import {
   groupStandings,
   groupTeams,
   groupTiebreakOverrides,
-  groups,
-  matchPredictions,
-  matches,
-  officialResults,
-  recalculationRuns,
-  teams,
-  userScoreSnapshots,
-  users,
+    groups,
+    matchPredictions,
+    matches,
+    officialResults,
+    recalculationRuns,
+    bestThirdSlotOverrides,
+    teams,
+    userScoreSnapshots,
+    users,
 } from "@/lib/db/schema";
 import {
   buildApplicationRecalculationSnapshot,
@@ -20,83 +21,101 @@ import {
 export const APPLICATION_RECALCULATION_PIPELINE_KEY = "application_core";
 
 export class ApplicationRecalculationConflictError extends Error {
-  constructor(public readonly groupCodes: string[]) {
-    super("Há grupos com empate pendente de decisão manual.");
+  constructor(
+    public readonly groupCodes: string[],
+    public readonly requiresManualBestThirdSelection = false,
+  ) {
+    super(
+      requiresManualBestThirdSelection
+        ? "Os terceiros colocados ainda precisam de decisão manual."
+        : "Há grupos com empate pendente de decisão manual.",
+    );
   }
 }
 
 export const recalculateApplicationCore = async (triggeredByUserId: string) => {
-  const [
-    groupRecords,
-    groupTeamRecords,
-    teamRecords,
-    userRecords,
-    matchRecords,
-    officialResultRecords,
-    predictionRecords,
-    tiebreakOverrideRecords,
-  ] = await Promise.all([
-    db.select().from(groups),
-    db.select().from(groupTeams),
-    db
-      .select({
-        id: teams.id,
-        code: teams.code,
-        namePt: teams.namePt,
-        flagCode: teams.flagCode,
-      })
-      .from(teams),
-    db.select({ id: users.id, role: users.role }).from(users).where(eq(users.role, "player")),
-    db
-      .select({
-        id: matches.id,
-        matchNumber: matches.matchNumber,
-        bracketCode: matches.bracketCode,
-        stage: matches.stage,
-        groupId: matches.groupId,
-        scheduledAt: matches.scheduledAt,
-        homeTeamId: matches.homeTeamId,
-        awayTeamId: matches.awayTeamId,
-        homeSourceType: matches.homeSourceType,
-        homeSourceRef: matches.homeSourceRef,
-        awaySourceType: matches.awaySourceType,
-        awaySourceRef: matches.awaySourceRef,
-      })
-      .from(matches),
-    db.select().from(officialResults),
-    db
-      .select({
-        id: matchPredictions.id,
-        userId: matchPredictions.userId,
-        matchId: matchPredictions.matchId,
-        predictedHomeTeamId: matchPredictions.predictedHomeTeamId,
-        predictedAwayTeamId: matchPredictions.predictedAwayTeamId,
-        predictedHomeScore: matchPredictions.predictedHomeScore,
-        predictedAwayScore: matchPredictions.predictedAwayScore,
-        predictedAdvancingTeamId: matchPredictions.predictedAdvancingTeamId,
-      })
-      .from(matchPredictions),
-    db.select().from(groupTiebreakOverrides),
-  ]);
-
-  const snapshot = buildApplicationRecalculationSnapshot({
-    groupRecords,
-    groupTeamRecords,
-    teamRecords,
-    playerRecords: userRecords,
-    matchRecords,
-    officialResultRecords,
-    predictionRecords,
-    tiebreakOverrideRecords,
-  });
-
-  if (snapshot.unresolvedGroupCodes.length > 0) {
-    throw new ApplicationRecalculationConflictError(snapshot.unresolvedGroupCodes);
-  }
-
-  const knockoutMatches = matchRecords.filter((match) => match.stage !== "group_stage");
-
   return db.transaction(async (tx) => {
+    const [
+      groupRecords,
+      groupTeamRecords,
+      teamRecords,
+      userRecords,
+      matchRecords,
+      officialResultRecords,
+      predictionRecords,
+      tiebreakOverrideRecords,
+      bestThirdSlotOverrideRecords,
+    ] = await Promise.all([
+      tx.select().from(groups),
+      tx.select().from(groupTeams),
+      tx
+        .select({
+          id: teams.id,
+          code: teams.code,
+          namePt: teams.namePt,
+          flagCode: teams.flagCode,
+        })
+        .from(teams),
+      tx.select({ id: users.id, role: users.role }).from(users).where(eq(users.role, "player")),
+      tx
+        .select({
+          id: matches.id,
+          matchNumber: matches.matchNumber,
+          bracketCode: matches.bracketCode,
+          stage: matches.stage,
+          groupId: matches.groupId,
+          scheduledAt: matches.scheduledAt,
+          homeTeamId: matches.homeTeamId,
+          awayTeamId: matches.awayTeamId,
+          homeSourceType: matches.homeSourceType,
+          homeSourceRef: matches.homeSourceRef,
+          awaySourceType: matches.awaySourceType,
+          awaySourceRef: matches.awaySourceRef,
+        })
+        .from(matches),
+      tx.select().from(officialResults),
+      tx
+        .select({
+          id: matchPredictions.id,
+          userId: matchPredictions.userId,
+          matchId: matchPredictions.matchId,
+          predictedHomeTeamId: matchPredictions.predictedHomeTeamId,
+          predictedAwayTeamId: matchPredictions.predictedAwayTeamId,
+          predictedHomeScore: matchPredictions.predictedHomeScore,
+          predictedAwayScore: matchPredictions.predictedAwayScore,
+          predictedAdvancingTeamId: matchPredictions.predictedAdvancingTeamId,
+        })
+        .from(matchPredictions),
+      tx.select().from(groupTiebreakOverrides),
+      tx
+        .select({
+          slotKey: bestThirdSlotOverrides.slotKey,
+          teamId: bestThirdSlotOverrides.teamId,
+        })
+        .from(bestThirdSlotOverrides),
+    ]);
+
+    const snapshot = buildApplicationRecalculationSnapshot({
+      groupRecords,
+      groupTeamRecords,
+      teamRecords,
+      playerRecords: userRecords,
+      matchRecords,
+      officialResultRecords,
+      predictionRecords,
+      tiebreakOverrideRecords,
+      bestThirdSlotOverrideRecords,
+    });
+
+    if (snapshot.unresolvedGroupCodes.length > 0 || snapshot.requiresManualBestThirdSelection) {
+      throw new ApplicationRecalculationConflictError(
+        snapshot.unresolvedGroupCodes,
+        snapshot.requiresManualBestThirdSelection,
+      );
+    }
+
+    const knockoutMatches = matchRecords.filter((match) => match.stage !== "group_stage");
+
     const [run] = await tx
       .insert(recalculationRuns)
       .values({

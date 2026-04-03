@@ -185,15 +185,15 @@ export function MatchCard({ match, onPredictionChange }: MatchCardProps) {
   };
 
   const statusIcon = useMemo(() => {
-    if (!serverMessage) {
-      return null;
-    }
-
     if (status === "saving") {
       return {
         message: "Salvando...",
         tone: "saving" as const,
       };
+    }
+
+    if (!serverMessage) {
+      return null;
     }
 
     if (status === "saved" || status === "deleted") {
@@ -245,7 +245,7 @@ export function MatchCard({ match, onPredictionChange }: MatchCardProps) {
             {hasOfficialResult && feedback && pointsLabel ? (
               <div
                 className={cn(
-                  "shrink-0 rounded-sm border px-2 py-0.5 text-xs font-semibold normal-case tracking-normal whitespace-nowrap",
+                  "hidden shrink-0 rounded-sm border px-2 py-0.5 text-xs font-semibold normal-case tracking-normal whitespace-nowrap md:block",
                   feedback.points > 0
                     ? "border-primary/35 bg-primary/8 text-primary"
                     : "border-red-200 bg-red-50 text-destructive"
