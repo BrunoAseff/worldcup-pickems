@@ -288,12 +288,11 @@ export function KnockoutMatchCard({
           },
         })
       : null;
-  const hasOfficialResult = Boolean(mode === "player" && match.officialResult);
+  const hasOfficialResult = Boolean(match.officialResult);
   const showAdvancingSelector =
     showScores &&
     isDraw &&
-    !hasOfficialResult &&
-    mode === "player";
+    ((mode === "player" && !hasOfficialResult) || mode === "admin");
   const pointsLabel = feedback ? `${feedback.points}pts` : null;
   const predictedScoreDiffersFromOfficial = Boolean(
     hasOfficialResult &&

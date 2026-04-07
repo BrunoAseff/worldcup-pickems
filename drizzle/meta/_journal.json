@@ -50,6 +50,13 @@
       "when": 1774985845976,
       "tag": "0006_rare_blob",
       "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "7",
+      "when": 1775139911167,
+      "tag": "0007_outgoing_jigsaw",
+      "breakpoints": true
     }
   ]
 }

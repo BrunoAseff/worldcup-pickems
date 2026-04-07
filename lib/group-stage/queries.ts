@@ -522,6 +522,18 @@ const getGroupStageContext = async (userId?: string): Promise<GroupStageContext>
         };
       }
 
+      const options = thirdPlaced
+        .sort((left, right) =>
+          (groupCodeById.get(left.groupId) ?? "").localeCompare(groupCodeById.get(right.groupId) ?? ""),
+        )
+        .map((standing) => ({
+          teamId: standing.teamId,
+          teamName: standing.teamName,
+          flagCode: standing.flagCode,
+          groupCode: groupCodeById.get(standing.groupId) ?? "",
+        }));
+      const allowedOptionIds = new Set(options.map((option) => option.teamId));
+
       const slots = roundOf32SlotRecords
         .flatMap((match) => {
           const makeSlot = (
@@ -536,6 +548,7 @@ const getGroupStageContext = async (userId?: string): Promise<GroupStageContext>
 
             const opponentTeam = opponentTeamId ? teamById.get(opponentTeamId) : null;
             const slotKey = getBestThirdSlotKey(oppositeSourceRef);
+            const selectedTeamId = bestThirdSlotOverrideByKey.get(slotKey) ?? null;
 
             return {
               slotKey,
@@ -543,7 +556,10 @@ const getGroupStageContext = async (userId?: string): Promise<GroupStageContext>
               matchLabel: match.bracketCode,
               opponentName: opponentTeam?.namePt ?? oppositeSourceRef,
               opponentFlagCode: opponentTeam?.flagCode ?? null,
-              selectedTeamId: bestThirdSlotOverrideByKey.get(slotKey) ?? null,
+              selectedTeamId:
+                selectedTeamId && allowedOptionIds.has(selectedTeamId)
+                  ? selectedTeamId
+                  : null,
             };
           };
 
@@ -567,16 +583,7 @@ const getGroupStageContext = async (userId?: string): Promise<GroupStageContext>
       return {
         requiresManualDecision: slots.length > 0,
         slots,
-        options: thirdPlaced
-          .sort((left, right) =>
-            (groupCodeById.get(left.groupId) ?? "").localeCompare(groupCodeById.get(right.groupId) ?? ""),
-          )
-          .map((standing) => ({
-            teamId: standing.teamId,
-            teamName: standing.teamName,
-            flagCode: standing.flagCode,
-            groupCode: groupCodeById.get(standing.groupId) ?? "",
-          })),
+        options,
       };
     })(),
   };
