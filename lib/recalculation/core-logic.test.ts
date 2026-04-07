@@ -17,6 +17,7 @@ import {
   type PlayerRecord,
   type TeamRecord,
 } from "./core-logic";
+import { groupStagePoints } from "./scoring";
 import { findRoundOf32BestThirdPlaceAllocation } from "@/lib/knockout/annex-c";
 
 const createTeam = (id: string, namePt = id.toUpperCase()): TeamRecord => ({
@@ -28,51 +29,33 @@ const createTeam = (id: string, namePt = id.toUpperCase()): TeamRecord => ({
 
 describe("recalculation core logic", () => {
   it("scores group-stage exact score, winner-only and wrong outcome correctly", () => {
-    const official = { matchId: "m1", homeScore: 2, awayScore: 1, advancingTeamId: null };
+    const official = { homeScore: 2, awayScore: 1 };
 
     expect(
       scoreGroupStageMatch(
         {
-          id: "p1",
-          userId: "u1",
-          matchId: "m1",
-          predictedHomeTeamId: "h",
-          predictedAwayTeamId: "a",
           predictedHomeScore: 2,
           predictedAwayScore: 1,
-          predictedAdvancingTeamId: null,
         },
         official,
       ),
-    ).toBe(10);
+    ).toBe(groupStagePoints.exact);
 
     expect(
       scoreGroupStageMatch(
         {
-          id: "p2",
-          userId: "u1",
-          matchId: "m1",
-          predictedHomeTeamId: "h",
-          predictedAwayTeamId: "a",
           predictedHomeScore: 3,
           predictedAwayScore: 0,
-          predictedAdvancingTeamId: null,
         },
         official,
       ),
-    ).toBe(5);
+    ).toBe(groupStagePoints.winner);
 
     expect(
       scoreGroupStageMatch(
         {
-          id: "p3",
-          userId: "u1",
-          matchId: "m1",
-          predictedHomeTeamId: "h",
-          predictedAwayTeamId: "a",
           predictedHomeScore: 0,
           predictedAwayScore: 1,
-          predictedAdvancingTeamId: null,
         },
         official,
       ),
@@ -84,16 +67,13 @@ describe("recalculation core logic", () => {
       scoreKnockoutMatch(
         "quarterfinal",
         {
-          id: "p1",
-          userId: "u1",
-          matchId: "m1",
           predictedHomeTeamId: "h",
           predictedAwayTeamId: "a",
           predictedHomeScore: 1,
           predictedAwayScore: 1,
           predictedAdvancingTeamId: "a",
         },
-        { matchId: "m1", homeScore: 1, awayScore: 1, advancingTeamId: "a" },
+        { homeScore: 1, awayScore: 1, advancingTeamId: "a" },
         { homeTeamId: "h", awayTeamId: "a" },
       ),
     ).toBe(40);
@@ -102,16 +82,13 @@ describe("recalculation core logic", () => {
       scoreKnockoutMatch(
         "quarterfinal",
         {
-          id: "p2",
-          userId: "u1",
-          matchId: "m1",
           predictedHomeTeamId: "h",
           predictedAwayTeamId: "a",
           predictedHomeScore: 0,
           predictedAwayScore: 0,
           predictedAdvancingTeamId: "a",
         },
-        { matchId: "m1", homeScore: 2, awayScore: 2, advancingTeamId: "a" },
+        { homeScore: 2, awayScore: 2, advancingTeamId: "a" },
         { homeTeamId: "h", awayTeamId: "a" },
       ),
     ).toBe(20);
@@ -120,16 +97,13 @@ describe("recalculation core logic", () => {
       scoreKnockoutMatch(
         "final",
         {
-          id: "p3",
-          userId: "u1",
-          matchId: "m1",
           predictedHomeTeamId: "h",
           predictedAwayTeamId: "a",
           predictedHomeScore: 3,
           predictedAwayScore: 2,
           predictedAdvancingTeamId: null,
         },
-        { matchId: "m1", homeScore: 3, awayScore: 2, advancingTeamId: null },
+        { homeScore: 3, awayScore: 2, advancingTeamId: null },
         { homeTeamId: "h", awayTeamId: "a" },
       ),
     ).toBe(100);
@@ -493,8 +467,8 @@ describe("recalculation core logic", () => {
     expect(isGroupComplete(groupMatches, officialResults, "ga")).toBe(true);
     expect(
       compareBestThird(
-        { groupId: "g1", groupCode: "A", teamId: "t1", position: 3, points: 4, played: 3, wins: 1, draws: 1, losses: 1, goalsFor: 2, goalsAgainst: 2, goalDifference: 0, recentResults: "WDL", qualificationStatus: "third_place" },
-        { groupId: "g2", groupCode: "B", teamId: "t2", position: 3, points: 4, played: 3, wins: 1, draws: 1, losses: 1, goalsFor: 1, goalsAgainst: 1, goalDifference: 0, recentResults: "WDL", qualificationStatus: "third_place" },
+        { groupCode: "A", teamId: "t1", position: 3, points: 4, goalDifference: 0, goalsFor: 2 },
+        { groupCode: "B", teamId: "t2", position: 3, points: 4, goalDifference: 0, goalsFor: 1 },
       ),
     ).toBeLessThan(0);
     expect(
