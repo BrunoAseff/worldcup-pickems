@@ -50,7 +50,16 @@ export function StandingsTable({ standings }: StandingsTableProps) {
               <TableCell className="w-64 py-4">
                 <div className="flex min-w-0 items-center gap-3">
                   {team.predictionFeedback === "qualified_only" ? (
-                    <span className="size-2 rounded-full bg-chart-4 shrink-0" />
+                    <>
+                      <span
+                        className="size-2 rounded-full bg-chart-4 shrink-0"
+                        role="img"
+                        aria-label="Classificada, mas fora da posição exata"
+                      />
+                      <span className="sr-only">
+                        Classificada, mas fora da posição exata
+                      </span>
+                    </>
                   ) : null}
                   <TeamFlag code={team.flagCode} className="shrink-0" />
                   <p

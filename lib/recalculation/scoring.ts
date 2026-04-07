@@ -41,7 +41,7 @@ export const scoreGroupStageMatch = (
     prediction.predictedHomeScore === official.homeScore &&
     prediction.predictedAwayScore === official.awayScore
   ) {
-    return 10;
+    return groupStagePoints.exact;
   }
 
   const predictedOutcome = Math.sign(
@@ -49,7 +49,7 @@ export const scoreGroupStageMatch = (
   );
   const officialOutcome = Math.sign(official.homeScore - official.awayScore);
 
-  return predictedOutcome === officialOutcome ? 5 : 0;
+  return predictedOutcome === officialOutcome ? groupStagePoints.winner : 0;
 };
 
 export const knockoutStagePoints = {

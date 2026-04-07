@@ -603,7 +603,9 @@ export const buildApplicationRecalculationSnapshot = ({
     standingByGroupPosition,
     officialResultByMatchId,
     bestThirdQualifiedGroupCodes,
-    hasCompleteBestThirdSlotAssignments ? bestThirdSlotAssignments : undefined,
+    hasCompleteBestThirdSlotAssignments && !bestThirdStatus.resolved
+      ? bestThirdSlotAssignments
+      : undefined,
   );
 
   const predictionsByUserId = new Map<string, MatchPredictionRecord[]>();

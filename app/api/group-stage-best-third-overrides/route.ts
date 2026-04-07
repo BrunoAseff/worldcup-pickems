@@ -25,7 +25,15 @@ export async function POST(request: Request) {
     );
   }
 
-  const parsedBody = groupStageBestThirdSlotOverrideRequestSchema.safeParse(await request.json());
+  let body: unknown;
+
+  try {
+    body = await request.json();
+  } catch {
+    return NextResponse.json({ error: "Payload inválido." }, { status: 400 });
+  }
+
+  const parsedBody = groupStageBestThirdSlotOverrideRequestSchema.safeParse(body);
 
   if (!parsedBody.success) {
     return NextResponse.json(
