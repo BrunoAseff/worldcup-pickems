@@ -1,8 +1,8 @@
 "use client";
 
 import { RefreshCw } from "lucide-react";
+import { useEffect, useState, useTransition } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { useState, useTransition } from "react";
 import { AdminMatchCard } from "@/components/group-stage/admin-match-card";
 import { BestThirdSlotOverrideCard } from "@/components/group-stage/best-third-slot-override-card";
 import { GroupTiebreakOverrideCard } from "@/components/group-stage/group-tiebreak-override-card";
@@ -18,6 +18,29 @@ type GroupStageAdminShellProps = {
   bestThirdSelection: GroupStageAdminView["bestThirdSelection"];
 };
 
+const resolveSelection = (
+  groups: GroupStageGroupView[],
+  rawGroupCode: string | null,
+  rawRound: string | null,
+) => {
+  const defaultGroupCode = groups[0]?.code ?? "A";
+  const groupCode =
+    groups.some((group) => group.code === rawGroupCode) && rawGroupCode
+      ? rawGroupCode
+      : defaultGroupCode;
+  const group = groups.find((entry) => entry.code === groupCode) ?? groups[0];
+  const requestedRound = Number(rawRound);
+  const round =
+    group?.rounds.some((entry) => entry.round === requestedRound)
+      ? requestedRound
+      : group?.defaultRound ?? 1;
+
+  return {
+    groupCode,
+    round,
+  };
+};
+
 export function GroupStageAdminShell({
   groups,
   lastRecalculatedAt,
@@ -26,25 +49,34 @@ export function GroupStageAdminShell({
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
-  const defaultGroupCode = groups[0]?.code ?? "A";
-  const requestedGroupCode = searchParams.get("grupo");
-  const selectedGroupCode =
-    groups.some((group) => group.code === requestedGroupCode) &&
-    requestedGroupCode
-      ? requestedGroupCode
-      : defaultGroupCode;
+  const [selection, setSelection] = useState(() =>
+    resolveSelection(groups, searchParams.get("grupo"), searchParams.get("rodada")),
+  );
+  const selectedGroupCode = selection.groupCode;
   const selectedGroup =
     groups.find((group) => group.code === selectedGroupCode) ?? groups[0];
-  const requestedRound = Number(searchParams.get("rodada"));
-  const selectedRound = selectedGroup?.rounds.some(
-    (round) => round.round === requestedRound
-  )
-    ? requestedRound
-    : selectedGroup?.defaultRound ?? 1;
+  const selectedRound = selection.round;
   const [recalculationMessage, setRecalculationMessage] = useState<
     string | null
   >(null);
   const [isPending, startTransition] = useTransition();
+
+  useEffect(() => {
+    const handlePopState = () => {
+      setSelection(
+        resolveSelection(
+          groups,
+          new URLSearchParams(window.location.search).get("grupo"),
+          new URLSearchParams(window.location.search).get("rodada"),
+        ),
+      );
+    };
+
+    window.addEventListener("popstate", handlePopState);
+    return () => {
+      window.removeEventListener("popstate", handlePopState);
+    };
+  }, [groups]);
 
   if (!selectedGroup) {
     return null;
@@ -55,10 +87,11 @@ export function GroupStageAdminShell({
   );
 
   const updateUrl = (groupCode: string, round: number) => {
-    const params = new URLSearchParams(searchParams.toString());
+    setSelection({ groupCode, round });
+    const params = new URLSearchParams(window.location.search);
     params.set("grupo", groupCode);
     params.set("rodada", String(round));
-    router.replace(`${pathname}?${params.toString()}`, { scroll: false });
+    window.history.replaceState(null, "", `${pathname}?${params.toString()}`);
   };
 
   const triggerRecalculation = () => {

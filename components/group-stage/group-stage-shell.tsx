@@ -1,7 +1,7 @@
 "use client";
 
-import { useState } from "react";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
+import { usePathname, useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { GroupStageGroupView } from "@/lib/group-stage/queries";
 import { MatchCard } from "./match-card";
@@ -11,26 +11,59 @@ type GroupStageShellProps = {
   groups: GroupStageGroupView[];
 };
 
+const resolveSelection = (
+  groups: GroupStageGroupView[],
+  rawGroupCode: string | null,
+  rawRound: string | null,
+) => {
+  const defaultGroupCode = groups[0]?.code ?? "A";
+  const groupCode =
+    groups.some((group) => group.code === rawGroupCode) && rawGroupCode
+      ? rawGroupCode
+      : defaultGroupCode;
+  const group = groups.find((entry) => entry.code === groupCode) ?? groups[0];
+  const requestedRound = Number(rawRound);
+  const round =
+    group?.rounds.some((entry) => entry.round === requestedRound)
+      ? requestedRound
+      : group?.defaultRound ?? 1;
+
+  return {
+    groupCode,
+    round,
+  };
+};
+
 export function GroupStageShell({ groups }: GroupStageShellProps) {
-  const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
-  const defaultGroupCode = groups[0]?.code ?? "A";
-  const requestedGroupCode = searchParams.get("grupo");
-  const selectedGroupCode =
-    groups.some((group) => group.code === requestedGroupCode) && requestedGroupCode
-      ? requestedGroupCode
-      : defaultGroupCode;
+  const [selection, setSelection] = useState(() =>
+    resolveSelection(groups, searchParams.get("grupo"), searchParams.get("rodada")),
+  );
+  const selectedGroupCode = selection.groupCode;
   const selectedGroup =
     groups.find((group) => group.code === selectedGroupCode) ?? groups[0];
-  const requestedRound = Number(searchParams.get("rodada"));
-  const selectedRound =
-    selectedGroup?.rounds.some((round) => round.round === requestedRound)
-      ? requestedRound
-      : selectedGroup?.defaultRound ?? 1;
+  const selectedRound = selection.round;
   const [predictionOverrides, setPredictionOverrides] = useState<
     Record<string, { homeScore: number; awayScore: number } | null>
   >({});
+
+  useEffect(() => {
+    const handlePopState = () => {
+      setSelection(
+        resolveSelection(
+          groups,
+          new URLSearchParams(window.location.search).get("grupo"),
+          new URLSearchParams(window.location.search).get("rodada"),
+        ),
+      );
+    };
+
+    window.addEventListener("popstate", handlePopState);
+    return () => {
+      window.removeEventListener("popstate", handlePopState);
+    };
+  }, [groups]);
 
   if (!selectedGroup) {
     return null;
@@ -41,10 +74,11 @@ export function GroupStageShell({ groups }: GroupStageShellProps) {
   );
 
   const updateUrl = (groupCode: string, round: number) => {
-    const params = new URLSearchParams(searchParams.toString());
+    setSelection({ groupCode, round });
+    const params = new URLSearchParams(window.location.search);
     params.set("grupo", groupCode);
     params.set("rodada", String(round));
-    router.replace(`${pathname}?${params.toString()}`, { scroll: false });
+    window.history.replaceState(null, "", `${pathname}?${params.toString()}`);
   };
 
   return (
