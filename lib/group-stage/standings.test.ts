@@ -1,5 +1,9 @@
 import { describe, expect, it } from "vitest";
-import { computeGroupStandings } from "./standings";
+import {
+  computeGroupStandings,
+  getConflictWindows,
+  isValidManualOverrideWithinConflicts,
+} from "./standings";
 
 const teams = [
   { id: "a", code: "A", namePt: "Alfa", flagCode: "BR" },
@@ -48,5 +52,34 @@ describe("computeGroupStandings", () => {
     expect(withOverride.standings.map((entry) => entry.position)).toEqual([1, 2, 3, 4]);
     expect(resolvedWithOverride.unresolvedConflicts).toEqual([]);
     expect(resolvedWithOverride.standings.map((entry) => entry.teamId)).toEqual(["a", "b", "d", "c"]);
+  });
+
+  it("only allows manual overrides inside the unresolved conflict window", () => {
+    const computation = {
+      autoOrderedTeamIds: ["a", "b", "c", "d"],
+      unresolvedConflicts: [{ teamIds: ["b", "c"] }],
+    };
+
+    expect(
+      isValidManualOverrideWithinConflicts(
+        computation.autoOrderedTeamIds,
+        computation.unresolvedConflicts,
+        ["a", "c", "b", "d"],
+      ),
+    ).toBe(true);
+    expect(
+      isValidManualOverrideWithinConflicts(
+        computation.autoOrderedTeamIds,
+        computation.unresolvedConflicts,
+        ["d", "b", "c", "a"],
+      ),
+    ).toBe(false);
+    expect(getConflictWindows(computation.autoOrderedTeamIds, computation.unresolvedConflicts)).toEqual([
+      {
+        startIndex: 1,
+        endIndex: 2,
+        teamIds: ["b", "c"],
+      },
+    ]);
   });
 });

@@ -44,6 +44,12 @@ export type GroupStandingsComputation = {
   unresolvedConflicts: GroupTiebreakConflict[];
 };
 
+export type GroupTiebreakConflictWindow = {
+  startIndex: number;
+  endIndex: number;
+  teamIds: string[];
+};
+
 type StandingAccumulator = Omit<
   ComputedStanding,
   "position" | "form" | "qualificationStatus"
@@ -266,6 +272,87 @@ const isValidOverrideOrder = (teamIds: string[], overrideOrder: string[] | null 
   const left = [...teamIds].sort();
   const right = [...overrideOrder].sort();
   return left.every((teamId, index) => teamId === right[index]);
+};
+
+export const getConflictWindows = (
+  autoOrderedTeamIds: string[],
+  unresolvedConflicts: GroupTiebreakConflict[],
+): GroupTiebreakConflictWindow[] => {
+  return unresolvedConflicts
+    .map((conflict) => {
+      const indexes = conflict.teamIds
+        .map((teamId) => autoOrderedTeamIds.indexOf(teamId))
+        .filter((index) => index >= 0)
+        .sort((left, right) => left - right);
+
+      if (indexes.length !== conflict.teamIds.length) {
+        return null;
+      }
+
+      const startIndex = indexes[0]!;
+      const endIndex = indexes[indexes.length - 1]!;
+      const expectedIndexes = Array.from(
+        { length: endIndex - startIndex + 1 },
+        (_, offset) => startIndex + offset,
+      );
+      const contiguous =
+        expectedIndexes.length === indexes.length &&
+        expectedIndexes.every((value, index) => value === indexes[index]);
+
+      if (!contiguous) {
+        return null;
+      }
+
+      return {
+        startIndex,
+        endIndex,
+        teamIds: autoOrderedTeamIds.slice(startIndex, endIndex + 1),
+      } satisfies GroupTiebreakConflictWindow;
+    })
+    .filter((window): window is GroupTiebreakConflictWindow => Boolean(window));
+};
+
+export const isValidManualOverrideWithinConflicts = (
+  autoOrderedTeamIds: string[],
+  unresolvedConflicts: GroupTiebreakConflict[],
+  overrideOrder: string[] | null | undefined,
+) => {
+  if (!isValidOverrideOrder(autoOrderedTeamIds, overrideOrder)) {
+    return false;
+  }
+
+  if (unresolvedConflicts.length === 0) {
+    return false;
+  }
+
+  const conflictWindows = getConflictWindows(autoOrderedTeamIds, unresolvedConflicts);
+
+  if (conflictWindows.length !== unresolvedConflicts.length) {
+    return false;
+  }
+
+  const override = overrideOrder!;
+  const editableIndexes = new Set(
+    conflictWindows.flatMap((window) =>
+      Array.from({ length: window.endIndex - window.startIndex + 1 }, (_, offset) => window.startIndex + offset),
+    ),
+  );
+
+  for (let index = 0; index < autoOrderedTeamIds.length; index += 1) {
+    if (!editableIndexes.has(index) && autoOrderedTeamIds[index] !== override[index]) {
+      return false;
+    }
+  }
+
+  return conflictWindows.every((window) => {
+    const expected = [...window.teamIds].sort();
+    const received = override.slice(window.startIndex, window.endIndex + 1).sort();
+
+    return (
+      expected.length === received.length &&
+      expected.every((teamId, index) => teamId === received[index])
+    );
+  });
 };
 
 export const computeGroupStandings = (

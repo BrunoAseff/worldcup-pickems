@@ -549,8 +549,9 @@ export const buildApplicationRecalculationSnapshot = ({
   );
 
   const completedGroupCount = completedGroupIds.size;
+  const allGroupsComplete = completedGroupCount === groupRecords.length;
   const bestThirdStatus =
-    completedGroupCount === groupRecords.length
+    allGroupsComplete
       ? getBestThirdStatus(flatStandings)
       : {
           resolved: false,
@@ -574,10 +575,11 @@ export const buildApplicationRecalculationSnapshot = ({
     })
     .sort();
   const hasCompleteBestThirdSlotAssignments =
+    allGroupsComplete &&
     requiredBestThirdSlotKeys.length > 0 &&
     requiredBestThirdSlotKeys.every((slotKey) => bestThirdSlotAssignments.has(slotKey));
   const requiresManualBestThirdSelection =
-    completedGroupCount === groupRecords.length &&
+    allGroupsComplete &&
     !bestThirdStatus.resolved &&
     bestThirdStatus.hasBoundaryTie &&
     !hasCompleteBestThirdSlotAssignments;
