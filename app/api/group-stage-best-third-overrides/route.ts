@@ -4,10 +4,14 @@ import { getCurrentSession } from "@/lib/auth/session";
 import { db } from "@/lib/db/client";
 import {
   bestThirdSlotOverrides,
-  groupStandings,
+  groupTeams,
+  groupTiebreakOverrides,
   groups,
   matches,
+  officialResults,
+  teams,
 } from "@/lib/db/schema";
+import { computeGroupStandings } from "@/lib/group-stage/standings";
 import { groupStageBestThirdSlotOverrideRequestSchema } from "@/lib/group-stage/best-third-slot-override-schema";
 import { getBestThirdSlotKey, getBestThirdStatus } from "@/lib/knockout/best-third";
 
@@ -42,18 +46,45 @@ export async function POST(request: Request) {
     );
   }
 
-  const [standingRecords, slotRecords] = await Promise.all([
+  const [
+    groupRecords,
+    groupTeamRecords,
+    groupMatchRecords,
+    officialResultRecords,
+    tiebreakOverrideRecords,
+    slotRecords,
+  ] = await Promise.all([
+    db.select({ id: groups.id, code: groups.code }).from(groups),
     db
       .select({
-        groupCode: groups.code,
-        teamId: groupStandings.teamId,
-        position: groupStandings.position,
-        points: groupStandings.points,
-        goalDifference: groupStandings.goalDifference,
-        goalsFor: groupStandings.goalsFor,
+        groupId: groupTeams.groupId,
+        teamId: groupTeams.teamId,
+        code: teams.code,
+        namePt: teams.namePt,
+        flagCode: teams.flagCode,
       })
-      .from(groupStandings)
-      .innerJoin(groups, eq(groupStandings.groupId, groups.id)),
+      .from(groupTeams)
+      .innerJoin(teams, eq(groupTeams.teamId, teams.id)),
+    db
+      .select({
+        id: matches.id,
+        groupId: matches.groupId,
+        homeTeamId: matches.homeTeamId,
+        awayTeamId: matches.awayTeamId,
+        scheduledAt: matches.scheduledAt,
+      })
+      .from(matches)
+      .where(eq(matches.stage, "group_stage")),
+    db
+      .select({
+        matchId: officialResults.matchId,
+        homeScore: officialResults.homeScore,
+        awayScore: officialResults.awayScore,
+      })
+      .from(officialResults)
+      .innerJoin(matches, eq(officialResults.matchId, matches.id))
+      .where(eq(matches.stage, "group_stage")),
+    db.select().from(groupTiebreakOverrides),
     db
       .select({
         stage: matches.stage,
@@ -67,7 +98,88 @@ export async function POST(request: Request) {
       .orderBy(asc(matches.matchNumber)),
   ]);
 
-  const bestThirdStatus = getBestThirdStatus(standingRecords);
+  const officialMatchIds = new Set(officialResultRecords.map((result) => result.matchId));
+  const allGroupsComplete =
+    groupRecords.length > 0 &&
+    groupRecords.every((group) => {
+      const matchIds = groupMatchRecords
+        .filter((match) => match.groupId === group.id)
+        .map((match) => match.id);
+
+      return matchIds.length > 0 && matchIds.every((matchId) => officialMatchIds.has(matchId));
+    });
+
+  if (!allGroupsComplete) {
+    return NextResponse.json(
+      { error: "Os terceiros colocados só podem ser definidos após o fim de todos os grupos." },
+      { status: 409 },
+    );
+  }
+
+  const officialResultByMatchId = new Map(
+    officialResultRecords.map((result) => [
+      result.matchId,
+      {
+        homeScore: result.homeScore,
+        awayScore: result.awayScore,
+      },
+    ]),
+  );
+  const tiebreakOverrideByGroupId = new Map(
+    tiebreakOverrideRecords.map((override) => [
+      override.groupId,
+      override.orderedTeamIds.split(",").filter(Boolean),
+    ]),
+  );
+  const computedThirdPlaced = groupRecords.flatMap((group) => {
+    const teamsInGroup = groupTeamRecords
+      .filter((record) => record.groupId === group.id)
+      .map((record) => ({
+        id: record.teamId,
+        code: record.code,
+        namePt: record.namePt,
+        flagCode: record.flagCode,
+      }));
+    const matchesInGroup = groupMatchRecords
+      .map((match) => {
+        if (match.groupId !== group.id) {
+          return null;
+        }
+
+        const result = officialResultByMatchId.get(match.id);
+
+        if (!match.homeTeamId || !match.awayTeamId || !result) {
+          return null;
+        }
+
+        return {
+          homeTeamId: match.homeTeamId,
+          awayTeamId: match.awayTeamId,
+          homeScore: result.homeScore,
+          awayScore: result.awayScore,
+          scheduledAt: match.scheduledAt,
+        };
+      })
+      .filter((match): match is NonNullable<typeof match> => Boolean(match));
+    const standings = computeGroupStandings(
+      teamsInGroup,
+      matchesInGroup,
+      tiebreakOverrideByGroupId.get(group.id) ?? null,
+    ).standings;
+
+    return standings
+      .filter((standing) => standing.position === 3)
+      .map((standing) => ({
+        groupCode: group.code,
+        teamId: standing.teamId,
+        position: standing.position,
+        points: standing.points,
+        goalDifference: standing.goalDifference,
+        goalsFor: standing.goalsFor,
+      }));
+  });
+
+  const bestThirdStatus = getBestThirdStatus(computedThirdPlaced);
 
   if (!bestThirdStatus.hasBoundaryTie) {
     return NextResponse.json(
@@ -105,9 +217,7 @@ export async function POST(request: Request) {
     );
   }
 
-  const allowedThirdTeamIds = new Set(
-    standingRecords.filter((standing) => standing.position === 3).map((standing) => standing.teamId),
-  );
+  const allowedThirdTeamIds = new Set(computedThirdPlaced.map((standing) => standing.teamId));
   const selectedTeamIds = parsedBody.data.assignments.map((assignment) => assignment.teamId);
   const hasUniqueTeams = new Set(selectedTeamIds).size === selectedTeamIds.length;
 

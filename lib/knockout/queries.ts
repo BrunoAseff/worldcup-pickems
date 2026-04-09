@@ -89,6 +89,7 @@ type StandingRecord = {
   teamId: string;
   position: number;
   points: number;
+  played: number;
   goalsFor: number;
   goalDifference: number;
 };
@@ -302,6 +303,10 @@ const buildOfficialResolver = (
       }
 
       if (sourceType === "best_third_place") {
+        if (directTeamId) {
+          return toParticipant(teamById, directTeamId, sourceRef);
+        }
+
         if (!allocation) {
           return unresolvedParticipant(`3º ${sourceRef}`);
         }
@@ -504,6 +509,7 @@ const buildStages = (
 
 const getKnockoutContext = async (userId?: string) => {
   const [
+    groupRecords,
     teamRecords,
     standingRecords,
     officialResultRecords,
@@ -511,6 +517,7 @@ const getKnockoutContext = async (userId?: string) => {
     knockoutMatches,
   ] =
     await Promise.all([
+      db.select({ code: groups.code }).from(groups),
       db.select({ id: teams.id, namePt: teams.namePt, flagCode: teams.flagCode }).from(teams),
       db
         .select({
@@ -518,6 +525,7 @@ const getKnockoutContext = async (userId?: string) => {
           teamId: groupStandings.teamId,
           position: groupStandings.position,
           points: groupStandings.points,
+          played: groupStandings.played,
           goalsFor: groupStandings.goalsFor,
           goalDifference: groupStandings.goalDifference,
         })
@@ -584,7 +592,23 @@ const getKnockoutContext = async (userId?: string) => {
     predictionRecords.map((prediction) => [prediction.matchId, prediction]),
   );
   const matchByBracketCode = new Map(typedMatches.map((match) => [match.bracketCode, match]));
-  const bestThirdStatus = getBestThirdStatus(standingRecords);
+  const standingsByGroupCode = new Map<string, StandingRecord[]>();
+
+  for (const standing of standingRecords) {
+    const bucket = standingsByGroupCode.get(standing.groupCode) ?? [];
+    bucket.push(standing);
+    standingsByGroupCode.set(standing.groupCode, bucket);
+  }
+
+  const allGroupsComplete =
+    groupRecords.length > 0 &&
+    groupRecords.every((group) => {
+      const standings = standingsByGroupCode.get(group.code) ?? [];
+      return standings.length === 4 && standings.every((standing) => standing.played === 3);
+    });
+  const bestThirdStatus = allGroupsComplete
+    ? getBestThirdStatus(standingRecords)
+    : { resolved: false, qualifiedGroupCodes: [] as string[] };
   const officialResolver = buildOfficialResolver(
     teamById,
     standingByGroupPosition,

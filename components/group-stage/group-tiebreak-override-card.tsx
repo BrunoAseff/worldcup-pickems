@@ -13,6 +13,8 @@ type GroupTiebreakOverrideCardProps = {
   groupCode: string;
   teams: GroupStandingRow[];
   initialOrderedTeamIds: string[] | null;
+  suggestedOrderedTeamIds: string[];
+  conflictTeamIds: string[][];
 };
 
 const reorder = (items: string[], fromIndex: number, toIndex: number) => {
@@ -27,17 +29,52 @@ export function GroupTiebreakOverrideCard({
   groupCode,
   teams,
   initialOrderedTeamIds,
+  suggestedOrderedTeamIds = [],
+  conflictTeamIds = [],
 }: GroupTiebreakOverrideCardProps) {
+  const resolvedSuggestedOrderedTeamIds =
+    suggestedOrderedTeamIds.length > 0 ? suggestedOrderedTeamIds : teams.map((team) => team.teamId);
   const [orderedTeamIds, setOrderedTeamIds] = useState(
-    initialOrderedTeamIds ?? teams.map((team) => team.teamId),
+    initialOrderedTeamIds ?? resolvedSuggestedOrderedTeamIds,
   );
   const [feedbackMessage, setFeedbackMessage] = useState<string | null>(null);
   const [isPending, startTransition] = useTransition();
   const teamById = useMemo(() => new Map(teams.map((team) => [team.teamId, team])), [teams]);
+  const conflictGroupByTeamId = useMemo(() => {
+    const groupByTeamId = new Map<string, number>();
+    const resolvedConflictTeamIds =
+      conflictTeamIds.length > 0 ? conflictTeamIds : [resolvedSuggestedOrderedTeamIds];
+
+    resolvedConflictTeamIds.forEach((teamIds, groupIndex) => {
+      teamIds.forEach((teamId) => {
+        groupByTeamId.set(teamId, groupIndex);
+      });
+    });
+
+    return groupByTeamId;
+  }, [conflictTeamIds, resolvedSuggestedOrderedTeamIds]);
 
   const orderedTeams = orderedTeamIds
     .map((teamId) => teamById.get(teamId))
     .filter((team): team is NonNullable<typeof team> => Boolean(team));
+
+  const canMove = (teamId: string, index: number, direction: "up" | "down") => {
+    const targetIndex = direction === "up" ? index - 1 : index + 1;
+
+    if (targetIndex < 0 || targetIndex >= orderedTeamIds.length) {
+      return false;
+    }
+
+    const currentGroup = conflictGroupByTeamId.get(teamId);
+    const neighborTeamId = orderedTeamIds[targetIndex];
+    const neighborGroup = neighborTeamId ? conflictGroupByTeamId.get(neighborTeamId) : undefined;
+
+    if (currentGroup === undefined || neighborGroup === undefined) {
+      return false;
+    }
+
+    return currentGroup === neighborGroup;
+  };
 
   const saveOverride = () => {
     startTransition(async () => {
@@ -95,7 +132,7 @@ export function GroupTiebreakOverrideCard({
                   variant="outline"
                   size="icon"
                   className="size-9 rounded-md"
-                  disabled={index === 0 || isPending}
+                  disabled={!canMove(team.teamId, index, "up") || isPending}
                   onClick={() => setOrderedTeamIds((current) => reorder(current, index, index - 1))}
                 >
                   <ArrowUp className="size-4" />
@@ -105,7 +142,7 @@ export function GroupTiebreakOverrideCard({
                   variant="outline"
                   size="icon"
                   className="size-9 rounded-md"
-                  disabled={index === orderedTeams.length - 1 || isPending}
+                  disabled={!canMove(team.teamId, index, "down") || isPending}
                   onClick={() => setOrderedTeamIds((current) => reorder(current, index, index + 1))}
                 >
                   <ArrowDown className="size-4" />
@@ -117,7 +154,7 @@ export function GroupTiebreakOverrideCard({
 
         <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-xs uppercase tracking-[0.14em] text-muted-foreground">
-            Salve a ordem e depois clique em recalcular classificação.
+            Só é possível reordenar os times realmente empatados. Salve a ordem e depois clique em recalcular classificação.
           </p>
           <Button type="button" onClick={saveOverride} disabled={isPending} className="h-11 rounded-md px-4">
             Salvar decisão manual

@@ -14,7 +14,7 @@ import {
   venues,
 } from "@/lib/db/schema";
 import { getBestThirdSlotKey, getBestThirdStatus } from "@/lib/knockout/best-third";
-import { computeGroupStandings } from "./standings";
+import { computeGroupStandings, getConflictWindows } from "./standings";
 
 type ParticipantSourceType =
   | "team"
@@ -73,6 +73,8 @@ export type GroupStageGroupView = {
     requiresManualDecision: boolean;
     hasOverride: boolean;
     orderedTeamIds: string[] | null;
+    suggestedOrderedTeamIds: string[];
+    conflictTeamIds: string[][];
   };
   rounds: Array<{
     round: number;
@@ -136,6 +138,13 @@ const buildZeroStanding = (team: {
   form: "",
   recentResults: [],
   qualificationStatus: "eliminated",
+  predictionFeedback: "none",
+});
+
+const withNoPredictionFeedback = (
+  standing: Omit<GroupStandingRow, "predictionFeedback">,
+): GroupStandingRow => ({
+  ...standing,
   predictionFeedback: "none",
 });
 
@@ -268,6 +277,10 @@ const getGroupStageContext = async (userId?: string): Promise<GroupStageContext>
     ]),
   );
   const standingsByGroupId = new Map<string, GroupStandingRow[]>();
+  const computedStandingsByGroupId = new Map<
+    string,
+    ReturnType<typeof computeGroupStandings>
+  >();
   const bestThirdSlotOverrideByKey = new Map(
     bestThirdSlotOverrideRecords.map((override) => [override.slotKey, override.teamId]),
   );
@@ -376,14 +389,38 @@ const getGroupStageContext = async (userId?: string): Promise<GroupStageContext>
         .filter((match): match is NonNullable<typeof match> => Boolean(match)),
       tiebreakOverrideByGroupId.get(group.id) ?? null,
     );
+    computedStandingsByGroupId.set(group.id, computedStandings);
 
-    const standings =
-      persistedStandings && persistedStandings.length === groupTeamsForGroup.length
-        ? persistedStandings
-        : groupTeamsForGroup
-            .sort((left, right) => left.namePt.localeCompare(right.namePt))
-            .map(buildZeroStanding);
     const groupIsComplete = isGroupComplete(groupMatchIds, officialResultByMatchId);
+    const requiresManualTiebreak =
+      groupIsComplete && computedStandings.unresolvedConflicts.length > 0;
+    const standingsSource: GroupStandingRow[] =
+      requiresManualTiebreak
+        ? computedStandings.standings.map((standing) =>
+            withNoPredictionFeedback({
+              teamId: standing.teamId,
+              teamName: standing.teamName,
+              teamCode: standing.teamCode,
+              flagCode: standing.flagCode,
+              position: standing.position,
+              points: standing.points,
+              played: standing.played,
+              wins: standing.wins,
+              draws: standing.draws,
+              losses: standing.losses,
+              goalsFor: standing.goalsFor,
+              goalsAgainst: standing.goalsAgainst,
+              goalDifference: standing.goalDifference,
+              form: standing.form,
+              recentResults: standing.recentResults,
+              qualificationStatus: standing.qualificationStatus,
+            }),
+          )
+        : persistedStandings && persistedStandings.length === groupTeamsForGroup.length
+          ? persistedStandings
+          : groupTeamsForGroup
+              .sort((left, right) => left.namePt.localeCompare(right.namePt))
+              .map(buildZeroStanding);
     const predictedGroupMatches = userId
       ? groupMatches
           .map((match) => {
@@ -425,7 +462,7 @@ const getGroupStageContext = async (userId?: string): Promise<GroupStageContext>
     const predictedQualifiedTeamIds = predictedStandings
       ? new Set(predictedStandings.slice(0, 2).map((standing) => standing.teamId))
       : null;
-    const standingsWithFeedback = standings.map((standing) => {
+    const standingsWithFeedback = standingsSource.map((standing) => {
       if (!predictedOrderByTeamId || !predictedQualifiedTeamIds) {
         return standing;
       }
@@ -461,10 +498,14 @@ const getGroupStageContext = async (userId?: string): Promise<GroupStageContext>
       code: group.code,
       standings: standingsWithFeedback,
       tiebreak: {
-        requiresManualDecision:
-          groupIsComplete && computedStandings.unresolvedConflicts.length > 0,
+        requiresManualDecision: requiresManualTiebreak,
         hasOverride: tiebreakOverrideByGroupId.has(group.id),
         orderedTeamIds: tiebreakOverrideByGroupId.get(group.id) ?? null,
+        suggestedOrderedTeamIds: computedStandings.autoOrderedTeamIds,
+        conflictTeamIds: getConflictWindows(
+          computedStandings.autoOrderedTeamIds,
+          computedStandings.unresolvedConflicts,
+        ).map((window) => window.teamIds),
       },
       rounds,
       defaultRound: startedRounds.length > 0 ? Math.max(...startedRounds) : 1,
@@ -475,9 +516,14 @@ const getGroupStageContext = async (userId?: string): Promise<GroupStageContext>
     groups: groupsView,
     lastRecalculatedAt: latestRun?.createdAt.toISOString() ?? null,
     bestThirdSelection: (() => {
-      const allGroupsComplete = groupsView.every((group) =>
-        group.standings.length > 0 && group.standings.every((standing) => standing.played === 3),
-      );
+      const allGroupsComplete = groupRecords.every((group) => {
+        const groupMatches = matchRecords.filter((match) => match.groupId === group.id);
+
+        return isGroupComplete(
+          groupMatches.map((match) => match.id),
+          officialResultByMatchId,
+        );
+      });
 
       if (!allGroupsComplete) {
         return {
@@ -487,7 +533,18 @@ const getGroupStageContext = async (userId?: string): Promise<GroupStageContext>
         };
       }
 
-      const thirdPlaced = standingRecords
+      const thirdPlaced = groupRecords
+        .flatMap((group) =>
+          (computedStandingsByGroupId.get(group.id)?.standings ?? []).map((standing) => ({
+            groupId: group.id,
+            groupCode: group.code,
+            teamId: standing.teamId,
+            position: standing.position,
+            points: standing.points,
+            goalDifference: standing.goalDifference,
+            goalsFor: standing.goalsFor,
+          })),
+        )
         .filter((standing) => standing.position === 3)
         .map((standing) => {
           const team = teamById.get(standing.teamId);
@@ -505,7 +562,7 @@ const getGroupStageContext = async (userId?: string): Promise<GroupStageContext>
         .filter((standing): standing is NonNullable<typeof standing> => Boolean(standing));
       const bestThirdStatus = getBestThirdStatus(
         thirdPlaced.map((standing) => ({
-          groupCode: groupCodeById.get(standing.groupId) ?? "",
+          groupCode: standing.groupCode,
           teamId: standing.teamId,
           position: standing.position,
           points: standing.points,

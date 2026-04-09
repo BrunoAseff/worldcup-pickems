@@ -68,6 +68,25 @@ export async function POST(request: Request) {
         ? match.homeTeamId
         : match.awayTeamId;
 
+  if (homeScore === awayScore) {
+    if (!match.homeTeamId || !match.awayTeamId) {
+      return NextResponse.json(
+        { error: "Os participantes da partida ainda não estão definidos." },
+        { status: 409 },
+      );
+    }
+
+    if (
+      advancingTeamId !== match.homeTeamId &&
+      advancingTeamId !== match.awayTeamId
+    ) {
+      return NextResponse.json(
+        { error: "A seleção classificada precisa ser uma das duas da partida." },
+        { status: 400 },
+      );
+    }
+  }
+
   await db
     .insert(officialResults)
     .values({

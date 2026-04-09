@@ -53,9 +53,6 @@ export function GroupStageAdminShell({
   const activeRound = selectedGroup.rounds.find(
     (round) => round.round === selectedRound
   );
-  const selectedGroupIsComplete = selectedGroup.standings.every(
-    (team) => team.played === 3
-  );
 
   const updateUrl = (groupCode: string, round: number) => {
     const params = new URLSearchParams(searchParams.toString());
@@ -130,13 +127,15 @@ export function GroupStageAdminShell({
         </div>
       </div>
 
-      {selectedGroupIsComplete &&
-      selectedGroup.tiebreak.requiresManualDecision ? (
+      {selectedGroup.tiebreak.requiresManualDecision ? (
         <GroupTiebreakOverrideCard
+          key={selectedGroup.id}
           groupId={selectedGroup.id}
           groupCode={selectedGroup.code}
           teams={selectedGroup.standings}
           initialOrderedTeamIds={selectedGroup.tiebreak.orderedTeamIds}
+          suggestedOrderedTeamIds={selectedGroup.tiebreak.suggestedOrderedTeamIds}
+          conflictTeamIds={selectedGroup.tiebreak.conflictTeamIds}
         />
       ) : null}
 

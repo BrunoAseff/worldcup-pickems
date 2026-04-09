@@ -18,6 +18,7 @@
     "mock:knockout": "tsx scripts/mock-knockout.ts",
     "auth:create-user": "tsx scripts/create-user.ts",
     "recalculate:core": "node --import tsx scripts/recalculate-core.ts",
+    "seed:scenario": "tsx scripts/seed-edge-case-scenario.ts",
     "seed:teams": "tsx scripts/seed-teams.ts",
     "seed:tournament": "tsx scripts/seed-tournament.ts"
   },
