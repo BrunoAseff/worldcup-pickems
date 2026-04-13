@@ -1,9 +1,17 @@
-import { and, eq, ne } from "drizzle-orm";
+import { and, asc, eq, ne } from "drizzle-orm";
 import { NextResponse } from "next/server";
 import { getCurrentSession } from "@/lib/auth/session";
 import { db } from "@/lib/db/client";
-import { matches, officialResults } from "@/lib/db/schema";
+import {
+  bestThirdSlotOverrides,
+  groupStandings,
+  groups,
+  matches,
+  officialResults,
+} from "@/lib/db/schema";
+import { getBestThirdStatus } from "@/lib/knockout/best-third";
 import { knockoutOfficialResultRequestSchema } from "@/lib/knockout/result-schema";
+import { buildOfficialKnockoutParticipants, GroupStandingRecord, MatchRecord } from "@/lib/recalculation/core-logic";
 
 export async function POST(request: Request) {
   const session = await getCurrentSession();
@@ -25,16 +33,74 @@ export async function POST(request: Request) {
     );
   }
 
-  const [match] = await db
-    .select({
-      id: matches.id,
-      stage: matches.stage,
-      homeTeamId: matches.homeTeamId,
-      awayTeamId: matches.awayTeamId,
-    })
-    .from(matches)
-    .where(and(eq(matches.id, parsedBody.data.matchId), ne(matches.stage, "group_stage")))
-    .limit(1);
+  const [match, knockoutMatchRecords, knockoutOfficialResultRecords, standingRecords, bestThirdOverrideRecords] =
+    await Promise.all([
+      db
+        .select({
+          id: matches.id,
+          stage: matches.stage,
+          homeTeamId: matches.homeTeamId,
+          awayTeamId: matches.awayTeamId,
+        })
+        .from(matches)
+        .where(and(eq(matches.id, parsedBody.data.matchId), ne(matches.stage, "group_stage")))
+        .limit(1)
+        .then((records) => records[0]),
+      db
+        .select({
+          id: matches.id,
+          matchNumber: matches.matchNumber,
+          bracketCode: matches.bracketCode,
+          stage: matches.stage,
+          stageMatchNumber: matches.stageMatchNumber,
+          scheduledAt: matches.scheduledAt,
+          groupId: matches.groupId,
+          homeTeamId: matches.homeTeamId,
+          awayTeamId: matches.awayTeamId,
+          homeSourceType: matches.homeSourceType,
+          homeSourceRef: matches.homeSourceRef,
+          awaySourceType: matches.awaySourceType,
+          awaySourceRef: matches.awaySourceRef,
+        })
+        .from(matches)
+        .where(ne(matches.stage, "group_stage"))
+        .orderBy(asc(matches.matchNumber)),
+      db
+        .select({
+          matchId: officialResults.matchId,
+          homeScore: officialResults.homeScore,
+          awayScore: officialResults.awayScore,
+          advancingTeamId: officialResults.advancingTeamId,
+        })
+        .from(officialResults)
+        .innerJoin(matches, eq(officialResults.matchId, matches.id))
+        .where(ne(matches.stage, "group_stage")),
+      db
+        .select({
+          groupId: groupStandings.groupId,
+          groupCode: groups.code,
+          teamId: groupStandings.teamId,
+          position: groupStandings.position,
+          points: groupStandings.points,
+          played: groupStandings.played,
+          wins: groupStandings.wins,
+          draws: groupStandings.draws,
+          losses: groupStandings.losses,
+          goalsFor: groupStandings.goalsFor,
+          goalsAgainst: groupStandings.goalsAgainst,
+          goalDifference: groupStandings.goalDifference,
+          recentResults: groupStandings.recentResults,
+          qualificationStatus: groupStandings.qualificationStatus,
+        })
+        .from(groupStandings)
+        .innerJoin(groups, eq(groupStandings.groupId, groups.id)),
+      db
+        .select({
+          slotKey: bestThirdSlotOverrides.slotKey,
+          teamId: bestThirdSlotOverrides.teamId,
+        })
+        .from(bestThirdSlotOverrides),
+    ]);
 
   if (!match) {
     return NextResponse.json({ error: "Partida inválida." }, { status: 404 });
@@ -61,15 +127,40 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Preencha os dois placares." }, { status: 400 });
   }
 
+  const officialResultByMatchId = new Map(
+    knockoutOfficialResultRecords.map((result) => [result.matchId, result]),
+  );
+  const standingByGroupPosition = new Map(
+    standingRecords.map((standing) => [`${standing.groupCode}${standing.position}`, standing]),
+  );
+  const bestThirdSlotAssignments = new Map(
+    bestThirdOverrideRecords.map((override) => [override.slotKey, override.teamId]),
+  );
+  const bestThirdQualifiedGroupCodes =
+    bestThirdSlotAssignments.size > 0
+      ? []
+      : getBestThirdStatus(standingRecords).qualifiedGroupCodes;
+  const participantsByMatchId = buildOfficialKnockoutParticipants(
+    knockoutMatchRecords as MatchRecord[],
+    standingByGroupPosition as Map<string, GroupStandingRecord>,
+    officialResultByMatchId,
+    bestThirdQualifiedGroupCodes,
+    bestThirdSlotAssignments.size > 0 ? bestThirdSlotAssignments : undefined,
+  );
+  const resolvedParticipants = participantsByMatchId.get(match.id) ?? {
+    homeTeamId: match.homeTeamId,
+    awayTeamId: match.awayTeamId,
+  };
+
   const advancingTeamId =
     homeScore === awayScore
       ? parsedBody.data.advancingTeamId
       : homeScore > awayScore
-        ? match.homeTeamId
-        : match.awayTeamId;
+        ? resolvedParticipants.homeTeamId
+        : resolvedParticipants.awayTeamId;
 
   if (homeScore === awayScore) {
-    if (!match.homeTeamId || !match.awayTeamId) {
+    if (!resolvedParticipants.homeTeamId || !resolvedParticipants.awayTeamId) {
       return NextResponse.json(
         { error: "Os participantes da partida ainda não estão definidos." },
         { status: 409 },
@@ -77,8 +168,8 @@ export async function POST(request: Request) {
     }
 
     if (
-      advancingTeamId !== match.homeTeamId &&
-      advancingTeamId !== match.awayTeamId
+      advancingTeamId !== resolvedParticipants.homeTeamId &&
+      advancingTeamId !== resolvedParticipants.awayTeamId
     ) {
       return NextResponse.json(
         { error: "A seleção classificada precisa ser uma das duas da partida." },
