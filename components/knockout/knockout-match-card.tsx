@@ -430,7 +430,7 @@ export function KnockoutMatchCard({
                   </Button>
                 ) : null}
 
-                {hasOfficialResult && officialScore !== null ? (
+                {mode === "player" && hasOfficialResult && officialScore !== null ? (
                   <>
                     {showHistoricPrediction ? (
                       <span className="inline-flex h-7 min-w-7 items-center justify-center rounded-sm bg-muted/55 px-1 text-xs font-semibold text-muted-foreground line-through opacity-65">
