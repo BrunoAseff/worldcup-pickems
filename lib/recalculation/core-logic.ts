@@ -542,14 +542,13 @@ export const buildApplicationRecalculationSnapshot = ({
       .filter((group) => isGroupComplete(groupStageMatches, officialResultByMatchId, group.id))
       .map((group) => group.id),
   );
-  const standingByGroupPosition = new Map(
-    flatStandings
-      .filter((standing) => completedGroupIds.has(standing.groupId))
-      .map((standing) => [`${standing.groupCode}${standing.position}`, standing]),
-  );
-
   const completedGroupCount = completedGroupIds.size;
   const allGroupsComplete = completedGroupCount === groupRecords.length;
+  const standingByGroupPosition = new Map(
+    (allGroupsComplete ? flatStandings : [])
+      .filter((standing) => completedGroupIds.has(standing.groupId))
+      .map((standing) => ["".concat(standing.groupCode, String(standing.position)), standing]),
+  );
   const bestThirdStatus =
     allGroupsComplete
       ? getBestThirdStatus(flatStandings)
