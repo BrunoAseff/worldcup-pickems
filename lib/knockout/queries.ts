@@ -582,9 +582,6 @@ const getKnockoutContext = async (userId?: string) => {
       match.stage !== "group_stage",
   ) as MatchRecord[];
   const teamById = new Map(teamRecords.map((team) => [team.id, team]));
-  const standingByGroupPosition = new Map(
-    standingRecords.map((standing) => [`${standing.groupCode}${standing.position}`, standing]),
-  );
   const officialResultByMatchId = new Map(
     officialResultRecords.map((result) => [result.matchId, result]),
   );
@@ -606,6 +603,9 @@ const getKnockoutContext = async (userId?: string) => {
       const standings = standingsByGroupCode.get(group.code) ?? [];
       return standings.length === 4 && standings.every((standing) => standing.played === 3);
     });
+  const standingByGroupPosition = new Map(
+    (allGroupsComplete ? standingRecords : []).map((standing) => ["".concat(standing.groupCode, String(standing.position)), standing]),
+  );
   const bestThirdStatus = allGroupsComplete
     ? getBestThirdStatus(standingRecords)
     : { resolved: false, qualifiedGroupCodes: [] as string[] };

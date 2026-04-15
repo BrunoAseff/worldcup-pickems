@@ -482,7 +482,7 @@ describe("recalculation core logic", () => {
     expect(snapshot.bestThirdQualifiedGroupCodes).toEqual([]);
     expect(snapshot.requiresManualBestThirdSelection).toBe(false);
     expect(snapshot.officialParticipantsByKnockoutMatchId.get("r32-1")).toEqual({
-      homeTeamId: "a1",
+      homeTeamId: null,
       awayTeamId: null,
     });
   });
