@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState, useTransition } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { SaveStateIndicator } from "@/components/predictions/save-state-indicator";
 import { TeamFlag } from "@/components/teams/team-flag";
 import { Card } from "@/components/ui/card";
@@ -9,48 +9,39 @@ import { formatKickoff } from "@/lib/formatters/kickoff";
 import { predictionInputSchema } from "@/lib/group-stage/prediction-schema";
 import { GroupStageMatchView } from "@/lib/group-stage/queries";
 import { getGroupStageMatchFeedback } from "@/lib/predictions/feedback";
-import { routes } from "@/lib/routes";
 import { cn } from "@/lib/utils";
+import {
+  GroupStagePredictionDraft,
+  GroupStageSaveStatus,
+} from "./group-stage-predictions-context";
 
 type MatchCardProps = {
   match: GroupStageMatchView;
-  onPredictionChange: (
-    prediction: { homeScore: number; awayScore: number } | null
-  ) => void;
+  draft: GroupStagePredictionDraft;
+  saveState: {
+    status: GroupStageSaveStatus;
+    message: string | null;
+  };
+  onDraftChange: (draft: GroupStagePredictionDraft) => void;
+  onSaveRequested: (draft: GroupStagePredictionDraft) => void;
 };
 
-type SaveStatus = "idle" | "saving" | "saved" | "deleted" | "error";
-
-type SaveResponse = {
-  error?: string;
-  action?: "created" | "updated" | "deleted" | "noop";
-};
-
-type PredictionDraft = {
-  homeScore: string;
-  awayScore: string;
-};
-
-export function MatchCard({ match, onPredictionChange }: MatchCardProps) {
+export function MatchCard({
+  match,
+  draft,
+  saveState,
+  onDraftChange,
+  onSaveRequested,
+}: MatchCardProps) {
   const homeInputId = `${match.id}-home-score`;
   const awayInputId = `${match.id}-away-score`;
   const validationMessageId = `${match.id}-validation-message`;
-  const [values, setValues] = useState({
-    homeScore: match.prediction?.homeScore?.toString() ?? "",
-    awayScore: match.prediction?.awayScore?.toString() ?? "",
-  });
-  const [status, setStatus] = useState<SaveStatus>("idle");
-  const [serverMessage, setServerMessage] = useState<string | null>(null);
-  const [isPending, startTransition] = useTransition();
   const [isLocked, setIsLocked] = useState(false);
-  const saveTimerRef = useRef<number | null>(null);
-  const saveVersionRef = useRef(0);
-  const valuesRef = useRef(values);
   const scheduledTimestamp = new Date(match.scheduledAt).getTime();
 
-  const parsed = predictionInputSchema.safeParse(values);
-  const bothEmpty = values.homeScore === "" && values.awayScore === "";
-  const bothFilled = values.homeScore !== "" && values.awayScore !== "";
+  const parsed = predictionInputSchema.safeParse(draft);
+  const bothEmpty = draft.homeScore === "" && draft.awayScore === "";
+  const bothFilled = draft.homeScore !== "" && draft.awayScore !== "";
   const validationMessage = !parsed.success
     ? parsed.error.issues[0]?.message ?? "Valor inválido."
     : !bothEmpty && !bothFilled
@@ -71,19 +62,17 @@ export function MatchCard({ match, onPredictionChange }: MatchCardProps) {
     };
   }, [scheduledTimestamp]);
 
-  useEffect(() => {
-    return () => {
-      if (saveTimerRef.current) {
-        window.clearTimeout(saveTimerRef.current);
-      }
+  const handleScoreChange = (
+    field: keyof GroupStagePredictionDraft,
+    rawValue: string
+  ) => {
+    const sanitizedValue = rawValue.replace(/\D/g, "").slice(0, 2);
+    const nextValues = {
+      ...draft,
+      [field]: sanitizedValue,
     };
-  }, []);
 
-  const persistPrediction = (nextValues: PredictionDraft) => {
-    if (saveTimerRef.current) {
-      window.clearTimeout(saveTimerRef.current);
-      saveTimerRef.current = null;
-    }
+    onDraftChange(nextValues);
 
     if (isLocked) {
       return;
@@ -99,119 +88,37 @@ export function MatchCard({ match, onPredictionChange }: MatchCardProps) {
       return;
     }
 
-    const saveVersion = ++saveVersionRef.current;
-
-    saveTimerRef.current = window.setTimeout(() => {
-      startTransition(async () => {
-        setStatus("saving");
-
-        try {
-          const response = await fetch(routes.api.groupStagePredictions, {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              matchId: match.id,
-              homeScore:
-                nextValues.homeScore === ""
-                  ? null
-                  : Number(nextValues.homeScore),
-              awayScore:
-                nextValues.awayScore === ""
-                  ? null
-                  : Number(nextValues.awayScore),
-            }),
-          });
-
-          const payload = (await response.json()) as SaveResponse;
-
-          if (saveVersion !== saveVersionRef.current) {
-            return;
-          }
-
-          if (!response.ok) {
-            setStatus("error");
-            setServerMessage(payload.error ?? "Não foi possível salvar agora.");
-            return;
-          }
-
-          if (payload.action === "deleted") {
-            setStatus("deleted");
-            setServerMessage("Palpite removido.");
-            onPredictionChange(null);
-            return;
-          }
-
-          if (payload.action === "created" || payload.action === "updated") {
-            setStatus("saved");
-            setServerMessage("Palpite salvo.");
-            onPredictionChange({
-              homeScore: Number(nextValues.homeScore),
-              awayScore: Number(nextValues.awayScore),
-            });
-            return;
-          }
-
-          setStatus("idle");
-          setServerMessage(null);
-        } catch {
-          if (saveVersion !== saveVersionRef.current) {
-            return;
-          }
-
-          setStatus("error");
-          setServerMessage("Não foi possível salvar agora.");
-        }
-      });
-    }, 350);
-  };
-
-  const handleScoreChange = (
-    field: keyof PredictionDraft,
-    rawValue: string
-  ) => {
-    const sanitizedValue = rawValue.replace(/\D/g, "").slice(0, 2);
-    const nextValues = {
-      ...valuesRef.current,
-      [field]: sanitizedValue,
-    };
-
-    valuesRef.current = nextValues;
-    setValues(nextValues);
-    setStatus("idle");
-    setServerMessage(null);
-    persistPrediction(nextValues);
+    onSaveRequested(nextValues);
   };
 
   const statusIcon = useMemo(() => {
-    if (status === "saving") {
+    if (saveState.status === "saving") {
       return {
         message: "Salvando...",
         tone: "saving" as const,
       };
     }
 
-    if (!serverMessage) {
+    if (!saveState.message) {
       return null;
     }
 
-    if (status === "saved" || status === "deleted") {
+    if (saveState.status === "saved" || saveState.status === "deleted") {
       return {
-        message: serverMessage,
+        message: saveState.message,
         tone: "success" as const,
       };
     }
 
-    if (status === "error") {
+    if (saveState.status === "error") {
       return {
-        message: serverMessage,
+        message: saveState.message,
         tone: "error" as const,
       };
     }
 
     return null;
-  }, [serverMessage, status]);
+  }, [saveState.message, saveState.status]);
   const accessibleStatusMessage =
     validationMessage ?? statusIcon?.message ?? (isLocked ? "Fechado" : null);
   const feedback = getGroupStageMatchFeedback({
@@ -276,8 +183,8 @@ export function MatchCard({ match, onPredictionChange }: MatchCardProps) {
               id={homeInputId}
               inputMode="numeric"
               maxLength={2}
-              value={values.homeScore}
-              disabled={isLocked || isPending}
+              value={draft.homeScore}
+              disabled={isLocked}
               className="h-12 px-0 text-center text-lg font-semibold"
               aria-label={`Placar de ${match.homeTeamName}`}
               aria-invalid={Boolean(validationMessage)}
@@ -295,8 +202,8 @@ export function MatchCard({ match, onPredictionChange }: MatchCardProps) {
               id={awayInputId}
               inputMode="numeric"
               maxLength={2}
-              value={values.awayScore}
-              disabled={isLocked || isPending}
+              value={draft.awayScore}
+              disabled={isLocked}
               className="h-12 px-0 text-center text-lg font-semibold"
               aria-label={`Placar de ${match.awayTeamName}`}
               aria-invalid={Boolean(validationMessage)}

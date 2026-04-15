@@ -1,9 +1,7 @@
-import Link from "next/link";
+import { PrimaryNav } from "@/components/app/primary-nav";
 import { Trophy, UserCircle2 } from "lucide-react";
 import { LogoutForm } from "@/components/auth/logout-form";
 import { ViewerRankingStatus } from "@/lib/ranking/queries";
-import { primaryNavItems, type PrimaryRouteKey } from "@/lib/routes";
-import { cn } from "@/lib/utils";
 
 type FloatingNavProps = {
   user: {
@@ -11,10 +9,9 @@ type FloatingNavProps = {
     role: "player" | "admin";
   };
   rankingStatus?: ViewerRankingStatus;
-  activeKey: PrimaryRouteKey;
 };
 
-export function FloatingNav({ user, rankingStatus, activeKey }: FloatingNavProps) {
+export function FloatingNav({ user, rankingStatus }: FloatingNavProps) {
   const hasPlayerRankingStatus =
     user.role === "player" &&
     rankingStatus?.totalPoints !== null &&
@@ -31,22 +28,7 @@ export function FloatingNav({ user, rankingStatus, activeKey }: FloatingNavProps
           </div>
         </div>
 
-        <nav className="flex items-center gap-1 rounded-md bg-muted p-1">
-          {primaryNavItems.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className={cn(
-                "flex h-11 items-center rounded-md px-4 text-sm font-medium transition-colors",
-                activeKey === item.key
-                  ? "bg-background text-foreground"
-                  : "text-muted-foreground"
-              )}
-            >
-              {item.label}
-            </Link>
-          ))}
-        </nav>
+        <PrimaryNav />
 
         <div className="flex items-center gap-2">
           <div className="hidden h-11 items-center gap-2 rounded-md border border-border bg-background px-3 text-sm sm:flex">
