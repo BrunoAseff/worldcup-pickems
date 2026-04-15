@@ -1,8 +1,5 @@
-import type { ComponentProps } from "react";
-import Flag from "react-flagpack";
+import Image from "next/image";
 import { cn } from "@/lib/utils";
-
-type FlagCode = ComponentProps<typeof Flag>["code"];
 
 type TeamFlagProps = {
   code: string | null;
@@ -23,11 +20,13 @@ export function TeamFlag({ code, className }: TeamFlagProps) {
   }
 
   return (
-    <Flag
-      code={code.toUpperCase() as FlagCode}
-      size="m"
-      hasBorder={false}
-      hasBorderRadius={false}
+    <Image
+      src={`/flags/m/${code.toUpperCase()}.svg`}
+      alt=""
+      width={24}
+      height={18}
+      unoptimized
+      aria-hidden="true"
       className={cn(
         "inline-flex h-4.5 w-6 shrink-0 overflow-hidden rounded-xs",
         className

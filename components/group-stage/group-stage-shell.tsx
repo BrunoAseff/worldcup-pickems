@@ -4,6 +4,10 @@ import { useEffect, useState } from "react";
 import { usePathname, useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { GroupStageGroupView } from "@/lib/group-stage/queries";
+import {
+  createGroupStagePredictionEntry,
+  useGroupStagePredictions,
+} from "./group-stage-predictions-context";
 import { MatchCard } from "./match-card";
 import { StandingsTable } from "./standings-table";
 
@@ -37,6 +41,8 @@ const resolveSelection = (
 export function GroupStageShell({ groups }: GroupStageShellProps) {
   const pathname = usePathname();
   const searchParams = useSearchParams();
+  const { entries, hydrateFromGroups, updateDraft, queueSave } =
+    useGroupStagePredictions();
   const [selection, setSelection] = useState(() =>
     resolveSelection(groups, searchParams.get("grupo"), searchParams.get("rodada")),
   );
@@ -44,9 +50,10 @@ export function GroupStageShell({ groups }: GroupStageShellProps) {
   const selectedGroup =
     groups.find((group) => group.code === selectedGroupCode) ?? groups[0];
   const selectedRound = selection.round;
-  const [predictionOverrides, setPredictionOverrides] = useState<
-    Record<string, { homeScore: number; awayScore: number } | null>
-  >({});
+
+  useEffect(() => {
+    hydrateFromGroups(groups);
+  }, [groups, hydrateFromGroups]);
 
   useEffect(() => {
     const handlePopState = () => {
@@ -152,22 +159,28 @@ export function GroupStageShell({ groups }: GroupStageShellProps) {
 
           <div className="mt-5 grid gap-2.5">
             {activeRound?.matches.map((match) => {
-              const effectivePrediction = Object.prototype.hasOwnProperty.call(
-                predictionOverrides,
-                match.id
-              )
-                ? predictionOverrides[match.id]
-                : match.prediction;
+              const entry = entries[match.id];
+              const fallbackEntry = createGroupStagePredictionEntry(
+                match.prediction,
+              );
+              const effectivePrediction =
+                entry?.prediction ?? fallbackEntry.prediction;
+              const draft = entry?.draft ?? fallbackEntry.draft;
 
               return (
                 <MatchCard
                   key={match.id}
                   match={{ ...match, prediction: effectivePrediction }}
-                  onPredictionChange={(prediction) => {
-                    setPredictionOverrides((current) => ({
-                      ...current,
-                      [match.id]: prediction,
-                    }));
+                  draft={draft}
+                  saveState={{
+                    status: entry?.status ?? "idle",
+                    message: entry?.message ?? null,
+                  }}
+                  onDraftChange={(nextDraft) => {
+                    updateDraft(match.id, nextDraft);
+                  }}
+                  onSaveRequested={(nextDraft) => {
+                    queueSave(match.id, nextDraft);
                   }}
                 />
               );

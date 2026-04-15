@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState, useTransition } from "react";
+import { useMemo } from "react";
 import { SaveStateIndicator } from "@/components/predictions/save-state-indicator";
 import { TeamFlag } from "@/components/teams/team-flag";
 import { Card } from "@/components/ui/card";
@@ -8,17 +8,16 @@ import { Input } from "@/components/ui/input";
 import { formatKickoff } from "@/lib/formatters/kickoff";
 import { groupStageOfficialResultRequestSchema } from "@/lib/group-stage/result-schema";
 import { GroupStageMatchView } from "@/lib/group-stage/queries";
-import { routes } from "@/lib/routes";
 
 type AdminMatchCardProps = {
   match: GroupStageMatchView;
-};
-
-type SaveStatus = "idle" | "saving" | "saved" | "deleted" | "error";
-
-type SaveResponse = {
-  error?: string;
-  action?: "created" | "updated" | "deleted" | "noop";
+  draft: ResultDraft;
+  saveState: {
+    status: "idle" | "saving" | "saved" | "deleted" | "error";
+    message: string | null;
+  };
+  onDraftChange: (draft: ResultDraft) => void;
+  onSaveRequested: (draft: ResultDraft) => void;
 };
 
 type ResultDraft = {
@@ -26,41 +25,32 @@ type ResultDraft = {
   awayScore: string;
 };
 
-export function AdminMatchCard({ match }: AdminMatchCardProps) {
+export function AdminMatchCard({
+  match,
+  draft,
+  saveState,
+  onDraftChange,
+  onSaveRequested,
+}: AdminMatchCardProps) {
   const validationMessageId = `${match.id}-admin-validation-message`;
-  const [values, setValues] = useState({
-    homeScore: match.officialResult?.homeScore?.toString() ?? "",
-    awayScore: match.officialResult?.awayScore?.toString() ?? "",
-  });
-  const [status, setStatus] = useState<SaveStatus>("idle");
-  const [serverMessage, setServerMessage] = useState<string | null>(null);
-  const [isPending, startTransition] = useTransition();
-  const saveTimerRef = useRef<number | null>(null);
-  const saveVersionRef = useRef(0);
-  const valuesRef = useRef(values);
 
   const parsed = groupStageOfficialResultRequestSchema.safeParse({
     matchId: match.id,
-    homeScore: values.homeScore === "" ? null : Number(values.homeScore),
-    awayScore: values.awayScore === "" ? null : Number(values.awayScore),
+    homeScore: draft.homeScore === "" ? null : Number(draft.homeScore),
+    awayScore: draft.awayScore === "" ? null : Number(draft.awayScore),
   });
   const validationMessage = !parsed.success
     ? parsed.error.issues[0]?.message ?? "Valor inválido."
     : null;
 
-  useEffect(() => {
-    return () => {
-      if (saveTimerRef.current) {
-        window.clearTimeout(saveTimerRef.current);
-      }
+  const handleScoreChange = (field: keyof ResultDraft, rawValue: string) => {
+    const sanitizedValue = rawValue.replace(/\D/g, "").slice(0, 2);
+    const nextValues = {
+      ...draft,
+      [field]: sanitizedValue,
     };
-  }, []);
 
-  const persistResult = (nextValues: ResultDraft) => {
-    if (saveTimerRef.current) {
-      window.clearTimeout(saveTimerRef.current);
-      saveTimerRef.current = null;
-    }
+    onDraftChange(nextValues);
 
     const payload = {
       matchId: match.id,
@@ -73,102 +63,37 @@ export function AdminMatchCard({ match }: AdminMatchCardProps) {
       return;
     }
 
-    const saveVersion = ++saveVersionRef.current;
-
-    saveTimerRef.current = window.setTimeout(() => {
-      startTransition(async () => {
-        setStatus("saving");
-        setServerMessage(null);
-
-        try {
-          const response = await fetch(routes.api.groupStageResults, {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(payload),
-          });
-
-          const result = (await response.json()) as SaveResponse;
-
-          if (saveVersion !== saveVersionRef.current) {
-            return;
-          }
-
-          if (!response.ok) {
-            setStatus("error");
-            setServerMessage(result.error ?? "Não foi possível salvar agora.");
-            return;
-          }
-
-          if (result.action === "deleted") {
-            setStatus("deleted");
-            setServerMessage("Resultado removido.");
-            return;
-          }
-
-          if (result.action === "created" || result.action === "updated") {
-            setStatus("saved");
-            setServerMessage("Resultado salvo.");
-            return;
-          }
-
-          setStatus("idle");
-          setServerMessage(null);
-        } catch {
-          if (saveVersion !== saveVersionRef.current) {
-            return;
-          }
-
-          setStatus("error");
-          setServerMessage("Não foi possível salvar agora.");
-        }
-      });
-    }, 350);
-  };
-
-  const handleScoreChange = (field: keyof ResultDraft, rawValue: string) => {
-    const sanitizedValue = rawValue.replace(/\D/g, "").slice(0, 2);
-    const nextValues = {
-      ...valuesRef.current,
-      [field]: sanitizedValue,
-    };
-
-    valuesRef.current = nextValues;
-    setValues(nextValues);
-    setStatus("idle");
-    setServerMessage(null);
-    persistResult(nextValues);
+    onSaveRequested(nextValues);
   };
 
   const statusIcon = useMemo(() => {
-    if (status === "saving") {
+    if (saveState.status === "saving") {
       return {
         tone: "saving" as const,
         message: "Salvando...",
       };
     }
 
-    if (validationMessage || !serverMessage) {
+    if (validationMessage || !saveState.message) {
       return null;
     }
 
-    if (status === "saved" || status === "deleted") {
+    if (saveState.status === "saved" || saveState.status === "deleted") {
       return {
         tone: "success" as const,
-        message: serverMessage,
+        message: saveState.message,
       };
     }
 
-    if (status === "error") {
+    if (saveState.status === "error") {
       return {
         tone: "error" as const,
-        message: serverMessage,
+        message: saveState.message,
       };
     }
 
     return null;
-  }, [serverMessage, status, validationMessage]);
+  }, [saveState.message, saveState.status, validationMessage]);
 
   const accessibleStatusMessage = validationMessage ?? statusIcon?.message ?? null;
 
@@ -201,8 +126,7 @@ export function AdminMatchCard({ match }: AdminMatchCardProps) {
           <Input
             inputMode="numeric"
             maxLength={2}
-            value={values.homeScore}
-            disabled={isPending}
+            value={draft.homeScore}
             className="h-12 px-0 text-center text-lg font-semibold"
             aria-label={`Resultado oficial de ${match.homeTeamName}`}
             aria-invalid={Boolean(validationMessage)}
@@ -215,8 +139,7 @@ export function AdminMatchCard({ match }: AdminMatchCardProps) {
           <Input
             inputMode="numeric"
             maxLength={2}
-            value={values.awayScore}
-            disabled={isPending}
+            value={draft.awayScore}
             className="h-12 px-0 text-center text-lg font-semibold"
             aria-label={`Resultado oficial de ${match.awayTeamName}`}
             aria-invalid={Boolean(validationMessage)}

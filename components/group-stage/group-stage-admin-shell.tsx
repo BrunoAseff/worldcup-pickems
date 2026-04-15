@@ -1,7 +1,7 @@
 "use client";
 
 import { RefreshCw } from "lucide-react";
-import { useEffect, useState, useTransition } from "react";
+import { useEffect, useRef, useState, useTransition } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { AdminMatchCard } from "@/components/group-stage/admin-match-card";
 import { BestThirdSlotOverrideCard } from "@/components/group-stage/best-third-slot-override-card";
@@ -60,6 +60,19 @@ export function GroupStageAdminShell({
     string | null
   >(null);
   const [isPending, startTransition] = useTransition();
+  const [resultEntries, setResultEntries] = useState<
+    Record<
+      string,
+      {
+        draft: { homeScore: string; awayScore: string };
+        officialResult: { homeScore: number; awayScore: number } | null;
+        status: "idle" | "saving" | "saved" | "deleted" | "error";
+        message: string | null;
+      }
+    >
+  >({});
+  const saveTimersRef = useRef(new Map<string, number>());
+  const saveVersionsRef = useRef(new Map<string, number>());
 
   useEffect(() => {
     const handlePopState = () => {
@@ -77,6 +90,18 @@ export function GroupStageAdminShell({
       window.removeEventListener("popstate", handlePopState);
     };
   }, [groups]);
+
+  useEffect(() => {
+    const saveTimers = saveTimersRef.current;
+
+    return () => {
+      for (const timerId of saveTimers.values()) {
+        window.clearTimeout(timerId);
+      }
+
+      saveTimers.clear();
+    };
+  }, []);
 
   if (!selectedGroup) {
     return null;
@@ -120,6 +145,199 @@ export function GroupStageAdminShell({
         setRecalculationMessage("Não foi possível recalcular agora.");
       }
     });
+  };
+
+  const updateResultDraft = (
+    matchId: string,
+    draft: { homeScore: string; awayScore: string },
+  ) => {
+    setResultEntries((current) => {
+      const existing = current[matchId] ?? {
+        draft: { homeScore: "", awayScore: "" },
+        officialResult: null,
+        status: "idle" as const,
+        message: null,
+      };
+
+      return {
+        ...current,
+        [matchId]: {
+          ...existing,
+          draft,
+          status: "idle",
+          message: null,
+        },
+      };
+    });
+  };
+
+  const queueResultSave = (
+    matchId: string,
+    draft: { homeScore: string; awayScore: string },
+  ) => {
+    const previousTimer = saveTimersRef.current.get(matchId);
+
+    if (previousTimer) {
+      window.clearTimeout(previousTimer);
+    }
+
+    const nextVersion = (saveVersionsRef.current.get(matchId) ?? 0) + 1;
+    saveVersionsRef.current.set(matchId, nextVersion);
+
+    const timerId = window.setTimeout(() => {
+      saveTimersRef.current.delete(matchId);
+
+      void (async () => {
+        setResultEntries((current) => {
+          const existing = current[matchId];
+
+          if (!existing) {
+            return current;
+          }
+
+          return {
+            ...current,
+            [matchId]: {
+              ...existing,
+              status: "saving",
+              message: null,
+            },
+          };
+        });
+
+        const payload = {
+          matchId,
+          homeScore: draft.homeScore === "" ? null : Number(draft.homeScore),
+          awayScore: draft.awayScore === "" ? null : Number(draft.awayScore),
+        };
+
+        try {
+          const response = await fetch(routes.api.groupStageResults, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(payload),
+          });
+
+          const result = (await response.json()) as {
+            error?: string;
+            action?: "created" | "updated" | "deleted" | "noop";
+          };
+
+          if (saveVersionsRef.current.get(matchId) !== nextVersion) {
+            return;
+          }
+
+          if (!response.ok) {
+            setResultEntries((current) => {
+              const existing = current[matchId];
+
+              if (!existing) {
+                return current;
+              }
+
+              return {
+                ...current,
+                [matchId]: {
+                  ...existing,
+                  status: "error",
+                  message: result.error ?? "Não foi possível salvar agora.",
+                },
+              };
+            });
+            return;
+          }
+
+          if (result.action === "deleted") {
+            setResultEntries((current) => {
+              const existing = current[matchId];
+
+              if (!existing) {
+                return current;
+              }
+
+              return {
+                ...current,
+                [matchId]: {
+                  ...existing,
+                  draft: { homeScore: "", awayScore: "" },
+                  officialResult: null,
+                  status: "deleted",
+                  message: "Resultado removido.",
+                },
+              };
+            });
+            return;
+          }
+
+          if (result.action === "created" || result.action === "updated") {
+            setResultEntries((current) => {
+              const existing = current[matchId];
+
+              if (!existing) {
+                return current;
+              }
+
+              return {
+                ...current,
+                [matchId]: {
+                  ...existing,
+                  draft,
+                  officialResult: {
+                    homeScore: Number(draft.homeScore),
+                    awayScore: Number(draft.awayScore),
+                  },
+                  status: "saved",
+                  message: "Resultado salvo.",
+                },
+              };
+            });
+            return;
+          }
+
+          setResultEntries((current) => {
+            const existing = current[matchId];
+
+            if (!existing) {
+              return current;
+            }
+
+            return {
+              ...current,
+              [matchId]: {
+                ...existing,
+                status: "idle",
+                message: null,
+              },
+            };
+          });
+        } catch {
+          if (saveVersionsRef.current.get(matchId) !== nextVersion) {
+            return;
+          }
+
+          setResultEntries((current) => {
+            const existing = current[matchId];
+
+            if (!existing) {
+              return current;
+            }
+
+            return {
+              ...current,
+              [matchId]: {
+                ...existing,
+                status: "error",
+                message: "Não foi possível salvar agora.",
+              },
+            };
+          });
+        }
+      })();
+    }, 350);
+
+    saveTimersRef.current.set(matchId, timerId);
   };
 
   return (
@@ -237,9 +455,32 @@ export function GroupStageAdminShell({
           </div>
 
           <div className="grid gap-4">
-            {activeRound?.matches.map((match) => (
-              <AdminMatchCard key={match.id} match={match} />
-            ))}
+            {activeRound?.matches.map((match) => {
+              const entry = resultEntries[match.id];
+              const effectiveResult = entry?.officialResult ?? match.officialResult;
+              const draft = entry?.draft ?? {
+                homeScore: effectiveResult?.homeScore?.toString() ?? "",
+                awayScore: effectiveResult?.awayScore?.toString() ?? "",
+              };
+
+              return (
+                <AdminMatchCard
+                  key={match.id}
+                  match={{ ...match, officialResult: effectiveResult }}
+                  draft={draft}
+                  saveState={{
+                    status: entry?.status ?? "idle",
+                    message: entry?.message ?? null,
+                  }}
+                  onDraftChange={(nextDraft) => {
+                    updateResultDraft(match.id, nextDraft);
+                  }}
+                  onSaveRequested={(nextDraft) => {
+                    queueResultSave(match.id, nextDraft);
+                  }}
+                />
+              );
+            })}
           </div>
         </section>
       </div>
