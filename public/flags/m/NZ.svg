@@ -1,17 +1,14 @@
-<svg width="20" height="15" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <g mask="url(#NZ_-_New_Zealand_(Aotearoa)__a)">
-    <path fill-rule="evenodd" clip-rule="evenodd" d="M0 0v15h20V0H0z" fill="#2E42A5"/>
-    <g mask="url(#NZ_-_New_Zealand_(Aotearoa)__b)">
-      <path fill="#2E42A5" d="M0 0h11v9H0z"/>
-      <g mask="url(#NZ_-_New_Zealand_(Aotearoa)__c)">
-        <path d="M-1.253 8.125L1.223 9.21l10.083-8.03 1.306-1.614-2.647-.363-4.113 3.46-3.31 2.332-3.795 3.129z" fill="#F7FCFF"/>
-        <path d="M-.914 8.886l1.261.63L12.143-.583h-1.77L-.915 8.886z" fill="#F50100"/>
-        <path d="M12.503 8.125L10.306 9.52-.056 1.18-1.362-.434l2.647-.363 4.113 3.46 3.31 2.332 3.795 3.129z" fill="#F7FCFF"/>
-        <path d="M12.418 8.67l-1.261.63-5.023-4.323-1.489-.483-6.133-4.921H.283l6.13 4.804 1.628.58 4.377 3.714z" fill="#F50100"/>
-        <path fill-rule="evenodd" clip-rule="evenodd" d="M6 0H5v4H0v1h5v4h1V5h5V4H6V0z" fill="#F50100"/>
-        <path d="M5 0v-.938h-.938V0H5zm1 0h.938v-.938H6V0zM5 4v.938h.938V4H5zM0 4v-.938h-.938V4H0zm0 1h-.938v.938H0V5zm5 0h.938v-.938H5V5zm0 4h-.938v.938H5V9zm1 0v.938h.938V9H6zm0-4v-.938h-.938V5H6zm5 0v.938h.938V5H11zm0-1h.938v-.938H11V4zM6 4h-.938v.938H6V4zM5 .937h1V-.938H5V.938zM5.938 4V0H4.063v4h1.875zM0 4.938h5V3.063H0v1.874zM.938 5V4H-.938v1H.938zM5 4.062H0v1.875h5V4.063zM5.938 9V5H4.063v4h1.875zM6 8.062H5v1.876h1V8.062zM5.062 5v4h1.875V5H5.063zM11 4.062H6v1.875h5V4.063zM10.062 4v1h1.876V4h-1.876zM6 4.938h5V3.063H6v1.874zM5.062 0v4h1.875V0H5.063z" fill="#F7FCFF" mask="url(#NZ_-_New_Zealand_(Aotearoa)__d)"/>
-      </g>
-      <path fill-rule="evenodd" clip-rule="evenodd" d="M15.533 12.813l-1.102.579.21-1.227-.891-.87 1.232-.178.551-1.117.551 1.117 1.233.179-.892.869.21 1.227-1.102-.58zM13.25 8.669l-.85.446.162-.946-.687-.67.95-.138.425-.861.425.86.95.139-.688.67.163.946-.85-.446zm4.373-.003l-.848.447.162-.946-.687-.67.949-.137.424-.86.425.86.949.138-.687.67.162.945-.849-.447zM15.75 5.169l-.85.446.162-.946-.687-.67.95-.138L15.75 3l.425.86.95.139-.688.67.163.946-.85-.446z" fill="#F50100" stroke="#F7FCFF" stroke-width=".5"/>
-    </g>
+<svg width="20" height="15" viewBox="0 0 20 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="20" height="15" fill="#1F3F95"/>
+  <rect width="10" height="7.5" fill="#1F3F95"/>
+  <path d="M0 0L10 7.5M10 0L0 7.5" stroke="#FFFFFF" stroke-width="1.8"/>
+  <path d="M0 0L10 7.5M10 0L0 7.5" stroke="#CF142B" stroke-width="0.8"/>
+  <path d="M5 0V7.5M0 3.75H10" stroke="#FFFFFF" stroke-width="3"/>
+  <path d="M5 0V7.5M0 3.75H10" stroke="#CF142B" stroke-width="1.6"/>
+  <g fill="#CF142B" stroke="#FFFFFF" stroke-width="0.35">
+    <path d="M14.7 3.1L15.03 4.02L16.02 4.05L15.24 4.67L15.52 5.62L14.7 5.08L13.88 5.62L14.16 4.67L13.38 4.05L14.37 4.02L14.7 3.1Z"/>
+    <path d="M16.8 5.5L17.05 6.18L17.78 6.2L17.2 6.66L17.41 7.36L16.8 6.96L16.19 7.36L16.4 6.66L15.82 6.2L16.55 6.18L16.8 5.5Z"/>
+    <path d="M13.2 7.2L13.45 7.88L14.18 7.9L13.6 8.36L13.81 9.06L13.2 8.66L12.59 9.06L12.8 8.36L12.22 7.9L12.95 7.88L13.2 7.2Z"/>
+    <path d="M16.2 9.2L16.53 10.12L17.52 10.15L16.74 10.77L17.02 11.72L16.2 11.18L15.38 11.72L15.66 10.77L14.88 10.15L15.87 10.12L16.2 9.2Z"/>
   </g>
 </svg>
