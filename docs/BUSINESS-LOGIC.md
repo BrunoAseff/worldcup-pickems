@@ -51,6 +51,11 @@
 - player predictions never affect official standings
 - standings and qualification rules must follow Article 13 of `FWC26_Competition Regulations_EN.pdf`
 - all derived standings must be reproducible from persisted official results
+- if the available persisted data is insufficient to resolve a rare final tie exactly as Article 13 requires, admin may persist a manual final ordering for that group
+- manual tiebreak decisions are only a fallback for unresolved conflicts and must be saved explicitly before recalculation
+- ranking the 12 third-placed teams and choosing the best 8 is part of the knockout-stage progression pipeline
+- `1º` and `2º` of an individual group may be known when that group finishes
+- the 8 best third-placed teams are only finalized when all groups have finished
 
 ## Knockout Logic
 
@@ -99,6 +104,12 @@
 ## Points Logic
 
 Points are recalculated manually by admin after result entry.
+
+The recalculation model is full-pass and deterministic:
+
+- every recalculation rebuilds all derived outputs from persisted source-of-truth data
+- recalculation must not depend on what changed since the previous run
+- recalculation must not patch prior derived state incrementally
 
 ### Group Stage Match Points
 
