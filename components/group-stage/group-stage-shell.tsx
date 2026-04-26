@@ -107,6 +107,22 @@ export function GroupStageShell({ groups }: GroupStageShellProps) {
             .flatMap((round) => round.matches)
             .map((match) => {
               const entry = entries[match.id];
+              const draft = entry?.draft;
+
+              if (
+                draft &&
+                draft.homeScore !== "" &&
+                draft.awayScore !== ""
+              ) {
+                return {
+                  homeTeamId: match.homeTeamId,
+                  awayTeamId: match.awayTeamId,
+                  homeScore: Number(draft.homeScore),
+                  awayScore: Number(draft.awayScore),
+                  scheduledAt: new Date(match.scheduledAt),
+                };
+              }
+
               const prediction = entry?.prediction ?? match.prediction;
 
               if (
