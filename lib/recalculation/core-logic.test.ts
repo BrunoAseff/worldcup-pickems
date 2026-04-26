@@ -649,18 +649,18 @@ describe("recalculation core logic", () => {
     ];
     const officialResultRecords: OfficialResultRecord[] = [
       { matchId: "g1", homeScore: 1, awayScore: 0, advancingTeamId: null },
-      { matchId: "g2", homeScore: 2, awayScore: 0, advancingTeamId: null },
-      { matchId: "g3", homeScore: 1, awayScore: 1, advancingTeamId: null },
-      { matchId: "g4", homeScore: 2, awayScore: 0, advancingTeamId: null },
-      { matchId: "g5", homeScore: 1, awayScore: 0, advancingTeamId: null },
+      { matchId: "g2", homeScore: 0, awayScore: 1, advancingTeamId: null },
+      { matchId: "g3", homeScore: 0, awayScore: 1, advancingTeamId: null },
+      { matchId: "g4", homeScore: 1, awayScore: 0, advancingTeamId: null },
+      { matchId: "g5", homeScore: 2, awayScore: 0, advancingTeamId: null },
       { matchId: "g6", homeScore: 0, awayScore: 0, advancingTeamId: null },
     ];
     const predictionRecords: MatchPredictionRecord[] = [
       { id: "u1-g1", userId: "u1", matchId: "g1", predictedHomeTeamId: "rsa", predictedAwayTeamId: "kor", predictedHomeScore: 1, predictedAwayScore: 0, predictedAdvancingTeamId: null },
-      { id: "u1-g2", userId: "u1", matchId: "g2", predictedHomeTeamId: "mex", predictedAwayTeamId: "cze", predictedHomeScore: 2, predictedAwayScore: 0, predictedAdvancingTeamId: null },
-      { id: "u1-g3", userId: "u1", matchId: "g3", predictedHomeTeamId: "rsa", predictedAwayTeamId: "mex", predictedHomeScore: 1, predictedAwayScore: 1, predictedAdvancingTeamId: null },
-      { id: "u1-g4", userId: "u1", matchId: "g4", predictedHomeTeamId: "kor", predictedAwayTeamId: "cze", predictedHomeScore: 2, predictedAwayScore: 0, predictedAdvancingTeamId: null },
-      { id: "u1-g5", userId: "u1", matchId: "g5", predictedHomeTeamId: "rsa", predictedAwayTeamId: "cze", predictedHomeScore: 1, predictedAwayScore: 0, predictedAdvancingTeamId: null },
+      { id: "u1-g2", userId: "u1", matchId: "g2", predictedHomeTeamId: "mex", predictedAwayTeamId: "cze", predictedHomeScore: 0, predictedAwayScore: 1, predictedAdvancingTeamId: null },
+      { id: "u1-g3", userId: "u1", matchId: "g3", predictedHomeTeamId: "rsa", predictedAwayTeamId: "mex", predictedHomeScore: 0, predictedAwayScore: 1, predictedAdvancingTeamId: null },
+      { id: "u1-g4", userId: "u1", matchId: "g4", predictedHomeTeamId: "kor", predictedAwayTeamId: "cze", predictedHomeScore: 1, predictedAwayScore: 0, predictedAdvancingTeamId: null },
+      { id: "u1-g5", userId: "u1", matchId: "g5", predictedHomeTeamId: "rsa", predictedAwayTeamId: "cze", predictedHomeScore: 2, predictedAwayScore: 0, predictedAdvancingTeamId: null },
       { id: "u1-g6", userId: "u1", matchId: "g6", predictedHomeTeamId: "kor", predictedAwayTeamId: "mex", predictedHomeScore: 0, predictedAwayScore: 0, predictedAdvancingTeamId: null },
     ];
 
