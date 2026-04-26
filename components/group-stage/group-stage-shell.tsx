@@ -3,7 +3,8 @@
 import { useEffect, useState } from "react";
 import { usePathname, useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
-import { GroupStageGroupView } from "@/lib/group-stage/queries";
+import { GroupStageGroupView, GroupStandingRow } from "@/lib/group-stage/queries";
+import { computeGroupStandings } from "@/lib/group-stage/standings";
 import {
   createGroupStagePredictionEntry,
   useGroupStagePredictions,
@@ -14,6 +15,8 @@ import { StandingsTable } from "./standings-table";
 type GroupStageShellProps = {
   groups: GroupStageGroupView[];
 };
+
+type StandingsViewMode = "official" | "prediction";
 
 const resolveSelection = (
   groups: GroupStageGroupView[],
@@ -46,6 +49,8 @@ export function GroupStageShell({ groups }: GroupStageShellProps) {
   const [selection, setSelection] = useState(() =>
     resolveSelection(groups, searchParams.get("grupo"), searchParams.get("rodada")),
   );
+  const [standingsView, setStandingsView] =
+    useState<StandingsViewMode>("official");
   const selectedGroupCode = selection.groupCode;
   const selectedGroup =
     groups.find((group) => group.code === selectedGroupCode) ?? groups[0];
@@ -88,6 +93,61 @@ export function GroupStageShell({ groups }: GroupStageShellProps) {
     window.history.replaceState(null, "", `${pathname}?${params.toString()}`);
   };
 
+  const displayedStandings =
+    standingsView === "official"
+      ? selectedGroup.standings
+      : computeGroupStandings(
+          selectedGroup.standings.map((standing) => ({
+            id: standing.teamId,
+            code: standing.teamCode,
+            namePt: standing.teamName,
+            flagCode: standing.flagCode,
+          })),
+          selectedGroup.rounds
+            .flatMap((round) => round.matches)
+            .map((match) => {
+              const entry = entries[match.id];
+              const prediction = entry?.prediction ?? match.prediction;
+
+              if (
+                !prediction ||
+                prediction.homeScore === null ||
+                prediction.awayScore === null
+              ) {
+                return null;
+              }
+
+              return {
+                homeTeamId: match.homeTeamId,
+                awayTeamId: match.awayTeamId,
+                homeScore: prediction.homeScore,
+                awayScore: prediction.awayScore,
+                scheduledAt: new Date(match.scheduledAt),
+              };
+            })
+            .filter((match): match is NonNullable<typeof match> => Boolean(match)),
+        ).standings.map(
+          (standing): GroupStandingRow => ({
+            teamId: standing.teamId,
+            teamName: standing.teamName,
+            teamCode: standing.teamCode,
+            flagCode: standing.flagCode,
+            position: standing.position,
+            points: standing.points,
+            played: standing.played,
+            wins: standing.wins,
+            draws: standing.draws,
+            losses: standing.losses,
+            goalsFor: standing.goalsFor,
+            goalsAgainst: standing.goalsAgainst,
+            goalDifference: standing.goalDifference,
+            form: standing.form,
+            recentResults: standing.recentResults,
+            qualificationStatus: standing.qualificationStatus,
+            predictionFeedback: "none",
+          }),
+        );
+
   return (
     <div className="mx-auto w-full max-w-360 space-y-8 px-5 pb-6 pt-2 md:px-8 md:pt-3 xl:px-10">
       <div className="space-y-2">
@@ -122,7 +182,7 @@ export function GroupStageShell({ groups }: GroupStageShellProps) {
 
       <div className="grid gap-8 xl:grid-cols-[minmax(0,39rem)_minmax(0,46rem)] xl:items-start xl:justify-between">
         <section className="space-y-3">
-          <div className="flex items-end justify-between">
+          <div className="flex items-end justify-between gap-4">
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
                 Classificação
@@ -131,9 +191,35 @@ export function GroupStageShell({ groups }: GroupStageShellProps) {
                 Grupo {selectedGroup.code}
               </h2>
             </div>
+            <div className="flex items-center gap-2">
+              <Button
+                type="button"
+                variant="outline"
+                onClick={() => setStandingsView("official")}
+                className={
+                  standingsView === "official"
+                    ? "h-10 rounded-md border-foreground/25 bg-card px-3 text-sm text-foreground"
+                    : "h-10 rounded-md bg-card px-3 text-sm text-muted-foreground hover:bg-card hover:text-foreground"
+                }
+              >
+                Oficial
+              </Button>
+              <Button
+                type="button"
+                variant="outline"
+                onClick={() => setStandingsView("prediction")}
+                className={
+                  standingsView === "prediction"
+                    ? "h-10 rounded-md border-foreground/25 bg-card px-3 text-sm text-foreground"
+                    : "h-10 rounded-md bg-card px-3 text-sm text-muted-foreground hover:bg-card hover:text-foreground"
+                }
+              >
+                Previsão
+              </Button>
+            </div>
           </div>
 
-          <StandingsTable standings={selectedGroup.standings} />
+          <StandingsTable standings={displayedStandings} />
         </section>
 
         <section className="space-y-4">
