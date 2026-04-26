@@ -1,4 +1,4 @@
-import { computeGroupStandings } from "@/lib/group-stage/standings";
+import { computeGroupStandings, getConflictWindows } from "@/lib/group-stage/standings";
 import { findRoundOf32BestThirdPlaceAllocation } from "@/lib/knockout/annex-c";
 import { getBestThirdSlotKey, getBestThirdStatus } from "@/lib/knockout/best-third";
 import {
@@ -437,6 +437,40 @@ export const computeRankingPositions = (userScores: Array<{ userId: string; tota
   }, []);
 };
 
+const matchesOfficialOrderWithinPredictedConflicts = (
+  predictedOrder: string[],
+  officialOrder: string[],
+  conflictWindows: Array<{ startIndex: number; endIndex: number; teamIds: string[] }>,
+) => {
+  if (predictedOrder.length !== officialOrder.length) {
+    return false;
+  }
+
+  const editableIndexes = new Set(
+    conflictWindows.flatMap((window) =>
+      Array.from(
+        { length: window.endIndex - window.startIndex + 1 },
+        (_, offset) => window.startIndex + offset,
+      ),
+    ),
+  );
+
+  for (let index = 0; index < predictedOrder.length; index += 1) {
+    if (!editableIndexes.has(index) && predictedOrder[index] !== officialOrder[index]) {
+      return false;
+    }
+  }
+
+  return conflictWindows.every((window) => {
+    const expected = [...window.teamIds].sort();
+    const received = officialOrder
+      .slice(window.startIndex, window.endIndex + 1)
+      .sort();
+
+    return expected.every((teamId, index) => teamId === received[index]);
+  });
+};
+
 export const buildApplicationRecalculationSnapshot = ({
   groupRecords,
   groupTeamRecords,
@@ -683,17 +717,29 @@ export const buildApplicationRecalculationSnapshot = ({
         .map((record) => teamById.get(record.teamId))
         .filter((team): team is TeamRecord => Boolean(team));
 
-      const predictedStandings = computeGroupStandings(teamsInGroup, predictedGroupMatches).standings;
+      const predictedComputation = computeGroupStandings(teamsInGroup, predictedGroupMatches);
+      const predictedStandings = predictedComputation.standings;
       const officialStandings = computedStandingsByGroupId.get(group.id)!.standings;
       const predictedOrder = predictedStandings.map((standing) => standing.teamId);
       const officialOrder = officialStandings.map((standing) => standing.teamId);
+      const predictedConflictWindows = getConflictWindows(
+        predictedComputation.autoOrderedTeamIds,
+        predictedComputation.unresolvedConflicts,
+      );
       const predictedQualified = new Set(predictedOrder.slice(0, 2));
       const officialQualified = new Set(officialOrder.slice(0, 2));
       const sameQualified =
         [...predictedQualified].every((teamId) => officialQualified.has(teamId)) &&
         predictedQualified.size === officialQualified.size;
 
-      if (predictedOrder.every((teamId, index) => teamId === officialOrder[index])) {
+      if (
+        predictedOrder.every((teamId, index) => teamId === officialOrder[index]) ||
+        matchesOfficialOrderWithinPredictedConflicts(
+          predictedOrder,
+          officialOrder,
+          predictedConflictWindows,
+        )
+      ) {
         totalPoints += 30;
       } else if (sameQualified) {
         totalPoints += 15;

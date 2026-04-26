@@ -50,6 +50,8 @@ export type GroupStageMatchView = {
   matchNumber: number;
   scheduledAt: string;
   venueName: string;
+  homeTeamId: string;
+  awayTeamId: string;
   homeTeamName: string;
   awayTeamName: string;
   homeTeamFlagCode: string | null;
@@ -349,6 +351,8 @@ const getGroupStageContext = async (userId?: string): Promise<GroupStageContext>
         matchNumber: match.matchNumber,
         scheduledAt: match.scheduledAt.toISOString(),
         venueName: venue.name,
+        homeTeamId: homeTeam.id,
+        awayTeamId: awayTeam.id,
         homeTeamName: homeTeam.namePt,
         awayTeamName: awayTeam.namePt,
         homeTeamFlagCode: homeTeam.flagCode,

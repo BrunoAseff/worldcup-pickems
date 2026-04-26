@@ -624,6 +624,62 @@ describe("recalculation core logic", () => {
     ]);
   });
 
+  it("awards full group-order points when the user predicted an unresolved tie and the official order only differs inside that tie window", () => {
+    const groupRecords: GroupRecord[] = [{ id: "group-a", code: "A" }];
+    const teamRecords = [
+      createTeam("rsa", "Africa do Sul"),
+      createTeam("kor", "Coreia do Sul"),
+      createTeam("mex", "Mexico"),
+      createTeam("cze", "Republica Tcheca"),
+    ];
+    const groupTeamRecords: GroupTeamRecord[] = [
+      { groupId: "group-a", teamId: "rsa" },
+      { groupId: "group-a", teamId: "kor" },
+      { groupId: "group-a", teamId: "mex" },
+      { groupId: "group-a", teamId: "cze" },
+    ];
+    const playerRecords: PlayerRecord[] = [{ id: "u1" }];
+    const matchRecords: MatchRecord[] = [
+      { id: "g1", matchNumber: 1, bracketCode: "G1", stage: "group_stage", groupId: "group-a", scheduledAt: new Date("2026-06-11T10:00:00Z"), homeTeamId: "rsa", awayTeamId: "kor", homeSourceType: "team", homeSourceRef: "RSA", awaySourceType: "team", awaySourceRef: "KOR" },
+      { id: "g2", matchNumber: 2, bracketCode: "G2", stage: "group_stage", groupId: "group-a", scheduledAt: new Date("2026-06-11T13:00:00Z"), homeTeamId: "mex", awayTeamId: "cze", homeSourceType: "team", homeSourceRef: "MEX", awaySourceType: "team", awaySourceRef: "CZE" },
+      { id: "g3", matchNumber: 3, bracketCode: "G3", stage: "group_stage", groupId: "group-a", scheduledAt: new Date("2026-06-15T10:00:00Z"), homeTeamId: "rsa", awayTeamId: "mex", homeSourceType: "team", homeSourceRef: "RSA", awaySourceType: "team", awaySourceRef: "MEX" },
+      { id: "g4", matchNumber: 4, bracketCode: "G4", stage: "group_stage", groupId: "group-a", scheduledAt: new Date("2026-06-15T13:00:00Z"), homeTeamId: "kor", awayTeamId: "cze", homeSourceType: "team", homeSourceRef: "KOR", awaySourceType: "team", awaySourceRef: "CZE" },
+      { id: "g5", matchNumber: 5, bracketCode: "G5", stage: "group_stage", groupId: "group-a", scheduledAt: new Date("2026-06-20T10:00:00Z"), homeTeamId: "rsa", awayTeamId: "cze", homeSourceType: "team", homeSourceRef: "RSA", awaySourceType: "team", awaySourceRef: "CZE" },
+      { id: "g6", matchNumber: 6, bracketCode: "G6", stage: "group_stage", groupId: "group-a", scheduledAt: new Date("2026-06-20T13:00:00Z"), homeTeamId: "kor", awayTeamId: "mex", homeSourceType: "team", homeSourceRef: "KOR", awaySourceType: "team", awaySourceRef: "MEX" },
+    ];
+    const officialResultRecords: OfficialResultRecord[] = [
+      { matchId: "g1", homeScore: 1, awayScore: 0, advancingTeamId: null },
+      { matchId: "g2", homeScore: 0, awayScore: 1, advancingTeamId: null },
+      { matchId: "g3", homeScore: 0, awayScore: 1, advancingTeamId: null },
+      { matchId: "g4", homeScore: 1, awayScore: 0, advancingTeamId: null },
+      { matchId: "g5", homeScore: 2, awayScore: 0, advancingTeamId: null },
+      { matchId: "g6", homeScore: 0, awayScore: 0, advancingTeamId: null },
+    ];
+    const predictionRecords: MatchPredictionRecord[] = [
+      { id: "u1-g1", userId: "u1", matchId: "g1", predictedHomeTeamId: "rsa", predictedAwayTeamId: "kor", predictedHomeScore: 1, predictedAwayScore: 0, predictedAdvancingTeamId: null },
+      { id: "u1-g2", userId: "u1", matchId: "g2", predictedHomeTeamId: "mex", predictedAwayTeamId: "cze", predictedHomeScore: 0, predictedAwayScore: 1, predictedAdvancingTeamId: null },
+      { id: "u1-g3", userId: "u1", matchId: "g3", predictedHomeTeamId: "rsa", predictedAwayTeamId: "mex", predictedHomeScore: 0, predictedAwayScore: 1, predictedAdvancingTeamId: null },
+      { id: "u1-g4", userId: "u1", matchId: "g4", predictedHomeTeamId: "kor", predictedAwayTeamId: "cze", predictedHomeScore: 1, predictedAwayScore: 0, predictedAdvancingTeamId: null },
+      { id: "u1-g5", userId: "u1", matchId: "g5", predictedHomeTeamId: "rsa", predictedAwayTeamId: "cze", predictedHomeScore: 2, predictedAwayScore: 0, predictedAdvancingTeamId: null },
+      { id: "u1-g6", userId: "u1", matchId: "g6", predictedHomeTeamId: "kor", predictedAwayTeamId: "mex", predictedHomeScore: 0, predictedAwayScore: 0, predictedAdvancingTeamId: null },
+    ];
+
+    const snapshot = buildApplicationRecalculationSnapshot({
+      groupRecords,
+      groupTeamRecords,
+      teamRecords,
+      playerRecords,
+      matchRecords,
+      officialResultRecords,
+      predictionRecords,
+      tiebreakOverrideRecords: [{ groupId: "group-a", orderedTeamIds: "rsa,mex,kor,cze" }],
+    });
+
+    expect(snapshot.rankedUserScores).toEqual([
+      { userId: "u1", totalPoints: 90, rankPosition: 1 },
+    ]);
+  });
+
   it("handles simple utility rules for completion, best-third ordering and advancing teams", () => {
     const groupMatches: MatchRecord[] = [
       { id: "g1", matchNumber: 1, bracketCode: "G1", stage: "group_stage", groupId: "ga", scheduledAt: new Date("2026-06-11T10:00:00Z"), homeTeamId: "a", awayTeamId: "b", homeSourceType: "team", homeSourceRef: "A", awaySourceType: "team", awaySourceRef: "B" },
