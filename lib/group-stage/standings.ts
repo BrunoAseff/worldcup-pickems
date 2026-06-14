@@ -189,79 +189,90 @@ const rankTiedTeams = (
   overallStatsByTeamId: Map<string, StandingAccumulator>,
   matches: OfficialMatch[],
 ): RankTiedTeamsResult => {
-  const miniStatsByTeamId = new Map(
-    tiedTeamIds.map((teamId) => {
-      const overall = overallStatsByTeamId.get(teamId)!;
-      return [
-        teamId,
-        {
-          ...createEmptyAccumulator({
-            id: overall.teamId,
-            code: overall.teamCode,
-            namePt: overall.teamName,
-            flagCode: overall.flagCode,
-          }),
-          fairPlayScore: overall.fairPlayScore,
-          fifaRanking: overall.fifaRanking,
-        },
-      ];
-    }),
-  );
-
-  for (const match of matches) {
-    if (!tiedTeamIds.includes(match.homeTeamId) || !tiedTeamIds.includes(match.awayTeamId)) {
-      continue;
-    }
-
-    applyMatchToStats(miniStatsByTeamId, match);
-  }
-
-  const orderedTeamIds: string[] = [];
-  const unresolvedConflicts: GroupTiebreakConflict[] = [];
-  const byHeadToHeadPoints = groupByMetric(
-    tiedTeamIds,
-    (teamId) => miniStatsByTeamId.get(teamId)!.points,
-  );
-
-  for (const pointsBucket of byHeadToHeadPoints) {
-    if (pointsBucket.length === 1) {
-      orderedTeamIds.push(pointsBucket[0]!);
-      continue;
-    }
-
-    const byHeadToHeadGoalDifference = groupByMetric(
-      pointsBucket,
-      (teamId) => miniStatsByTeamId.get(teamId)!.goalDifference,
+  const rankRemainingTiedTeams = (teamIds: string[]): RankTiedTeamsResult => {
+    const miniStatsByTeamId = new Map(
+      teamIds.map((teamId) => {
+        const overall = overallStatsByTeamId.get(teamId)!;
+        return [
+          teamId,
+          {
+            ...createEmptyAccumulator({
+              id: overall.teamId,
+              code: overall.teamCode,
+              namePt: overall.teamName,
+              flagCode: overall.flagCode,
+            }),
+            fairPlayScore: overall.fairPlayScore,
+            fifaRanking: overall.fifaRanking,
+          },
+        ];
+      }),
     );
 
-    for (const goalDifferenceBucket of byHeadToHeadGoalDifference) {
-      if (goalDifferenceBucket.length === 1) {
-        orderedTeamIds.push(goalDifferenceBucket[0]!);
+    for (const match of matches) {
+      if (!teamIds.includes(match.homeTeamId) || !teamIds.includes(match.awayTeamId)) {
         continue;
       }
 
-      const byHeadToHeadGoalsFor = groupByMetric(
-        goalDifferenceBucket,
-        (teamId) => miniStatsByTeamId.get(teamId)!.goalsFor,
+      applyMatchToStats(miniStatsByTeamId, match);
+    }
+
+    const orderedTeamIds: string[] = [];
+    const unresolvedConflicts: GroupTiebreakConflict[] = [];
+    const byHeadToHeadPoints = groupByMetric(
+      teamIds,
+      (teamId) => miniStatsByTeamId.get(teamId)!.points,
+    );
+
+    for (const pointsBucket of byHeadToHeadPoints) {
+      if (pointsBucket.length === 1) {
+        orderedTeamIds.push(pointsBucket[0]!);
+        continue;
+      }
+
+      const byHeadToHeadGoalDifference = groupByMetric(
+        pointsBucket,
+        (teamId) => miniStatsByTeamId.get(teamId)!.goalDifference,
       );
 
-      for (const goalsForBucket of byHeadToHeadGoalsFor) {
-        if (goalsForBucket.length === 1) {
-          orderedTeamIds.push(goalsForBucket[0]!);
+      for (const goalDifferenceBucket of byHeadToHeadGoalDifference) {
+        if (goalDifferenceBucket.length === 1) {
+          orderedTeamIds.push(goalDifferenceBucket[0]!);
           continue;
         }
 
-        const fallback = resolveByOverallFallback(goalsForBucket, overallStatsByTeamId);
-        orderedTeamIds.push(...fallback.orderedTeamIds);
-        unresolvedConflicts.push(...fallback.unresolvedConflicts);
+        const byHeadToHeadGoalsFor = groupByMetric(
+          goalDifferenceBucket,
+          (teamId) => miniStatsByTeamId.get(teamId)!.goalsFor,
+        );
+
+        for (const goalsForBucket of byHeadToHeadGoalsFor) {
+          if (goalsForBucket.length === 1) {
+            orderedTeamIds.push(goalsForBucket[0]!);
+            continue;
+          }
+
+          if (goalsForBucket.length < teamIds.length) {
+            const reranked = rankRemainingTiedTeams(goalsForBucket);
+            orderedTeamIds.push(...reranked.orderedTeamIds);
+            unresolvedConflicts.push(...reranked.unresolvedConflicts);
+            continue;
+          }
+
+          const fallback = resolveByOverallFallback(goalsForBucket, overallStatsByTeamId);
+          orderedTeamIds.push(...fallback.orderedTeamIds);
+          unresolvedConflicts.push(...fallback.unresolvedConflicts);
+        }
       }
     }
-  }
 
-  return {
-    orderedTeamIds,
-    unresolvedConflicts,
+    return {
+      orderedTeamIds,
+      unresolvedConflicts,
+    };
   };
+
+  return rankRemainingTiedTeams(tiedTeamIds);
 };
 
 const isValidOverrideOrder = (teamIds: string[], overrideOrder: string[] | null | undefined) => {
@@ -386,7 +397,7 @@ export const computeGroupStandings = (
   }
 
   const finalOrderedTeamIds =
-    unresolvedConflicts.length > 0 && isValidOverrideOrder(teamIds, overrideOrder)
+    isValidOverrideOrder(teamIds, overrideOrder)
       ? overrideOrder!
       : autoOrderedTeamIds;
 
