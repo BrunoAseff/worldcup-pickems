@@ -487,6 +487,158 @@ describe("recalculation core logic", () => {
     });
   });
 
+  it("applies complete best-third slot assignments even when the ranking is otherwise resolved", () => {
+    const groupRecords: GroupRecord[] = Array.from({ length: 8 }, (_, index) => ({
+      id: `g${index + 1}`,
+      code: String.fromCharCode(65 + index),
+    }));
+    const groupTeamRecords: GroupTeamRecord[] = groupRecords.flatMap((group) => [
+      { groupId: group.id, teamId: `${group.code.toLowerCase()}1` },
+      { groupId: group.id, teamId: `${group.code.toLowerCase()}2` },
+      { groupId: group.id, teamId: `${group.code.toLowerCase()}3` },
+      { groupId: group.id, teamId: `${group.code.toLowerCase()}4` },
+    ]);
+    const teamRecords = groupTeamRecords.map((record) => createTeam(record.teamId));
+    const matchRecords: MatchRecord[] = [
+      ...groupRecords.flatMap((group, index) => {
+        const prefix = group.code.toLowerCase();
+        const offset = index * 10;
+
+        return [
+          {
+            id: `${prefix}-1`,
+            matchNumber: offset + 1,
+            bracketCode: `M${String(offset + 1).padStart(3, "0")}`,
+            stage: "group_stage" as const,
+            groupId: group.id,
+            scheduledAt: new Date(`2026-06-${String(index + 1).padStart(2, "0")}T10:00:00Z`),
+            homeTeamId: `${prefix}1`,
+            awayTeamId: `${prefix}2`,
+            homeSourceType: "team" as const,
+            homeSourceRef: `${group.code}1`,
+            awaySourceType: "team" as const,
+            awaySourceRef: `${group.code}2`,
+          },
+          {
+            id: `${prefix}-2`,
+            matchNumber: offset + 2,
+            bracketCode: `M${String(offset + 2).padStart(3, "0")}`,
+            stage: "group_stage" as const,
+            groupId: group.id,
+            scheduledAt: new Date(`2026-06-${String(index + 1).padStart(2, "0")}T12:00:00Z`),
+            homeTeamId: `${prefix}3`,
+            awayTeamId: `${prefix}4`,
+            homeSourceType: "team" as const,
+            homeSourceRef: `${group.code}3`,
+            awaySourceType: "team" as const,
+            awaySourceRef: `${group.code}4`,
+          },
+          {
+            id: `${prefix}-3`,
+            matchNumber: offset + 3,
+            bracketCode: `M${String(offset + 3).padStart(3, "0")}`,
+            stage: "group_stage" as const,
+            groupId: group.id,
+            scheduledAt: new Date(`2026-06-${String(index + 1).padStart(2, "0")}T14:00:00Z`),
+            homeTeamId: `${prefix}1`,
+            awayTeamId: `${prefix}3`,
+            homeSourceType: "team" as const,
+            homeSourceRef: `${group.code}1`,
+            awaySourceType: "team" as const,
+            awaySourceRef: `${group.code}3`,
+          },
+          {
+            id: `${prefix}-4`,
+            matchNumber: offset + 4,
+            bracketCode: `M${String(offset + 4).padStart(3, "0")}`,
+            stage: "group_stage" as const,
+            groupId: group.id,
+            scheduledAt: new Date(`2026-06-${String(index + 1).padStart(2, "0")}T16:00:00Z`),
+            homeTeamId: `${prefix}2`,
+            awayTeamId: `${prefix}4`,
+            homeSourceType: "team" as const,
+            homeSourceRef: `${group.code}2`,
+            awaySourceType: "team" as const,
+            awaySourceRef: `${group.code}4`,
+          },
+          {
+            id: `${prefix}-5`,
+            matchNumber: offset + 5,
+            bracketCode: `M${String(offset + 5).padStart(3, "0")}`,
+            stage: "group_stage" as const,
+            groupId: group.id,
+            scheduledAt: new Date(`2026-06-${String(index + 1).padStart(2, "0")}T18:00:00Z`),
+            homeTeamId: `${prefix}1`,
+            awayTeamId: `${prefix}4`,
+            homeSourceType: "team" as const,
+            homeSourceRef: `${group.code}1`,
+            awaySourceType: "team" as const,
+            awaySourceRef: `${group.code}4`,
+          },
+          {
+            id: `${prefix}-6`,
+            matchNumber: offset + 6,
+            bracketCode: `M${String(offset + 6).padStart(3, "0")}`,
+            stage: "group_stage" as const,
+            groupId: group.id,
+            scheduledAt: new Date(`2026-06-${String(index + 1).padStart(2, "0")}T20:00:00Z`),
+            homeTeamId: `${prefix}2`,
+            awayTeamId: `${prefix}3`,
+            homeSourceType: "team" as const,
+            homeSourceRef: `${group.code}2`,
+            awaySourceType: "team" as const,
+            awaySourceRef: `${group.code}3`,
+          },
+        ];
+      }),
+      {
+        id: "r32-1",
+        matchNumber: 73,
+        bracketCode: "M073",
+        stage: "round_of_32",
+        groupId: null,
+        scheduledAt: new Date("2026-06-28T10:00:00Z"),
+        homeTeamId: null,
+        awayTeamId: null,
+        homeSourceType: "group_position",
+        homeSourceRef: "A1",
+        awaySourceType: "best_third_place",
+        awaySourceRef: "ABCD",
+      },
+    ];
+    const officialResultRecords: OfficialResultRecord[] = groupRecords.flatMap((group) => {
+      const prefix = group.code.toLowerCase();
+
+      return [
+        { matchId: `${prefix}-1`, homeScore: 1, awayScore: 0, advancingTeamId: null },
+        { matchId: `${prefix}-2`, homeScore: 1, awayScore: 0, advancingTeamId: null },
+        { matchId: `${prefix}-3`, homeScore: 1, awayScore: 0, advancingTeamId: null },
+        { matchId: `${prefix}-4`, homeScore: 1, awayScore: 0, advancingTeamId: null },
+        { matchId: `${prefix}-5`, homeScore: 0, awayScore: 0, advancingTeamId: null },
+        { matchId: `${prefix}-6`, homeScore: 0, awayScore: 0, advancingTeamId: null },
+      ];
+    });
+
+    const snapshot = buildApplicationRecalculationSnapshot({
+      groupRecords,
+      groupTeamRecords,
+      teamRecords,
+      playerRecords: [] as PlayerRecord[],
+      matchRecords,
+      officialResultRecords,
+      predictionRecords: [] as MatchPredictionRecord[],
+      tiebreakOverrideRecords: [],
+      bestThirdSlotOverrideRecords: [{ slotKey: "1A", teamId: "h3" }],
+    });
+
+    expect(snapshot.requiresManualBestThirdSelection).toBe(false);
+    expect(snapshot.bestThirdQualifiedGroupCodes).toEqual(["H"]);
+    expect(snapshot.officialParticipantsByKnockoutMatchId.get("r32-1")).toEqual({
+      homeTeamId: "a1",
+      awayTeamId: "h3",
+    });
+  });
+
   it("preserves direct-slot predictions while the official slot is still unresolved", () => {
     const knockoutMatches: MatchRecord[] = [
       {

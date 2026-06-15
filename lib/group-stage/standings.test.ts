@@ -51,7 +51,7 @@ describe("computeGroupStandings", () => {
     expect(withOverride.standings.map((entry) => entry.teamId)).toEqual(["d", "c", "b", "a"]);
     expect(withOverride.standings.map((entry) => entry.position)).toEqual([1, 2, 3, 4]);
     expect(resolvedWithOverride.unresolvedConflicts).toEqual([]);
-    expect(resolvedWithOverride.standings.map((entry) => entry.teamId)).toEqual(["a", "b", "d", "c"]);
+    expect(resolvedWithOverride.standings.map((entry) => entry.teamId)).toEqual(["d", "c", "b", "a"]);
   });
 
   it("only allows manual overrides inside the unresolved conflict window", () => {
@@ -81,5 +81,21 @@ describe("computeGroupStandings", () => {
         teamIds: ["b", "c"],
       },
     ]);
+  });
+
+  it("does not prematurely fall back to overall criteria when Step 2 should reapply head-to-head to the remaining tied teams", () => {
+    const step2Matches = [
+      { homeTeamId: "a", awayTeamId: "b", homeScore: 0, awayScore: 0, scheduledAt: new Date("2026-06-11T10:00:00Z") },
+      { homeTeamId: "c", awayTeamId: "d", homeScore: 0, awayScore: 0, scheduledAt: new Date("2026-06-11T13:00:00Z") },
+      { homeTeamId: "a", awayTeamId: "c", homeScore: 0, awayScore: 1, scheduledAt: new Date("2026-06-15T10:00:00Z") },
+      { homeTeamId: "b", awayTeamId: "d", homeScore: 0, awayScore: 2, scheduledAt: new Date("2026-06-15T13:00:00Z") },
+      { homeTeamId: "a", awayTeamId: "d", homeScore: 1, awayScore: 0, scheduledAt: new Date("2026-06-20T10:00:00Z") },
+      { homeTeamId: "b", awayTeamId: "c", homeScore: 1, awayScore: 0, scheduledAt: new Date("2026-06-20T13:00:00Z") },
+    ];
+
+    const standings = computeGroupStandings(teams, step2Matches);
+
+    expect(standings.standings.map((entry) => entry.teamId)).toEqual(["d", "c", "a", "b"]);
+    expect(standings.unresolvedConflicts).toEqual([]);
   });
 });

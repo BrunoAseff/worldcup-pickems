@@ -616,21 +616,21 @@ export const buildApplicationRecalculationSnapshot = ({
     !bestThirdStatus.resolved &&
     bestThirdStatus.hasBoundaryTie &&
     !hasCompleteBestThirdSlotAssignments;
-  const bestThirdQualifiedGroupCodes = bestThirdStatus.resolved
-    ? bestThirdStatus.qualifiedGroupCodes
-    : hasCompleteBestThirdSlotAssignments
-      ? requiredBestThirdSlotKeys
-          .map((slotKey) => bestThirdSlotAssignments.get(slotKey)!)
-          .map((teamId) => teamRecords.find((team) => team.id === teamId))
-          .filter((team): team is TeamRecord => Boolean(team))
-          .map((team) => {
-            const standing = flatStandings.find(
-              (entry) => entry.position === 3 && entry.teamId === team.id,
-            );
+  const bestThirdQualifiedGroupCodes = hasCompleteBestThirdSlotAssignments
+    ? requiredBestThirdSlotKeys
+        .map((slotKey) => bestThirdSlotAssignments.get(slotKey)!)
+        .map((teamId) => teamRecords.find((team) => team.id === teamId))
+        .filter((team): team is TeamRecord => Boolean(team))
+        .map((team) => {
+          const standing = flatStandings.find(
+            (entry) => entry.position === 3 && entry.teamId === team.id,
+          );
 
-            return standing?.groupCode ?? "";
-          })
-          .filter(Boolean)
+          return standing?.groupCode ?? "";
+        })
+        .filter(Boolean)
+    : bestThirdStatus.resolved
+      ? bestThirdStatus.qualifiedGroupCodes
       : [];
 
   const officialParticipantsByKnockoutMatchId = buildOfficialKnockoutParticipants(
@@ -638,7 +638,7 @@ export const buildApplicationRecalculationSnapshot = ({
     standingByGroupPosition,
     officialResultByMatchId,
     bestThirdQualifiedGroupCodes,
-    hasCompleteBestThirdSlotAssignments && !bestThirdStatus.resolved
+    hasCompleteBestThirdSlotAssignments
       ? bestThirdSlotAssignments
       : undefined,
   );
