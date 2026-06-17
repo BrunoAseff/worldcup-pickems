@@ -20,7 +20,7 @@ export function PrimaryNav() {
           key={item.href}
           href={item.href}
           className={cn(
-            "flex h-11 items-center rounded-md px-4 text-sm font-medium transition-colors",
+            "flex h-11 items-center rounded-md px-3 text-sm font-medium whitespace-nowrap transition-colors md:px-4",
             activeKey === item.key
               ? "bg-background text-foreground"
               : "text-muted-foreground"

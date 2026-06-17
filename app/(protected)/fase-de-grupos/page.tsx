@@ -2,7 +2,7 @@ import { requireAuthenticatedUser } from "@/lib/auth/session";
 import { GroupStageAdminShell } from "@/components/group-stage/group-stage-admin-shell";
 import { GroupStagePredictionsProvider } from "@/components/group-stage/group-stage-predictions-context";
 import { GroupStageShell } from "@/components/group-stage/group-stage-shell";
-import { getGroupStageAdminView, getGroupStageView } from "@/lib/group-stage/queries";
+import { getGroupStageAdminView, getGroupStagePlayerView } from "@/lib/group-stage/queries";
 
 export default async function GroupStagePage() {
   const user = await requireAuthenticatedUser();
@@ -18,11 +18,11 @@ export default async function GroupStagePage() {
     );
   }
 
-  const groups = await getGroupStageView(user.id);
+  const view = await getGroupStagePlayerView(user.id);
 
   return (
     <GroupStagePredictionsProvider>
-      <GroupStageShell groups={groups} />
+      <GroupStageShell groups={view.groups} predictionLock={view.predictionLock} />
     </GroupStagePredictionsProvider>
   );
 }

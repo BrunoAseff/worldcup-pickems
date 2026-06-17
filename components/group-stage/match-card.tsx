@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useMemo } from "react";
 import { SaveStateIndicator } from "@/components/predictions/save-state-indicator";
 import { TeamFlag } from "@/components/teams/team-flag";
 import { Card } from "@/components/ui/card";
@@ -17,6 +17,7 @@ import {
 
 type MatchCardProps = {
   match: GroupStageMatchView;
+  isLocked: boolean;
   draft: GroupStagePredictionDraft;
   saveState: {
     status: GroupStageSaveStatus;
@@ -28,6 +29,7 @@ type MatchCardProps = {
 
 export function MatchCard({
   match,
+  isLocked,
   draft,
   saveState,
   onDraftChange,
@@ -36,8 +38,6 @@ export function MatchCard({
   const homeInputId = `${match.id}-home-score`;
   const awayInputId = `${match.id}-away-score`;
   const validationMessageId = `${match.id}-validation-message`;
-  const [isLocked, setIsLocked] = useState(false);
-  const scheduledTimestamp = new Date(match.scheduledAt).getTime();
 
   const parsed = predictionInputSchema.safeParse(draft);
   const bothEmpty = draft.homeScore === "" && draft.awayScore === "";
@@ -45,22 +45,8 @@ export function MatchCard({
   const validationMessage = !parsed.success
     ? parsed.error.issues[0]?.message ?? "Valor inválido."
     : !bothEmpty && !bothFilled
-    ? "Preencha os dois placares."
-    : null;
-
-  useEffect(() => {
-    const updateLockState = () => {
-      setIsLocked(scheduledTimestamp <= Date.now());
-    };
-
-    updateLockState();
-
-    const intervalId = window.setInterval(updateLockState, 30_000);
-
-    return () => {
-      window.clearInterval(intervalId);
-    };
-  }, [scheduledTimestamp]);
+      ? "Preencha os dois placares."
+      : null;
 
   const handleScoreChange = (
     field: keyof GroupStagePredictionDraft,
@@ -119,8 +105,7 @@ export function MatchCard({
 
     return null;
   }, [saveState.message, saveState.status]);
-  const accessibleStatusMessage =
-    validationMessage ?? statusIcon?.message ?? (isLocked ? "Fechado" : null);
+  const accessibleStatusMessage = validationMessage ?? statusIcon?.message ?? null;
   const feedback = getGroupStageMatchFeedback({
     prediction: match.prediction,
     officialResult: match.officialResult,

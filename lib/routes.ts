@@ -1,6 +1,7 @@
 export const routes = {
   login: "/login",
   groupStage: "/fase-de-grupos",
+  dailyPredictions: "/palpites-do-dia",
   knockout: "/mata-mata",
   ranking: "/ranking",
   api: {
@@ -14,7 +15,7 @@ export const routes = {
   },
 } as const;
 
-export type PrimaryRouteKey = "groupStage" | "knockout" | "ranking";
+export type PrimaryRouteKey = "groupStage" | "dailyPredictions" | "knockout" | "ranking";
 
 export const primaryNavItems: Array<{
   key: PrimaryRouteKey;
@@ -25,6 +26,11 @@ export const primaryNavItems: Array<{
     key: "groupStage",
     href: routes.groupStage,
     label: "Fase de Grupos",
+  },
+  {
+    key: "dailyPredictions",
+    href: routes.dailyPredictions,
+    label: "Palpites do Dia",
   },
   {
     key: "knockout",

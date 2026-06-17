@@ -2,6 +2,7 @@ import { and, eq } from "drizzle-orm";
 import { NextResponse } from "next/server";
 import { getCurrentSession } from "@/lib/auth/session";
 import { groupStagePredictionRequestSchema } from "@/lib/group-stage/prediction-schema";
+import { getGroupStagePredictionLock } from "@/lib/group-stage/locks";
 import { db } from "@/lib/db/client";
 import { matchPredictions, matches } from "@/lib/db/schema";
 
@@ -41,8 +42,15 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Partida inválida." }, { status: 404 });
   }
 
-  if (match.scheduledAt.getTime() <= Date.now()) {
-    return NextResponse.json({ error: "Esta partida já foi bloqueada." }, { status: 409 });
+  const predictionLock = await getGroupStagePredictionLock();
+
+  if (predictionLock.isLocked) {
+    return NextResponse.json(
+      {
+        error: "Os palpites da fase de grupos foram bloqueados após o início da primeira partida.",
+      },
+      { status: 409 },
+    );
   }
 
   const [existingPrediction] = await db
