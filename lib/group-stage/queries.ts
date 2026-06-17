@@ -14,6 +14,7 @@ import {
   venues,
 } from "@/lib/db/schema";
 import { getBestThirdSlotKey, getBestThirdStatus } from "@/lib/knockout/best-third";
+import { resolveGroupStagePredictionLock, type GroupStagePredictionLockState } from "./locks";
 import { computeGroupStandings, getConflictWindows } from "./standings";
 
 type ParticipantSourceType =
@@ -85,6 +86,11 @@ export type GroupStageGroupView = {
   defaultRound: number;
 };
 
+export type GroupStagePlayerView = {
+  groups: GroupStageGroupView[];
+  predictionLock: GroupStagePredictionLockState;
+};
+
 export type GroupStageAdminView = {
   groups: GroupStageGroupView[];
   lastRecalculatedAt: string | null;
@@ -109,6 +115,7 @@ export type GroupStageAdminView = {
 
 type GroupStageContext = {
   groups: GroupStageGroupView[];
+  predictionLock: GroupStagePredictionLockState;
   lastRecalculatedAt: string | null;
   bestThirdSelection: GroupStageAdminView["bestThirdSelection"];
 };
@@ -518,6 +525,7 @@ const getGroupStageContext = async (userId?: string): Promise<GroupStageContext>
 
   return {
     groups: groupsView,
+    predictionLock: resolveGroupStagePredictionLock(matchRecords.map((match) => match.scheduledAt)),
     lastRecalculatedAt: latestRun?.createdAt.toISOString() ?? null,
     bestThirdSelection: (() => {
       const allGroupsComplete = groupRecords.every((group) => {
@@ -653,6 +661,15 @@ const getGroupStageContext = async (userId?: string): Promise<GroupStageContext>
 export const getGroupStageView = async (userId: string): Promise<GroupStageGroupView[]> => {
   const context = await getGroupStageContext(userId);
   return context.groups;
+};
+
+export const getGroupStagePlayerView = async (userId: string): Promise<GroupStagePlayerView> => {
+  const context = await getGroupStageContext(userId);
+
+  return {
+    groups: context.groups,
+    predictionLock: context.predictionLock,
+  };
 };
 
 export const getGroupStageAdminView = async (): Promise<GroupStageAdminView> => {

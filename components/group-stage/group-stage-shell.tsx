@@ -3,7 +3,11 @@
 import { useEffect, useState } from "react";
 import { usePathname, useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
-import { GroupStageGroupView, GroupStandingRow } from "@/lib/group-stage/queries";
+import {
+  GroupStageGroupView,
+  GroupStandingRow,
+  type GroupStagePlayerView,
+} from "@/lib/group-stage/queries";
 import { computeGroupStandings } from "@/lib/group-stage/standings";
 import {
   createGroupStagePredictionEntry,
@@ -14,6 +18,7 @@ import { StandingsTable } from "./standings-table";
 
 type GroupStageShellProps = {
   groups: GroupStageGroupView[];
+  predictionLock: GroupStagePlayerView["predictionLock"];
 };
 
 type StandingsViewMode = "official" | "prediction";
@@ -41,7 +46,7 @@ const resolveSelection = (
   };
 };
 
-export function GroupStageShell({ groups }: GroupStageShellProps) {
+export function GroupStageShell({ groups, predictionLock }: GroupStageShellProps) {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const { entries, hydrateFromGroups, updateDraft, queueSave } =
@@ -51,6 +56,7 @@ export function GroupStageShell({ groups }: GroupStageShellProps) {
   );
   const [standingsView, setStandingsView] =
     useState<StandingsViewMode>("official");
+  const [nowTimestamp, setNowTimestamp] = useState(() => Date.now());
   const selectedGroupCode = selection.groupCode;
   const selectedGroup =
     groups.find((group) => group.code === selectedGroupCode) ?? groups[0];
@@ -59,6 +65,20 @@ export function GroupStageShell({ groups }: GroupStageShellProps) {
   useEffect(() => {
     hydrateFromGroups(groups);
   }, [groups, hydrateFromGroups]);
+
+  useEffect(() => {
+    if (predictionLock.isLocked || !predictionLock.lockAt) {
+      return;
+    }
+
+    const intervalId = window.setInterval(() => {
+      setNowTimestamp(Date.now());
+    }, 30_000);
+
+    return () => {
+      window.clearInterval(intervalId);
+    };
+  }, [predictionLock.isLocked, predictionLock.lockAt]);
 
   useEffect(() => {
     const handlePopState = () => {
@@ -163,6 +183,11 @@ export function GroupStageShell({ groups }: GroupStageShellProps) {
             predictionFeedback: "none",
           }),
         );
+  const predictionsLocked =
+    predictionLock.isLocked ||
+    (predictionLock.lockAt
+      ? new Date(predictionLock.lockAt).getTime() <= nowTimestamp
+      : false);
 
   return (
     <div className="mx-auto w-full max-w-360 space-y-8 px-5 pb-6 pt-2 md:px-8 md:pt-3 xl:px-10">
@@ -172,7 +197,7 @@ export function GroupStageShell({ groups }: GroupStageShellProps) {
         </h1>
         <p className="max-w-2xl text-sm leading-6 text-muted-foreground">
           Escolha um grupo, navegue pelas rodadas e registre seus palpites até o
-          início de cada partida.
+          bloqueio global da fase.
         </p>
       </div>
 
@@ -259,7 +284,16 @@ export function GroupStageShell({ groups }: GroupStageShellProps) {
             ))}
           </div>
 
-          <div className="mt-5 grid gap-2.5">
+          <div className="space-y-1">
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
+              Jogos
+            </p>
+            <h2 className="text-2xl font-semibold tracking-[-0.02em] text-foreground">
+              Grupo {selectedGroup.code} · Rodada {selectedRound}
+            </h2>
+          </div>
+
+          <div className="grid gap-2.5">
             {activeRound?.matches.map((match) => {
               const entry = entries[match.id];
               const fallbackEntry = createGroupStagePredictionEntry(
@@ -273,6 +307,7 @@ export function GroupStageShell({ groups }: GroupStageShellProps) {
                 <MatchCard
                   key={match.id}
                   match={{ ...match, prediction: effectivePrediction }}
+                  isLocked={predictionsLocked}
                   draft={draft}
                   saveState={{
                     status: entry?.status ?? "idle",

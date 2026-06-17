@@ -21,16 +21,18 @@ export function FloatingNav({ user, rankingStatus }: FloatingNavProps) {
 
   return (
     <div className="sticky top-4 z-40 mb-8 px-5 md:px-8 xl:px-10">
-      <div className="mx-auto flex w-full max-w-360 items-center justify-between gap-4 rounded-md border border-border bg-card/95 px-4 py-3 backdrop-blur">
+      <div className="mx-auto flex w-full max-w-360 flex-wrap items-center justify-between gap-3 rounded-md border border-border bg-card/95 px-4 py-3 backdrop-blur">
         <div className="flex items-center">
           <div className="flex size-11 items-center justify-center rounded-md border border-border bg-background text-foreground">
             <Trophy className="size-4.5" />
           </div>
         </div>
 
-        <PrimaryNav />
+        <div className="order-3 w-full overflow-x-auto md:order-2 md:w-auto">
+          <PrimaryNav />
+        </div>
 
-        <div className="flex items-center gap-2">
+        <div className="order-2 flex items-center gap-2 md:order-3">
           <div className="hidden h-11 items-center gap-2 rounded-md border border-border bg-background px-3 text-sm sm:flex">
             <UserCircle2 className="size-4 text-muted-foreground" />
             <span className="font-medium text-foreground">
