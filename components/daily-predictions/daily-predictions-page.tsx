@@ -186,7 +186,7 @@ export function DailyPredictionsPage({ view }: DailyPredictionsPageProps) {
                             <span
                               className={cn(
                                 "inline-flex shrink-0 rounded-sm border px-2 py-0.5 text-xs font-semibold",
-                                feedback.points > 0
+                                feedback && feedback.points > 0
                                   ? "border-primary/35 bg-primary/8 text-primary"
                                   : "border-red-200 bg-red-50 text-destructive",
                               )}
