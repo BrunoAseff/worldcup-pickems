@@ -123,24 +123,24 @@ export function MatchCard({
   );
 
   return (
-    <Card className="relative overflow-visible">
-      <div className="border-b border-border px-5 py-3">
+    <Card className="wc-ticket relative overflow-visible rounded-sm">
+      <div className="border-b border-border px-4 py-2.5">
         <div className="relative flex items-center">
-          <div className="flex min-w-0 flex-1 flex-wrap items-center gap-x-3 gap-y-1 pr-24 text-xs uppercase tracking-[0.14em] text-muted-foreground">
-            <span className="font-semibold text-foreground">
+          <div className="flex min-w-0 flex-1 flex-wrap items-center gap-x-3 gap-y-1 pr-24 text-[11px] uppercase tracking-[0.12em] text-muted-foreground">
+            <span className="wc-display font-black text-foreground">
               Jogo {match.matchNumber.toString().padStart(2, "0")}
             </span>
             <span>{formatKickoff(match.scheduledAt)}</span>
-            <span>{match.venueName}</span>
+            <span className="hidden sm:inline">{match.venueName}</span>
           </div>
           <div className="absolute top-1/2 right-0 flex -translate-y-1/2 items-center gap-2">
             {hasOfficialResult && feedback && pointsLabel ? (
               <div
                 className={cn(
-                  "hidden shrink-0 rounded-sm border px-2 py-0.5 text-xs font-semibold normal-case tracking-normal whitespace-nowrap md:block",
+                  "wc-display hidden shrink-0 rounded-sm border px-2 py-0.5 text-xs font-black whitespace-nowrap md:block",
                   feedback.points > 0
-                    ? "border-primary/35 bg-primary/8 text-primary"
-                    : "border-red-200 bg-red-50 text-destructive"
+                    ? "wc-score-box-positive"
+                    : "wc-score-box-wrong"
                 )}
               >
                 {pointsLabel}
@@ -154,11 +154,11 @@ export function MatchCard({
         </div>
       </div>
 
-      <div className={cn("px-5", hasOfficialResult ? "pt-3 pb-1" : "py-4")}>
+      <div className={cn("px-4", hasOfficialResult ? "pt-3 pb-2" : "py-4")}>
         {!hasOfficialResult ? (
-          <div className="grid grid-cols-[minmax(0,1fr)_3.5rem_1rem_3.5rem_minmax(0,1fr)] items-center gap-3">
+          <div className="grid grid-cols-[minmax(0,1fr)_3.75rem_1.25rem_3.75rem_minmax(0,1fr)] items-center gap-3">
             <div className="flex min-w-0 items-center justify-end gap-3">
-              <p className="truncate text-base font-medium text-foreground">
+              <p className="truncate text-base font-bold text-foreground">
                 {match.homeTeamName}
               </p>
               <TeamFlag code={match.homeTeamFlagCode} />
@@ -170,7 +170,7 @@ export function MatchCard({
               maxLength={2}
               value={draft.homeScore}
               disabled={isLocked}
-              className="h-12 px-0 text-center text-lg font-semibold"
+              className="wc-score-box h-[3.25rem] px-0 text-center font-heading text-3xl font-black"
               aria-label={`Placar de ${match.homeTeamName}`}
               aria-invalid={Boolean(validationMessage)}
               aria-describedby={
@@ -181,7 +181,7 @@ export function MatchCard({
               }
             />
 
-            <span className="text-center text-sm text-muted-foreground">x</span>
+            <span className="text-center font-heading text-xl font-black text-muted-foreground">x</span>
 
             <Input
               id={awayInputId}
@@ -189,7 +189,7 @@ export function MatchCard({
               maxLength={2}
               value={draft.awayScore}
               disabled={isLocked}
-              className="h-12 px-0 text-center text-lg font-semibold"
+              className="wc-score-box h-[3.25rem] px-0 text-center font-heading text-3xl font-black"
               aria-label={`Placar de ${match.awayTeamName}`}
               aria-invalid={Boolean(validationMessage)}
               aria-describedby={
@@ -202,35 +202,35 @@ export function MatchCard({
 
             <div className="flex min-w-0 items-center gap-3">
               <TeamFlag code={match.awayTeamFlagCode} />
-              <p className="truncate text-base font-medium text-foreground">
+              <p className="truncate text-base font-bold text-foreground">
                 {match.awayTeamName}
               </p>
             </div>
           </div>
         ) : (
-          <div className="space-y-0.5 py-1">
+          <div className="space-y-2 py-1">
             <div className="grid grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center gap-3">
               <div className="flex min-w-0 items-center justify-end gap-2.5">
-                <p className="truncate text-base font-medium text-foreground">
+                <p className="truncate text-base font-bold text-foreground">
                   {match.homeTeamName}
                 </p>
                 <TeamFlag code={match.homeTeamFlagCode} />
               </div>
 
-              <div className="flex items-center gap-3 text-center">
+              <div className="grid grid-cols-[3rem_1.25rem_3rem] items-center text-center">
                 <span
                   className={cn(
-                    "min-w-6 text-center text-[1.05rem] font-semibold text-foreground",
-                    highlightRealScore && "text-primary"
+                    "wc-score-box inline-flex h-11 items-center justify-center rounded-sm font-heading text-3xl font-black",
+                    highlightRealScore && "wc-score-box-positive"
                   )}
                 >
                   {match.officialResult!.homeScore}
                 </span>
-                <span className="text-sm text-muted-foreground">x</span>
+                <span className="font-heading text-lg font-black text-muted-foreground">x</span>
                 <span
                   className={cn(
-                    "min-w-6 text-center text-[1.05rem] font-semibold text-foreground",
-                    highlightRealScore && "text-primary"
+                    "wc-score-box inline-flex h-11 items-center justify-center rounded-sm font-heading text-3xl font-black",
+                    highlightRealScore && "wc-score-box-positive"
                   )}
                 >
                   {match.officialResult!.awayScore}
@@ -239,20 +239,23 @@ export function MatchCard({
 
               <div className="flex min-w-0 items-center gap-2.5">
                 <TeamFlag code={match.awayTeamFlagCode} />
-                <p className="truncate text-base font-medium text-foreground">
+                <p className="truncate text-base font-bold text-foreground">
                   {match.awayTeamName}
                 </p>
               </div>
             </div>
 
             {showPreviousPrediction && match.prediction ? (
-              <div className="flex justify-center pt-0.5">
-                <div className="inline-flex items-center gap-2 rounded-sm bg-muted/55 px-2.5 py-1 opacity-65">
-                  <span className="inline-flex h-6 min-w-6 items-center justify-center rounded-sm border border-border bg-background px-1 text-sm font-semibold text-muted-foreground line-through">
+              <div className="flex justify-center">
+                <div className="inline-grid grid-cols-[auto_1.75rem_1rem_1.75rem] items-center gap-x-1 rounded-sm border border-border bg-muted/55 px-2 py-1 opacity-75">
+                  <span className="wc-display text-[10px] font-black text-muted-foreground">
+                    Seu palpite
+                  </span>
+                  <span className="inline-flex h-6 w-7 items-center justify-center rounded-sm border border-border bg-background px-1 text-sm font-semibold text-muted-foreground line-through">
                     {match.prediction.homeScore!}
                   </span>
-                  <span className="text-xs text-muted-foreground">x</span>
-                  <span className="inline-flex h-6 min-w-6 items-center justify-center rounded-sm border border-border bg-background px-1 text-sm font-semibold text-muted-foreground line-through">
+                  <span className="flex h-6 items-center justify-center text-center text-xs text-muted-foreground">x</span>
+                  <span className="inline-flex h-6 w-7 items-center justify-center rounded-sm border border-border bg-background px-1 text-sm font-semibold text-muted-foreground line-through">
                     {match.prediction.awayScore!}
                   </span>
                 </div>
@@ -266,7 +269,7 @@ export function MatchCard({
                   feedback.points > 0 ? "text-primary" : "text-destructive"
                 )}
               >
-                <span className="text-sm font-semibold">{pointsLabel}</span>
+                <span className="wc-display text-sm font-black">{pointsLabel}</span>
               </div>
             ) : null}
           </div>

@@ -45,19 +45,22 @@ export function DailyPredictionsPage({ view }: DailyPredictionsPageProps) {
 
   return (
     <div className="mx-auto w-full max-w-360 space-y-6 px-5 pb-8 pt-1 md:px-8 xl:px-10">
-      <section className="space-y-4 border-b border-border pb-4">
-        <h1 className="text-4xl font-semibold tracking-[-0.04em] text-foreground">
+      <section className="relative overflow-hidden rounded-sm border border-[color:var(--wc-ink)] bg-[color:var(--wc-ink)] px-5 py-5 text-primary-foreground shadow-[3px_3px_0_var(--wc-gold)]">
+        <p className="wc-display text-xs font-black text-[color:var(--wc-gold)]">
+          Comparativo da rodada
+        </p>
+        <h1 className="mt-1 font-heading text-5xl font-black leading-none sm:text-7xl">
           Palpites do dia
         </h1>
 
         {view.availableDates.length > 0 ? (
-          <div className="space-y-3">
+          <div className="mt-5 space-y-3">
             <div className="flex items-center gap-2">
               <Button
                 type="button"
                 variant="outline"
                 size="icon-sm"
-                className="shrink-0"
+                className="shrink-0 border-primary-foreground/25 bg-transparent text-primary-foreground hover:bg-primary-foreground/10 hover:text-primary-foreground"
                 onClick={() => scrollDates("left")}
                 aria-label="Ver datas anteriores"
               >
@@ -78,7 +81,7 @@ export function DailyPredictionsPage({ view }: DailyPredictionsPageProps) {
                         href={`${routes.dailyPredictions}?dia=${dateKey}`}
                         className={tabTriggerClass(
                           isActive,
-                          "inline-flex h-10 items-center rounded-sm px-4 text-sm font-medium",
+                          "inline-flex h-10 items-center rounded-sm px-4 text-sm font-bold",
                         )}
                       >
                         {formatInTimeZone(
@@ -96,7 +99,7 @@ export function DailyPredictionsPage({ view }: DailyPredictionsPageProps) {
                 type="button"
                 variant="outline"
                 size="icon-sm"
-                className="shrink-0"
+                className="shrink-0 border-primary-foreground/25 bg-transparent text-primary-foreground hover:bg-primary-foreground/10 hover:text-primary-foreground"
                 onClick={() => scrollDates("right")}
                 aria-label="Ver próximas datas"
               >
@@ -105,7 +108,7 @@ export function DailyPredictionsPage({ view }: DailyPredictionsPageProps) {
             </div>
 
             {selectedDateLabel ? (
-              <p className="text-base font-medium capitalize text-foreground">
+              <p className="text-base font-bold capitalize text-primary-foreground/82">
                 {selectedDateLabel}
               </p>
             ) : null}
@@ -122,42 +125,50 @@ export function DailyPredictionsPage({ view }: DailyPredictionsPageProps) {
       ) : (
         <div className="space-y-4">
           {view.matches.map((match) => (
-            <section key={match.id} className="rounded-md border border-border bg-card px-4 py-4 sm:px-5">
-              <div className="space-y-4">
+            <section key={match.id} className="wc-ticket overflow-hidden rounded-sm">
+              <div className="border-b border-border px-4 py-2.5">
                 <div className="flex flex-wrap items-center justify-between gap-3">
-                  <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
+                  <span className="wc-display text-[11px] font-black text-foreground">
                     {formatInTimeZone(
                       new Date(match.scheduledAt),
                       BRAZIL_TIME_ZONE,
                       "HH:mm",
                     )}
                   </span>
-                  <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
+                  <span className="wc-display text-[11px] font-black text-muted-foreground">
                     {match.stageLabel}
                   </span>
                 </div>
+              </div>
 
+              <div className="space-y-4 px-4 py-4">
                 <div className="grid grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center gap-2.5 sm:gap-4">
                   <div className="flex min-w-0 items-center justify-end gap-3">
-                    <p className="truncate text-base font-medium text-foreground">
+                    <p className="truncate text-base font-bold text-foreground">
                       {match.homeTeamName}
                     </p>
                     <TeamFlag code={match.homeTeamFlagCode} />
                   </div>
-                  <div className="min-w-16 text-center font-mono text-base font-semibold text-foreground">
+                  <div className="wc-score-box grid min-w-20 grid-cols-[2rem_1rem_2rem] items-center rounded-sm px-2 py-1 text-center font-heading text-2xl font-black text-foreground">
                     {match.officialResult
-                      ? `${match.officialResult.homeScore} x ${match.officialResult.awayScore}`
-                      : "x"}
+                      ? (
+                          <>
+                            <span>{match.officialResult.homeScore}</span>
+                            <span className="text-base text-muted-foreground">x</span>
+                            <span>{match.officialResult.awayScore}</span>
+                          </>
+                        )
+                      : <span className="col-span-3 text-base text-muted-foreground">x</span>}
                   </div>
                   <div className="flex min-w-0 items-center gap-3">
                     <TeamFlag code={match.awayTeamFlagCode} />
-                    <p className="truncate text-base font-medium text-foreground">
+                    <p className="truncate text-base font-bold text-foreground">
                       {match.awayTeamName}
                     </p>
                   </div>
                 </div>
 
-                <div className="grid gap-2 sm:grid-cols-2">
+                <div className="overflow-hidden rounded-sm border border-border bg-background/55">
                   {match.predictions.map((prediction) => {
                     const feedback = getGroupStageMatchFeedback({
                       prediction: {
@@ -172,32 +183,34 @@ export function DailyPredictionsPage({ view }: DailyPredictionsPageProps) {
                       <div
                         key={prediction.userId}
                         className={cn(
-                          "flex items-center justify-between gap-3 rounded-sm border border-border px-3 py-2.5",
-                          prediction.isCurrentUser && "bg-muted/45",
+                          "flex items-center gap-4 border-b border-border px-3 py-2.5 last:border-b-0",
+                          prediction.isCurrentUser && "bg-[color:color-mix(in_oklch,var(--wc-gold)_18%,transparent)]",
                         )}
                       >
-                        <div className="flex min-w-0 items-center gap-2.5">
-                          <p className="truncate text-sm font-medium text-foreground">
+                        <div className="flex min-w-0 flex-1 items-center gap-4">
+                          <p className="truncate text-sm font-bold text-foreground">
                             {prediction.displayName}
                           </p>
-                          {pointsLabel ? (
+                          <div className="shrink-0 font-heading text-2xl font-black text-foreground">
+                            {prediction.homeScore !== null && prediction.awayScore !== null
+                              ? `${prediction.homeScore} x ${prediction.awayScore}`
+                              : "-"}
+                          </div>
+                        </div>
+                        {pointsLabel ? (
+                          <div className="ml-auto flex justify-end">
                             <span
                               className={cn(
-                                "inline-flex shrink-0 rounded-sm border px-2 py-0.5 text-xs font-semibold",
+                                "wc-display inline-flex shrink-0 rounded-sm border px-2 py-0.5 text-xs font-black",
                                 feedback && feedback.points > 0
-                                  ? "border-primary/35 bg-primary/8 text-primary"
-                                  : "border-red-200 bg-red-50 text-destructive",
+                                  ? "wc-score-box-positive"
+                                  : "wc-score-box-wrong",
                               )}
                             >
                               {pointsLabel}
                             </span>
-                          ) : null}
-                        </div>
-                        <div className="shrink-0 font-mono text-sm font-semibold text-foreground">
-                          {prediction.homeScore !== null && prediction.awayScore !== null
-                            ? `${prediction.homeScore} x ${prediction.awayScore}`
-                            : "—"}
-                        </div>
+                          </div>
+                        ) : null}
                       </div>
                     );
                   })}
