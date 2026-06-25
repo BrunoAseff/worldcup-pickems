@@ -73,7 +73,15 @@ export const recalculateApplicationCore = async (triggeredByUserId: string) => {
           awaySourceRef: matches.awaySourceRef,
         })
         .from(matches),
-      tx.select().from(officialResults),
+      tx
+        .select({
+          id: officialResults.id,
+          matchId: officialResults.matchId,
+          homeScore: officialResults.homeScore,
+          awayScore: officialResults.awayScore,
+          advancingTeamId: officialResults.advancingTeamId,
+        })
+        .from(officialResults),
       tx
         .select({
           id: matchPredictions.id,
@@ -181,6 +189,12 @@ export const recalculateApplicationCore = async (triggeredByUserId: string) => {
           updatedAt: new Date(),
         })
         .where(eq(matches.id, match.id));
+    }
+
+    if (snapshot.invalidOfficialResultIds.size > 0) {
+      await tx
+        .delete(officialResults)
+        .where(inArray(officialResults.id, [...snapshot.invalidOfficialResultIds]));
     }
 
     if (snapshot.invalidPredictionIds.size > 0) {

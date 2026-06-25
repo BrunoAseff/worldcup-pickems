@@ -84,6 +84,7 @@ export type MatchRecord = {
 };
 
 export type OfficialResultRecord = {
+  id?: string;
   matchId: string;
   homeScore: number;
   awayScore: number;
@@ -128,6 +129,7 @@ export type ApplicationRecalculationSnapshot = {
   flatStandings: GroupStandingRecord[];
   bestThirdQualifiedGroupCodes: string[];
   officialParticipantsByKnockoutMatchId: Map<string, ParticipantPair>;
+  invalidOfficialResultIds: Set<string>;
   invalidPredictionIds: Set<string>;
   rankedUserScores: RankedUserScore[];
 };
@@ -633,15 +635,66 @@ export const buildApplicationRecalculationSnapshot = ({
       ? bestThirdStatus.qualifiedGroupCodes
       : [];
 
-  const officialParticipantsByKnockoutMatchId = buildOfficialKnockoutParticipants(
+  const validOfficialResultByMatchId = new Map(officialResultByMatchId);
+  let officialParticipantsByKnockoutMatchId = buildOfficialKnockoutParticipants(
     knockoutMatches,
     standingByGroupPosition,
-    officialResultByMatchId,
+    validOfficialResultByMatchId,
     bestThirdQualifiedGroupCodes,
     hasCompleteBestThirdSlotAssignments
       ? bestThirdSlotAssignments
       : undefined,
   );
+  const invalidOfficialResultIds = new Set<string>();
+  let invalidatedOfficialResult = true;
+
+  while (invalidatedOfficialResult) {
+    invalidatedOfficialResult = false;
+
+    for (const match of knockoutMatches) {
+      const result = validOfficialResultByMatchId.get(match.id);
+
+      if (!result) {
+        continue;
+      }
+
+      const resolvedParticipants = officialParticipantsByKnockoutMatchId.get(match.id) ?? {
+        homeTeamId: null,
+        awayTeamId: null,
+      };
+      const hasPersistedParticipants = Boolean(match.homeTeamId && match.awayTeamId);
+      const persistedParticipantsChanged =
+        hasPersistedParticipants &&
+        (match.homeTeamId !== resolvedParticipants.homeTeamId ||
+          match.awayTeamId !== resolvedParticipants.awayTeamId);
+      const resolvedParticipantsMissing =
+        !resolvedParticipants.homeTeamId || !resolvedParticipants.awayTeamId;
+
+      if (!resolvedParticipantsMissing && !persistedParticipantsChanged) {
+        continue;
+      }
+
+      validOfficialResultByMatchId.delete(match.id);
+
+      if (result.id) {
+        invalidOfficialResultIds.add(result.id);
+      }
+
+      invalidatedOfficialResult = true;
+    }
+
+    if (invalidatedOfficialResult) {
+      officialParticipantsByKnockoutMatchId = buildOfficialKnockoutParticipants(
+        knockoutMatches,
+        standingByGroupPosition,
+        validOfficialResultByMatchId,
+        bestThirdQualifiedGroupCodes,
+        hasCompleteBestThirdSlotAssignments
+          ? bestThirdSlotAssignments
+          : undefined,
+      );
+    }
+  }
 
   const predictionsByUserId = new Map<string, MatchPredictionRecord[]>();
 
@@ -677,7 +730,7 @@ export const buildApplicationRecalculationSnapshot = ({
     for (const match of groupStageMatches) {
       totalPoints += scoreGroupStageMatch(
         predictionByMatchId.get(match.id),
-        officialResultByMatchId.get(match.id),
+        validOfficialResultByMatchId.get(match.id),
       );
     }
 
@@ -752,7 +805,7 @@ export const buildApplicationRecalculationSnapshot = ({
       totalPoints += scoreKnockoutMatch(
         match.stage,
         normalizedState.prediction,
-        officialResultByMatchId.get(match.id),
+        validOfficialResultByMatchId.get(match.id),
         officialParticipantsByKnockoutMatchId.get(match.id) ?? {
           homeTeamId: null,
           awayTeamId: null,
@@ -772,6 +825,7 @@ export const buildApplicationRecalculationSnapshot = ({
     flatStandings,
     bestThirdQualifiedGroupCodes,
     officialParticipantsByKnockoutMatchId,
+    invalidOfficialResultIds,
     invalidPredictionIds,
     rankedUserScores: computeRankingPositions(userScores),
   };

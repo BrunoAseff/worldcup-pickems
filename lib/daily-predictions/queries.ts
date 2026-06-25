@@ -47,6 +47,7 @@ export type DailyPredictionsPageView = {
   availableDates: string[];
   selectedDate: string | null;
   matches: DailyPredictionsMatchView[];
+  matchesByDate: Record<string, DailyPredictionsMatchView[]>;
   playerCount: number;
 };
 
@@ -133,13 +134,10 @@ export const getDailyPredictionsPageView = async ({
     new Set(matchRecords.map((match) => toBrazilDateKey(match.scheduledAt))),
   );
   const selectedDate = selectDefaultDate(availableDates, requestedDate);
-  const selectedMatches = selectedDate
-    ? matchRecords.filter((match) => toBrazilDateKey(match.scheduledAt) === selectedDate)
-    : [];
-  const selectedMatchIds = selectedMatches.map((match) => match.id);
+  const matchIds = matchRecords.map((match) => match.id);
 
   const [predictionRecords, officialResultRecords] = await Promise.all([
-    selectedMatchIds.length > 0
+    matchIds.length > 0
       ? db
           .select({
             matchId: matchPredictions.matchId,
@@ -151,9 +149,9 @@ export const getDailyPredictionsPageView = async ({
           })
           .from(matchPredictions)
           .innerJoin(users, eq(matchPredictions.userId, users.id))
-          .where(inArray(matchPredictions.matchId, selectedMatchIds))
+          .where(inArray(matchPredictions.matchId, matchIds))
       : Promise.resolve([]),
-    selectedMatchIds.length > 0
+    matchIds.length > 0
       ? db
           .select({
             matchId: officialResults.matchId,
@@ -161,7 +159,7 @@ export const getDailyPredictionsPageView = async ({
             awayScore: officialResults.awayScore,
           })
           .from(officialResults)
-          .where(inArray(officialResults.matchId, selectedMatchIds))
+          .where(inArray(officialResults.matchId, matchIds))
       : Promise.resolve([]),
   ]);
 
@@ -186,43 +184,49 @@ export const getDailyPredictionsPageView = async ({
     ]),
   );
 
+  const matchesByDate = matchRecords.reduce<Record<string, DailyPredictionsMatchView[]>>((accumulator, match) => {
+    const dateKey = toBrazilDateKey(match.scheduledAt);
+    const homeTeam = match.homeTeamId ? teamById.get(match.homeTeamId) : null;
+    const awayTeam = match.awayTeamId ? teamById.get(match.awayTeamId) : null;
+    const predictions = playerRecords.map((player) => {
+      const prediction = predictionsByMatchId.get(match.id)?.get(player.id);
+
+      return {
+        userId: player.id,
+        displayName: player.displayName,
+        username: player.username,
+        homeScore: prediction?.homeScore ?? null,
+        awayScore: prediction?.awayScore ?? null,
+        isCurrentUser: player.id === viewerUserId,
+      };
+    });
+    const matchView = {
+      id: match.id,
+      matchNumber: match.matchNumber,
+      stageLabel: stageLabelByStage[match.stage],
+      scheduledAt: match.scheduledAt.toISOString(),
+      venueName: match.venueName,
+      homeTeamName: homeTeam?.namePt ?? "A definir",
+      awayTeamName: awayTeam?.namePt ?? "A definir",
+      homeTeamFlagCode: homeTeam?.flagCode ?? null,
+      awayTeamFlagCode: awayTeam?.flagCode ?? null,
+      officialResult: officialResultByMatchId.get(match.id) ?? null,
+      submittedPredictions: predictions.filter(
+        (prediction) =>
+          prediction.homeScore !== null && prediction.awayScore !== null,
+      ).length,
+      predictions,
+    } satisfies DailyPredictionsMatchView;
+
+    accumulator[dateKey] = [...(accumulator[dateKey] ?? []), matchView];
+    return accumulator;
+  }, {});
+
   return {
     availableDates,
     selectedDate,
     playerCount: playerRecords.length,
-    matches: selectedMatches.map((match) => {
-      const homeTeam = match.homeTeamId ? teamById.get(match.homeTeamId) : null;
-      const awayTeam = match.awayTeamId ? teamById.get(match.awayTeamId) : null;
-      const predictions = playerRecords.map((player) => {
-        const prediction = predictionsByMatchId.get(match.id)?.get(player.id);
-
-        return {
-          userId: player.id,
-          displayName: player.displayName,
-          username: player.username,
-          homeScore: prediction?.homeScore ?? null,
-          awayScore: prediction?.awayScore ?? null,
-          isCurrentUser: player.id === viewerUserId,
-        };
-      });
-
-      return {
-        id: match.id,
-        matchNumber: match.matchNumber,
-        stageLabel: stageLabelByStage[match.stage],
-        scheduledAt: match.scheduledAt.toISOString(),
-        venueName: match.venueName,
-        homeTeamName: homeTeam?.namePt ?? "A definir",
-        awayTeamName: awayTeam?.namePt ?? "A definir",
-        homeTeamFlagCode: homeTeam?.flagCode ?? null,
-        awayTeamFlagCode: awayTeam?.flagCode ?? null,
-        officialResult: officialResultByMatchId.get(match.id) ?? null,
-        submittedPredictions: predictions.filter(
-          (prediction) =>
-            prediction.homeScore !== null && prediction.awayScore !== null,
-        ).length,
-        predictions,
-      } satisfies DailyPredictionsMatchView;
-    }),
+    matchesByDate,
+    matches: selectedDate ? matchesByDate[selectedDate] ?? [] : [],
   };
 };
