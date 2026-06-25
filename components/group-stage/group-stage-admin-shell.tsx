@@ -19,6 +19,41 @@ type GroupStageAdminShellProps = {
   bestThirdSelection: GroupStageAdminView["bestThirdSelection"];
 };
 
+function GroupCutSummary({ standings }: { standings: GroupStageGroupView["standings"] }) {
+  const qualified = standings.slice(0, 2);
+  const third = standings[2];
+  const eliminated = standings[3];
+
+  return (
+    <div className="grid gap-2 sm:grid-cols-3">
+      <div className="rounded-sm border border-border bg-primary/10 px-3 py-3">
+        <p className="wc-display text-[10px] font-black text-muted-foreground">
+          Classificados
+        </p>
+        <p className="mt-1 truncate text-sm font-black text-foreground">
+          {qualified.map((team) => team.teamName).join(" + ")}
+        </p>
+      </div>
+      <div className="rounded-sm border border-border bg-[color:color-mix(in_oklch,var(--wc-gold)_16%,transparent)] px-3 py-3">
+        <p className="wc-display text-[10px] font-black text-muted-foreground">
+          3º lugar
+        </p>
+        <p className="mt-1 truncate text-sm font-black text-foreground">
+          {third?.teamName ?? "-"}
+        </p>
+      </div>
+      <div className="rounded-sm border border-border bg-[color:color-mix(in_oklch,var(--wc-red)_8%,transparent)] px-3 py-3">
+        <p className="wc-display text-[10px] font-black text-muted-foreground">
+          Lanterna
+        </p>
+        <p className="mt-1 truncate text-sm font-black text-foreground">
+          {eliminated?.teamName ?? "-"}
+        </p>
+      </div>
+    </div>
+  );
+}
+
 const resolveSelection = (
   groups: GroupStageGroupView[],
   rawGroupCode: string | null,
@@ -342,13 +377,16 @@ export function GroupStageAdminShell({
   };
 
   return (
-    <div className="mx-auto w-full max-w-360 space-y-8 px-5 pb-6 pt-2 md:px-8 md:pt-3 xl:px-10">
-      <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
-        <div className="space-y-2">
-          <h1 className="text-4xl font-semibold tracking-[-0.03em] text-foreground">
+    <div className="mx-auto w-full max-w-360 space-y-7 px-5 pb-6 pt-2 md:px-8 md:pt-3 xl:px-10">
+      <div className="relative flex flex-col gap-4 overflow-hidden rounded-sm border border-[color:var(--wc-ink)] bg-[color:var(--wc-ink)] px-5 py-5 text-primary-foreground shadow-[3px_3px_0_var(--wc-gold)] lg:flex-row lg:items-start lg:justify-between">
+        <div>
+          <p className="wc-display text-xs font-black text-[color:var(--wc-gold)]">
+            Mesa de controle
+          </p>
+          <h1 className="mt-1 font-heading text-5xl font-black leading-none sm:text-7xl">
             Fase de grupos
           </h1>
-          <p className="max-w-2xl text-sm leading-6 text-muted-foreground">
+          <p className="mt-3 max-w-2xl text-sm leading-6 text-primary-foreground/78">
             Lance os resultados oficiais e recalcule a classificação quando
             quiser refletir os novos dados nas tabelas.
           </p>
@@ -359,20 +397,20 @@ export function GroupStageAdminShell({
             type="button"
             onClick={triggerRecalculation}
             disabled={isPending}
-            className="h-11 rounded-md px-4"
+            className="h-11 rounded-sm px-4"
           >
             <RefreshCw
               className={isPending ? "size-4 animate-spin" : "size-4"}
             />
             Recalcular classificação
           </Button>
-          <p className="text-xs uppercase tracking-[0.14em] text-muted-foreground">
+          <p className="wc-display text-xs font-black text-primary-foreground/72">
             {lastRecalculatedAt
               ? `Último recálculo: ${formatKickoff(lastRecalculatedAt)}`
               : "Ainda não houve recálculo manual."}
           </p>
           {recalculationMessage ? (
-            <p className="max-w-md text-xs uppercase tracking-[0.14em] text-muted-foreground">
+            <p className="wc-display max-w-md text-xs font-black text-primary-foreground/72">
               {recalculationMessage}
             </p>
           ) : null}
@@ -409,7 +447,7 @@ export function GroupStageAdminShell({
             variant="outline"
             className={tabTriggerClass(
               selectedGroupCode === group.code,
-              "h-11 rounded-md px-4 text-sm",
+              "h-11 rounded-sm px-4 text-sm",
             )}
           >
             Grupo {group.code}
@@ -421,16 +459,17 @@ export function GroupStageAdminShell({
         <section className="space-y-3">
           <div className="flex items-end justify-between">
             <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
+              <p className="wc-display text-xs font-black text-muted-foreground">
                 Classificação
               </p>
-              <h2 className="mt-1 text-2xl font-semibold tracking-[-0.02em] text-foreground">
+              <h2 className="mt-1 font-heading text-4xl font-black leading-none text-foreground">
                 Grupo {selectedGroup.code}
               </h2>
             </div>
           </div>
 
           <StandingsTable standings={selectedGroup.standings} />
+          <GroupCutSummary standings={selectedGroup.standings} />
         </section>
 
         <section className="space-y-4">
@@ -445,7 +484,7 @@ export function GroupStageAdminShell({
                 variant="outline"
                 className={tabTriggerClass(
                   selectedRound === round.round,
-                  "h-11 rounded-md px-4 text-sm",
+                  "h-11 rounded-sm px-4 text-sm",
                 )}
               >
                 Rodada {round.round}

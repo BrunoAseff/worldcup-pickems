@@ -318,7 +318,7 @@ export function KnockoutMatchCard({
   return (
     <Card
       className={cn(
-        "nodrag nopan relative z-10 overflow-visible rounded-sm focus-within:z-30 hover:z-20",
+        "wc-bracket-ticket nodrag nopan relative z-10 overflow-visible rounded-sm focus-within:z-30 hover:z-20",
         compact ? "w-full" : "w-full"
       )}
       onPointerDownCapture={(event) => event.stopPropagation()}
@@ -327,7 +327,7 @@ export function KnockoutMatchCard({
     >
       <div className="border-b border-border px-3 py-2">
         <div className="relative flex items-center">
-          <p className="min-w-0 flex-1 truncate pr-20 text-[12px] font-semibold uppercase tracking-[0.14em] text-foreground">
+          <p className="wc-display min-w-0 flex-1 truncate pr-20 text-[11px] font-black text-foreground">
             <span className="text-muted-foreground">
               {formatKickoff(match.scheduledAt)}
             </span>
@@ -336,10 +336,10 @@ export function KnockoutMatchCard({
             {hasOfficialResult && feedback && pointsLabel ? (
               <div
                 className={cn(
-                  "shrink-0 rounded-sm border px-2 py-0.5 text-xs font-semibold normal-case tracking-normal whitespace-nowrap",
+                  "wc-display shrink-0 rounded-sm border px-2 py-0.5 text-xs font-black whitespace-nowrap",
                   feedback.points > 0
-                    ? "border-primary/35 bg-primary/8 text-primary"
-                    : "border-red-200 bg-red-50 text-destructive",
+                    ? "wc-score-box-positive"
+                    : "wc-score-box-wrong",
                 )}
               >
                 {pointsLabel}
@@ -389,8 +389,8 @@ export function KnockoutMatchCard({
             <div
               key={`${match.id}-${entry.side}`}
               className={cn(
-                "grid grid-cols-[minmax(0,1fr)_auto] items-center gap-2 rounded-sm border border-border px-2.5 py-2",
-                isSelectedAdvancer && "border-primary/45 bg-primary/6"
+                "grid grid-cols-[minmax(0,1fr)_auto] items-center gap-2 rounded-sm border border-border bg-white/60 px-2.5 py-2",
+                isSelectedAdvancer && "border-[color:var(--wc-green-dark)] bg-white"
               )}
             >
               <div className="flex min-w-0 items-center gap-2">
@@ -398,7 +398,7 @@ export function KnockoutMatchCard({
                   code={entry.participant.flagCode}
                   className="shrink-0"
                 />
-                <p className="truncate text-[13px] font-medium text-foreground">
+                <p className="truncate text-[13px] font-bold text-foreground">
                   {entry.participant.name}
                 </p>
               </div>
@@ -439,8 +439,8 @@ export function KnockoutMatchCard({
                     ) : null}
                     <span
                       className={cn(
-                        "inline-flex h-8 min-w-10 items-center justify-center rounded-sm border border-input bg-background px-0 text-center text-sm font-semibold text-foreground",
-                        feedback?.kind === "exact" && "border-primary/35 text-primary",
+                        "wc-score-box inline-flex h-8 min-w-10 items-center justify-center rounded-sm px-0 text-center font-heading text-xl font-black",
+                        feedback?.kind === "exact" && "wc-score-box-positive",
                       )}
                     >
                       {officialScore}
@@ -452,7 +452,7 @@ export function KnockoutMatchCard({
                     maxLength={2}
                     value={entry.value}
                     disabled={!canEdit || isPending}
-                    className="nodrag nopan h-8 w-10 rounded-sm px-0 text-center text-sm font-semibold"
+                    className="wc-score-box nodrag nopan h-8 w-10 rounded-sm px-0 text-center font-heading text-xl font-black"
                     onPointerDownCapture={(event) => event.stopPropagation()}
                     onChange={(event) =>
                       handleScoreChange(
