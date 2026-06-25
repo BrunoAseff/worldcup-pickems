@@ -164,11 +164,51 @@ const resolveKnockoutMatchReference = (label: string, matchIndex: number) => {
   const normalized = label.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 
   if (normalized === "Segunda fase") {
-    return 72 + matchIndex;
+    const matchNumberBySlot: Record<number, number> = {
+      1: 74,
+      2: 77,
+      3: 73,
+      4: 75,
+      5: 83,
+      6: 84,
+      7: 81,
+      8: 82,
+      9: 76,
+      10: 78,
+      11: 79,
+      12: 80,
+      13: 86,
+      14: 88,
+      15: 85,
+      16: 87,
+    };
+    const matchNumber = matchNumberBySlot[matchIndex];
+
+    if (!matchNumber) {
+      throw new Error(`Unknown round-of-32 slot "${matchIndex}"`);
+    }
+
+    return matchNumber;
   }
 
   if (normalized === "Oitavas") {
-    return 88 + matchIndex;
+    const matchNumberBySlot: Record<number, number> = {
+      1: 90,
+      2: 89,
+      3: 93,
+      4: 94,
+      5: 91,
+      6: 92,
+      7: 95,
+      8: 96,
+    };
+    const matchNumber = matchNumberBySlot[matchIndex];
+
+    if (!matchNumber) {
+      throw new Error(`Unknown round-of-16 slot "${matchIndex}"`);
+    }
+
+    return matchNumber;
   }
 
   if (normalized === "Quartas") {
@@ -180,6 +220,28 @@ const resolveKnockoutMatchReference = (label: string, matchIndex: number) => {
   }
 
   throw new Error(`Unknown knockout reference label "${label}"`);
+};
+
+const resolveOfficialMatchNumber = (row: RawMatchRow, fallbackMatchNumber: number) => {
+  if (row.fase === "Fase de Grupos") {
+    return fallbackMatchNumber;
+  }
+
+  if (row.jogo === "3º Lugar") {
+    return 103;
+  }
+
+  if (row.jogo === "Final") {
+    return 104;
+  }
+
+  const match = row.jogo.match(/^(.+) (\d+)$/);
+
+  if (!match) {
+    throw new Error(`Unable to parse official match number from "${row.jogo}"`);
+  }
+
+  return resolveKnockoutMatchReference(match[1], Number(match[2]));
 };
 
 const parseParticipantSource = (value: string): NormalizedParticipantSource => {
@@ -328,9 +390,12 @@ export const getNormalizedGroupTeams = () => {
 
 export const getNormalizedMatches = (): NormalizedMatch[] =>
   loadRawMatchRows().map((row, index) => {
-    const matchNumber = index + 1;
+    const matchNumber = resolveOfficialMatchNumber(row, index + 1);
     const stage = resolveStage(row.fase);
     const stageMatchNumber = parseStageMatchNumber(row);
+    const homeSource = parseParticipantSource(row.mandante);
+    const awaySource = parseParticipantSource(row.visitante);
+    const shouldSwapParticipants = row.jogo === "Quartas 1";
 
     return {
       matchNumber,
@@ -341,8 +406,8 @@ export const getNormalizedMatches = (): NormalizedMatch[] =>
       groupCode: resolveGroupCode(row),
       venueCode: slugify(`${row.estadio}_${row.cidade}_${row.pais_sede}`),
       scheduledAt: parseKickoff(row.data, row.horario_brasilia),
-      homeSource: parseParticipantSource(row.mandante),
-      awaySource: parseParticipantSource(row.visitante),
+      homeSource: shouldSwapParticipants ? awaySource : homeSource,
+      awaySource: shouldSwapParticipants ? homeSource : awaySource,
       sourceLabel: row.jogo,
     };
   });
