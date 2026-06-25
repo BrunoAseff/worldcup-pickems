@@ -603,8 +603,18 @@ const getKnockoutContext = async (userId?: string) => {
       const standings = standingsByGroupCode.get(group.code) ?? [];
       return standings.length === 4 && standings.every((standing) => standing.played === 3);
     });
+  const completedGroupCodes = new Set(
+    groupRecords
+      .filter((group) => {
+        const standings = standingsByGroupCode.get(group.code) ?? [];
+        return standings.length === 4 && standings.every((standing) => standing.played === 3);
+      })
+      .map((group) => group.code),
+  );
   const standingByGroupPosition = new Map(
-    (allGroupsComplete ? standingRecords : []).map((standing) => ["".concat(standing.groupCode, String(standing.position)), standing]),
+    standingRecords
+      .filter((standing) => completedGroupCodes.has(standing.groupCode))
+      .map((standing) => ["".concat(standing.groupCode, String(standing.position)), standing]),
   );
   const bestThirdStatus = allGroupsComplete
     ? getBestThirdStatus(standingRecords)

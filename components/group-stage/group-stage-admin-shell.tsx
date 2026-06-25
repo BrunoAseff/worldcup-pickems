@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/button";
 import { formatKickoff } from "@/lib/formatters/kickoff";
 import { GroupStageAdminView, GroupStageGroupView } from "@/lib/group-stage/queries";
 import { routes } from "@/lib/routes";
+import { tabTriggerClass } from "@/lib/utils";
 import { StandingsTable } from "./standings-table";
 
 type GroupStageAdminShellProps = {
@@ -406,11 +407,10 @@ export function GroupStageAdminShell({
               updateUrl(group.code, group.defaultRound);
             }}
             variant="outline"
-            className={
-              selectedGroupCode === group.code
-                ? "h-11 rounded-md border-foreground/18 bg-card px-4 text-sm text-foreground"
-                : "h-11 rounded-md bg-card px-4 text-sm text-muted-foreground hover:bg-card hover:text-foreground"
-            }
+            className={tabTriggerClass(
+              selectedGroupCode === group.code,
+              "h-11 rounded-md px-4 text-sm",
+            )}
           >
             Grupo {group.code}
           </Button>
@@ -443,11 +443,10 @@ export function GroupStageAdminShell({
                   updateUrl(selectedGroup.code, round.round);
                 }}
                 variant="outline"
-                className={
-                  selectedRound === round.round
-                    ? "h-11 rounded-md border-foreground/18 bg-card px-4 text-sm text-foreground"
-                    : "h-11 rounded-md bg-card px-4 text-sm text-muted-foreground hover:bg-card hover:text-foreground"
-                }
+                className={tabTriggerClass(
+                  selectedRound === round.round,
+                  "h-11 rounded-md px-4 text-sm",
+                )}
               >
                 Rodada {round.round}
               </Button>

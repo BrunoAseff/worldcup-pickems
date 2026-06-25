@@ -579,7 +579,7 @@ export const buildApplicationRecalculationSnapshot = ({
   const completedGroupCount = completedGroupIds.size;
   const allGroupsComplete = completedGroupCount === groupRecords.length;
   const standingByGroupPosition = new Map(
-    (allGroupsComplete ? flatStandings : [])
+    flatStandings
       .filter((standing) => completedGroupIds.has(standing.groupId))
       .map((standing) => ["".concat(standing.groupCode, String(standing.position)), standing]),
   );
