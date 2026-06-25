@@ -24,6 +24,45 @@ type GroupStageShellProps = {
 
 type StandingsViewMode = "official" | "prediction";
 
+function GroupPredictionScoreSummary({ standings }: { standings: GroupStandingRow[] }) {
+  const exactPositions = standings.filter(
+    (team) => team.predictionFeedback === "exact_position",
+  ).length;
+  const qualifiedHits = standings
+    .slice(0, 2)
+    .filter(
+      (team) =>
+        team.predictionFeedback === "exact_position" ||
+        team.predictionFeedback === "qualified_only",
+    ).length;
+  const points = exactPositions === 4 ? 30 : qualifiedHits === 2 ? 15 : 0;
+  const label =
+    exactPositions === 4
+      ? "Ordem completa"
+      : qualifiedHits === 2
+        ? "Classificados certos"
+        : "Sem bônus de grupo";
+
+  return (
+    <div className="wc-panel grid min-h-28 grid-cols-[auto_1fr] items-center gap-4 rounded-sm px-4 py-4">
+      <div className="flex size-20 items-center justify-center rounded-sm border border-[color:var(--wc-ink)] bg-[color:var(--wc-gold)] font-heading text-4xl font-black text-[color:var(--wc-ink)] shadow-[2px_2px_0_var(--wc-ink)]">
+        {points}
+      </div>
+      <div className="min-w-0">
+        <p className="wc-display text-[10px] font-black text-muted-foreground">
+          Pontuação do grupo
+        </p>
+        <p className="mt-1 text-lg font-black leading-tight text-foreground">
+          {label}
+        </p>
+        <p className="mt-1 text-sm font-semibold text-muted-foreground">
+          {exactPositions}/4 posições exatas · {qualifiedHits}/2 classificados
+        </p>
+      </div>
+    </div>
+  );
+}
+
 const resolveSelection = (
   groups: GroupStageGroupView[],
   rawGroupCode: string | null,
@@ -191,12 +230,15 @@ export function GroupStageShell({ groups, predictionLock }: GroupStageShellProps
       : false);
 
   return (
-    <div className="mx-auto w-full max-w-360 space-y-8 px-5 pb-6 pt-2 md:px-8 md:pt-3 xl:px-10">
-      <div className="space-y-2">
-        <h1 className="text-4xl font-semibold tracking-[-0.03em] text-foreground">
+    <div className="mx-auto w-full max-w-360 space-y-7 px-5 pb-6 pt-2 md:px-8 md:pt-3 xl:px-10">
+      <div className="relative overflow-hidden rounded-sm border border-[color:var(--wc-ink)] bg-[color:var(--wc-ink)] px-5 py-5 text-primary-foreground shadow-[3px_3px_0_var(--wc-gold)]">
+        <p className="wc-display text-xs font-black text-[color:var(--wc-gold)]">
+          Copa do Mundo 2026
+        </p>
+        <h1 className="mt-1 font-heading text-5xl font-black leading-none sm:text-7xl">
           Fase de grupos
         </h1>
-        <p className="max-w-2xl text-sm leading-6 text-muted-foreground">
+        <p className="mt-3 max-w-2xl text-sm leading-6 text-primary-foreground/78">
           Escolha um grupo, navegue pelas rodadas e registre seus palpites até o
           bloqueio global da fase.
         </p>
@@ -213,7 +255,7 @@ export function GroupStageShell({ groups, predictionLock }: GroupStageShellProps
             variant="outline"
             className={tabTriggerClass(
               selectedGroupCode === group.code,
-              "h-11 rounded-md px-4 text-sm",
+              "h-11 rounded-sm px-4 text-sm",
             )}
           >
             Grupo {group.code}
@@ -225,10 +267,10 @@ export function GroupStageShell({ groups, predictionLock }: GroupStageShellProps
         <section className="space-y-3">
           <div className="flex items-end justify-between gap-4">
             <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
+              <p className="wc-display text-xs font-black text-muted-foreground">
                 Classificação
               </p>
-              <h2 className="mt-1 text-2xl font-semibold tracking-[-0.02em] text-foreground">
+              <h2 className="mt-1 font-heading text-4xl font-black leading-none text-foreground">
                 Grupo {selectedGroup.code}
               </h2>
             </div>
@@ -239,7 +281,7 @@ export function GroupStageShell({ groups, predictionLock }: GroupStageShellProps
                 onClick={() => setStandingsView("official")}
                 className={tabTriggerClass(
                   standingsView === "official",
-                  "h-10 rounded-md px-3 text-sm",
+                  "h-10 rounded-sm px-3 text-sm",
                 )}
               >
                 Oficial
@@ -250,7 +292,7 @@ export function GroupStageShell({ groups, predictionLock }: GroupStageShellProps
                 onClick={() => setStandingsView("prediction")}
                 className={tabTriggerClass(
                   standingsView === "prediction",
-                  "h-10 rounded-md px-3 text-sm",
+                  "h-10 rounded-sm px-3 text-sm",
                 )}
               >
                 Previsão
@@ -259,6 +301,7 @@ export function GroupStageShell({ groups, predictionLock }: GroupStageShellProps
           </div>
 
           <StandingsTable standings={displayedStandings} />
+          <GroupPredictionScoreSummary standings={selectedGroup.standings} />
         </section>
 
         <section className="space-y-4">
@@ -273,7 +316,7 @@ export function GroupStageShell({ groups, predictionLock }: GroupStageShellProps
                 variant="outline"
                 className={tabTriggerClass(
                   selectedRound === round.round,
-                  "h-11 rounded-md px-4 text-sm",
+                  "h-11 rounded-sm px-4 text-sm",
                 )}
               >
                 Rodada {round.round}
@@ -282,10 +325,10 @@ export function GroupStageShell({ groups, predictionLock }: GroupStageShellProps
           </div>
 
           <div className="space-y-1">
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
+            <p className="wc-display text-xs font-black text-muted-foreground">
               Jogos
             </p>
-            <h2 className="text-2xl font-semibold tracking-[-0.02em] text-foreground">
+            <h2 className="font-heading text-4xl font-black leading-none text-foreground">
               Grupo {selectedGroup.code} · Rodada {selectedRound}
             </h2>
           </div>

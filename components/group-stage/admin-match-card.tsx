@@ -98,14 +98,14 @@ export function AdminMatchCard({
   const accessibleStatusMessage = validationMessage ?? statusIcon?.message ?? null;
 
   return (
-    <Card className="relative overflow-visible">
-      <div className="flex items-center justify-between border-b border-border px-5 py-3">
-        <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs uppercase tracking-[0.14em] text-muted-foreground">
-          <span className="font-semibold text-foreground">
+    <Card className="wc-ticket relative overflow-visible rounded-sm">
+      <div className="flex items-center justify-between border-b border-border px-4 py-2.5">
+        <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[11px] uppercase tracking-[0.12em] text-muted-foreground">
+          <span className="wc-display font-black text-foreground">
             Jogo {match.matchNumber.toString().padStart(2, "0")}
           </span>
           <span>{formatKickoff(match.scheduledAt)}</span>
-          <span>{match.venueName}</span>
+          <span className="hidden sm:inline">{match.venueName}</span>
         </div>
 
         <div className="relative flex size-5 items-center justify-center">
@@ -116,10 +116,10 @@ export function AdminMatchCard({
         </div>
       </div>
 
-      <div className="px-5 py-4">
-        <div className="grid grid-cols-[minmax(0,1fr)_3.5rem_1rem_3.5rem_minmax(0,1fr)] items-center gap-3">
+      <div className="px-4 py-4">
+        <div className="grid grid-cols-[minmax(0,1fr)_3.75rem_1.25rem_3.75rem_minmax(0,1fr)] items-center gap-3">
           <div className="flex min-w-0 items-center justify-end gap-3">
-            <p className="truncate text-base font-medium text-foreground">{match.homeTeamName}</p>
+            <p className="truncate text-base font-bold text-foreground">{match.homeTeamName}</p>
             <TeamFlag code={match.homeTeamFlagCode} />
           </div>
 
@@ -127,20 +127,20 @@ export function AdminMatchCard({
             inputMode="numeric"
             maxLength={2}
             value={draft.homeScore}
-            className="h-12 px-0 text-center text-lg font-semibold"
+            className="wc-score-box h-[3.25rem] px-0 text-center font-heading text-3xl font-black"
             aria-label={`Resultado oficial de ${match.homeTeamName}`}
             aria-invalid={Boolean(validationMessage)}
             aria-describedby={validationMessage ? validationMessageId : undefined}
             onChange={(event) => handleScoreChange("homeScore", event.target.value)}
           />
 
-          <span className="text-center text-sm text-muted-foreground">x</span>
+          <span className="text-center font-heading text-xl font-black text-muted-foreground">x</span>
 
           <Input
             inputMode="numeric"
             maxLength={2}
             value={draft.awayScore}
-            className="h-12 px-0 text-center text-lg font-semibold"
+            className="wc-score-box h-[3.25rem] px-0 text-center font-heading text-3xl font-black"
             aria-label={`Resultado oficial de ${match.awayTeamName}`}
             aria-invalid={Boolean(validationMessage)}
             aria-describedby={validationMessage ? validationMessageId : undefined}
@@ -149,7 +149,7 @@ export function AdminMatchCard({
 
           <div className="flex min-w-0 items-center gap-3">
             <TeamFlag code={match.awayTeamFlagCode} />
-            <p className="truncate text-base font-medium text-foreground">{match.awayTeamName}</p>
+            <p className="truncate text-base font-bold text-foreground">{match.awayTeamName}</p>
           </div>
         </div>
 

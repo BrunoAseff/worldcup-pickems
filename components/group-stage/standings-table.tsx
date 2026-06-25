@@ -24,27 +24,35 @@ const resultColorByMark = {
 
 export function StandingsTable({ standings }: StandingsTableProps) {
   return (
-    <div className="rounded-md border border-border bg-card">
+    <div className="wc-panel overflow-hidden rounded-sm">
       <Table className="w-full table-fixed">
         <TableHeader>
-          <TableRow>
-            <TableHead className="w-10">#</TableHead>
-            <TableHead className="w-64">Seleção</TableHead>
-            <TableHead className="w-10 text-center">P</TableHead>
-            <TableHead className="w-10 text-center">J</TableHead>
-            <TableHead className="w-10 text-center">V</TableHead>
-            <TableHead className="w-10 text-center">E</TableHead>
-            <TableHead className="w-10 text-center">D</TableHead>
-            <TableHead className="w-20 text-center">Últ. 5</TableHead>
+          <TableRow className="bg-[color:var(--wc-ink)] hover:bg-[color:var(--wc-ink)]">
+            <TableHead className="w-10 text-primary-foreground/80">#</TableHead>
+            <TableHead className="w-64 text-primary-foreground/80">Seleção</TableHead>
+            <TableHead className="w-10 text-center text-primary-foreground/80">P</TableHead>
+            <TableHead className="w-10 text-center text-primary-foreground/80">J</TableHead>
+            <TableHead className="w-10 text-center text-primary-foreground/80">V</TableHead>
+            <TableHead className="w-10 text-center text-primary-foreground/80">E</TableHead>
+            <TableHead className="w-10 text-center text-primary-foreground/80">D</TableHead>
+            <TableHead className="w-20 text-center text-primary-foreground/80">Últ. 5</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
           {standings.map((team) => (
             <TableRow
               key={team.teamId}
-              className={team.predictionFeedback === "exact_position" ? "bg-primary/6" : undefined}
+              className={
+                team.predictionFeedback === "exact_position"
+                  ? "bg-primary/10"
+                  : team.qualificationStatus === "qualified"
+                    ? "bg-primary/10"
+                    : team.qualificationStatus === "third_place"
+                      ? "bg-[color:color-mix(in_oklch,var(--wc-gold)_12%,transparent)]"
+                      : undefined
+              }
             >
-              <TableCell className="py-4 text-sm font-semibold text-muted-foreground">
+              <TableCell className="py-4 font-heading text-xl font-black text-foreground">
                 {team.position}
               </TableCell>
               <TableCell className="w-64 py-4">
@@ -63,14 +71,14 @@ export function StandingsTable({ standings }: StandingsTableProps) {
                   ) : null}
                   <TeamFlag code={team.flagCode} className="shrink-0" />
                   <p
-                    className="block max-w-48 truncate text-[15px] font-medium text-foreground md:max-w-52 lg:max-w-56"
+                    className="block max-w-48 truncate text-[15px] font-bold text-foreground md:max-w-52 lg:max-w-56"
                     title={team.teamName}
                   >
                     {trimTeamName(team.teamName, 26)}
                   </p>
                 </div>
               </TableCell>
-              <TableCell className="py-4 text-center font-semibold">
+              <TableCell className="py-4 text-center font-heading text-xl font-black">
                 {team.points}
               </TableCell>
               <TableCell className="py-4 text-center">{team.played}</TableCell>

@@ -129,19 +129,22 @@ function KnockoutShellCanvas({ view, mode }: KnockoutShellProps) {
 
   return (
     <div className="mx-auto w-full max-w-360 space-y-6 px-5 pb-6 pt-3 md:px-8 md:pt-4 xl:px-10">
-      <div className="space-y-2">
-        <h1 className="text-4xl font-semibold tracking-[-0.03em] text-foreground">
+      <div className="relative overflow-hidden rounded-sm border border-[color:var(--wc-ink)] bg-[color:var(--wc-ink)] px-5 py-5 text-primary-foreground shadow-[3px_3px_0_var(--wc-gold)]">
+        <p className="wc-display text-xs font-black text-[color:var(--wc-gold)]">
+          Caminho até a taça
+        </p>
+        <h1 className="mt-1 font-heading text-5xl font-black leading-none sm:text-7xl">
           Mata-mata
         </h1>
-        <p className="max-w-3xl text-sm leading-6 text-muted-foreground">
+        <p className="mt-3 max-w-3xl text-sm leading-6 text-primary-foreground/78">
           {mode === "player"
             ? "Monte sua chave completa até o início do mata-mata. Em placares empatados, marque na própria partida quem avança."
             : "Lance os resultados oficiais da chave. Em empates no tempo normal, marque na própria partida quem avançou."}
         </p>
       </div>
 
-      <div className="knockout-flow rounded-md border border-border bg-card">
-        <div ref={viewportRef} className="h-192 overflow-hidden rounded-md">
+      <div className="knockout-flow wc-panel rounded-sm bg-[oklch(0.992_0.006_92)]">
+        <div ref={viewportRef} className="h-192 overflow-hidden rounded-sm">
           {viewportSize.width > 0 && viewportSize.height > 0 ? (
             <ReactFlow
               className={initialViewportReady ? "opacity-100" : "opacity-0"}
@@ -192,10 +195,10 @@ function KnockoutShellCanvas({ view, mode }: KnockoutShellProps) {
                       className="pointer-events-auto absolute w-56"
                       style={{ left: node.position.x, top: node.position.y }}
                     >
-                      <p className="text-center text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
+                      <p className="wc-display text-center text-[11px] font-black text-muted-foreground">
                         Fase
                       </p>
-                      <h2 className="mt-1 text-center text-lg font-semibold tracking-[-0.02em] text-foreground">
+                      <h2 className="mt-1 text-center font-heading text-2xl font-black leading-none text-foreground">
                         {node.data.label}
                       </h2>
                     </div>

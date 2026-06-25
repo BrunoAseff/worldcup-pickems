@@ -14,6 +14,7 @@ import {
   venues,
 } from "@/lib/db/schema";
 import { getBestThirdSlotKey, getBestThirdStatus } from "@/lib/knockout/best-third";
+import { APPLICATION_RECALCULATION_PIPELINE_KEY } from "@/lib/recalculation/core";
 import { resolveGroupStagePredictionLock, type GroupStagePredictionLockState } from "./locks";
 import { computeGroupStandings, getConflictWindows } from "./standings";
 
@@ -253,7 +254,7 @@ const getGroupStageContext = async (userId?: string): Promise<GroupStageContext>
         createdAt: recalculationRuns.createdAt,
       })
       .from(recalculationRuns)
-      .where(eq(recalculationRuns.pipelineKey, "group_stage_standings"))
+      .where(eq(recalculationRuns.pipelineKey, APPLICATION_RECALCULATION_PIPELINE_KEY))
       .orderBy(desc(recalculationRuns.createdAt))
       .limit(1),
   ]);

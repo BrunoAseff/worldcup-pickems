@@ -7,10 +7,10 @@ export function cn(...inputs: ClassValue[]) {
 
 export function tabTriggerClass(active: boolean, className?: ClassValue) {
   return cn(
-    "border transition-colors",
+    "border font-semibold transition-colors",
     active
-      ? "border-primary/45 bg-[#f4fff6] font-semibold text-foreground hover:border-primary/45 hover:bg-[#f4fff6] hover:text-foreground"
-      : "border-border bg-card text-muted-foreground hover:bg-card hover:text-foreground",
+      ? "border-[color:var(--wc-ink)] bg-[color:var(--wc-gold)] text-[color:var(--wc-ink)] shadow-[2px_2px_0_var(--wc-ink)] hover:bg-[color:var(--wc-gold)] hover:text-[color:var(--wc-ink)]"
+      : "border-border bg-card text-muted-foreground hover:border-[color:color-mix(in_oklch,var(--wc-ink)_36%,transparent)] hover:bg-background hover:text-foreground",
     className,
   )
 }
