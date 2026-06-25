@@ -319,6 +319,85 @@ describe("recalculation core logic", () => {
     expect(changedResolver(knockoutMatches[1]!).prediction).toBeNull();
   });
 
+  it("invalidates stale official knockout results when participants change downstream", () => {
+    const teamRecords = [
+      createTeam("a", "Alfa"),
+      createTeam("b", "Beta"),
+      createTeam("c", "Gama"),
+      createTeam("d", "Delta"),
+    ];
+    const knockoutMatches: MatchRecord[] = [
+      {
+        id: "m73",
+        matchNumber: 73,
+        bracketCode: "M073",
+        stage: "round_of_32",
+        groupId: null,
+        scheduledAt: new Date("2026-06-28T10:00:00Z"),
+        homeTeamId: "a",
+        awayTeamId: "b",
+        homeSourceType: "team",
+        homeSourceRef: "A",
+        awaySourceType: "team",
+        awaySourceRef: "B",
+      },
+      {
+        id: "m89",
+        matchNumber: 89,
+        bracketCode: "M089",
+        stage: "round_of_16",
+        groupId: null,
+        scheduledAt: new Date("2026-07-04T10:00:00Z"),
+        homeTeamId: "a",
+        awayTeamId: "c",
+        homeSourceType: "match_winner",
+        homeSourceRef: "M073",
+        awaySourceType: "team",
+        awaySourceRef: "C",
+      },
+      {
+        id: "m101",
+        matchNumber: 101,
+        bracketCode: "M101",
+        stage: "quarterfinal",
+        groupId: null,
+        scheduledAt: new Date("2026-07-09T10:00:00Z"),
+        homeTeamId: "a",
+        awayTeamId: "d",
+        homeSourceType: "match_winner",
+        homeSourceRef: "M089",
+        awaySourceType: "team",
+        awaySourceRef: "D",
+      },
+    ];
+    const officialResultRecords: OfficialResultRecord[] = [
+      { id: "r73", matchId: "m73", homeScore: 0, awayScore: 1, advancingTeamId: null },
+      { id: "r89", matchId: "m89", homeScore: 1, awayScore: 0, advancingTeamId: null },
+      { id: "r101", matchId: "m101", homeScore: 2, awayScore: 0, advancingTeamId: null },
+    ];
+
+    const snapshot = buildApplicationRecalculationSnapshot({
+      groupRecords: [],
+      groupTeamRecords: [],
+      teamRecords,
+      playerRecords: [],
+      matchRecords: knockoutMatches,
+      officialResultRecords,
+      predictionRecords: [],
+      tiebreakOverrideRecords: [],
+    });
+
+    expect(snapshot.invalidOfficialResultIds).toEqual(new Set(["r89", "r101"]));
+    expect(snapshot.officialParticipantsByKnockoutMatchId.get("m89")).toEqual({
+      homeTeamId: "b",
+      awayTeamId: "c",
+    });
+    expect(snapshot.officialParticipantsByKnockoutMatchId.get("m101")).toEqual({
+      homeTeamId: null,
+      awayTeamId: "d",
+    });
+  });
+
   it("ignores manual best-third assignments before all groups are complete while still resolving already-defined group slots", () => {
     const groupRecords: GroupRecord[] = [
       { id: "ga", code: "A" },
