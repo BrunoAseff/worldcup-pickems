@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { usePathname, useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
+import { tabTriggerClass } from "@/lib/utils";
 import {
   GroupStageGroupView,
   GroupStandingRow,
@@ -210,11 +211,10 @@ export function GroupStageShell({ groups, predictionLock }: GroupStageShellProps
               updateUrl(group.code, group.defaultRound);
             }}
             variant="outline"
-            className={
-              selectedGroupCode === group.code
-                ? "h-11 rounded-md border-foreground/25 bg-card px-4 text-sm text-foreground"
-                : "h-11 rounded-md bg-card px-4 text-sm text-muted-foreground hover:bg-card hover:text-foreground"
-            }
+            className={tabTriggerClass(
+              selectedGroupCode === group.code,
+              "h-11 rounded-md px-4 text-sm",
+            )}
           >
             Grupo {group.code}
           </Button>
@@ -237,11 +237,10 @@ export function GroupStageShell({ groups, predictionLock }: GroupStageShellProps
                 type="button"
                 variant="outline"
                 onClick={() => setStandingsView("official")}
-                className={
-                  standingsView === "official"
-                    ? "h-10 rounded-md border-foreground/25 bg-card px-3 text-sm text-foreground"
-                    : "h-10 rounded-md bg-card px-3 text-sm text-muted-foreground hover:bg-card hover:text-foreground"
-                }
+                className={tabTriggerClass(
+                  standingsView === "official",
+                  "h-10 rounded-md px-3 text-sm",
+                )}
               >
                 Oficial
               </Button>
@@ -249,11 +248,10 @@ export function GroupStageShell({ groups, predictionLock }: GroupStageShellProps
                 type="button"
                 variant="outline"
                 onClick={() => setStandingsView("prediction")}
-                className={
-                  standingsView === "prediction"
-                    ? "h-10 rounded-md border-foreground/25 bg-card px-3 text-sm text-foreground"
-                    : "h-10 rounded-md bg-card px-3 text-sm text-muted-foreground hover:bg-card hover:text-foreground"
-                }
+                className={tabTriggerClass(
+                  standingsView === "prediction",
+                  "h-10 rounded-md px-3 text-sm",
+                )}
               >
                 Previsão
               </Button>
@@ -273,11 +271,10 @@ export function GroupStageShell({ groups, predictionLock }: GroupStageShellProps
                   updateUrl(selectedGroup.code, round.round);
                 }}
                 variant="outline"
-                className={
-                  selectedRound === round.round
-                    ? "h-11 rounded-md border-foreground/25 bg-card px-4 text-sm text-foreground"
-                    : "h-11 rounded-md bg-card px-4 text-sm text-muted-foreground hover:bg-card hover:text-foreground"
-                }
+                className={tabTriggerClass(
+                  selectedRound === round.round,
+                  "h-11 rounded-md px-4 text-sm",
+                )}
               >
                 Rodada {round.round}
               </Button>

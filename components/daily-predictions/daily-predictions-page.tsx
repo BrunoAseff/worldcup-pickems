@@ -7,7 +7,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import { TeamFlag } from "@/components/teams/team-flag";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { cn } from "@/lib/utils";
+import { cn, tabTriggerClass } from "@/lib/utils";
 import { getGroupStageMatchFeedback } from "@/lib/predictions/feedback";
 import { type DailyPredictionsPageView } from "@/lib/daily-predictions/queries";
 import { routes } from "@/lib/routes";
@@ -76,11 +76,9 @@ export function DailyPredictionsPage({ view }: DailyPredictionsPageProps) {
                       <Link
                         key={dateKey}
                         href={`${routes.dailyPredictions}?dia=${dateKey}`}
-                        className={cn(
-                          "inline-flex h-10 items-center rounded-sm border px-4 text-sm font-medium transition-colors",
-                          isActive
-                            ? "border-foreground/20 bg-card text-foreground"
-                            : "border-border bg-card text-muted-foreground hover:bg-card hover:text-foreground",
+                        className={tabTriggerClass(
+                          isActive,
+                          "inline-flex h-10 items-center rounded-sm px-4 text-sm font-medium",
                         )}
                       >
                         {formatInTimeZone(

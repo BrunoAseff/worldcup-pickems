@@ -319,7 +319,7 @@ describe("recalculation core logic", () => {
     expect(changedResolver(knockoutMatches[1]!).prediction).toBeNull();
   });
 
-  it("ignores manual best-third assignments before all groups are complete", () => {
+  it("ignores manual best-third assignments before all groups are complete while still resolving already-defined group slots", () => {
     const groupRecords: GroupRecord[] = [
       { id: "ga", code: "A" },
       { id: "gb", code: "B" },
@@ -482,7 +482,7 @@ describe("recalculation core logic", () => {
     expect(snapshot.bestThirdQualifiedGroupCodes).toEqual([]);
     expect(snapshot.requiresManualBestThirdSelection).toBe(false);
     expect(snapshot.officialParticipantsByKnockoutMatchId.get("r32-1")).toEqual({
-      homeTeamId: null,
+      homeTeamId: "a1",
       awayTeamId: null,
     });
   });
@@ -636,6 +636,69 @@ describe("recalculation core logic", () => {
     expect(snapshot.officialParticipantsByKnockoutMatchId.get("r32-1")).toEqual({
       homeTeamId: "a1",
       awayTeamId: "h3",
+    });
+  });
+
+  it("resolves knockout slots from groups that are already complete even if other groups are still pending", () => {
+    const groupRecords: GroupRecord[] = [
+      { id: "group-a", code: "A" },
+      { id: "group-b", code: "B" },
+    ];
+    const groupTeamRecords: GroupTeamRecord[] = [
+      { groupId: "group-a", teamId: "a1" },
+      { groupId: "group-a", teamId: "a2" },
+      { groupId: "group-a", teamId: "a3" },
+      { groupId: "group-a", teamId: "a4" },
+      { groupId: "group-b", teamId: "b1" },
+      { groupId: "group-b", teamId: "b2" },
+      { groupId: "group-b", teamId: "b3" },
+      { groupId: "group-b", teamId: "b4" },
+    ];
+    const teamRecords = [
+      ...groupTeamRecords.map((record) => createTeam(record.teamId)),
+      createTeam("sco", "Escócia"),
+      createTeam("bra", "Brasil"),
+    ];
+    const matchRecords: MatchRecord[] = [
+      { id: "a-g1", matchNumber: 1, bracketCode: "A1", stage: "group_stage", groupId: "group-a", scheduledAt: new Date("2026-06-11T10:00:00Z"), homeTeamId: "a1", awayTeamId: "a2", homeSourceType: "team", homeSourceRef: "A1", awaySourceType: "team", awaySourceRef: "A2" },
+      { id: "a-g2", matchNumber: 2, bracketCode: "A2", stage: "group_stage", groupId: "group-a", scheduledAt: new Date("2026-06-11T13:00:00Z"), homeTeamId: "a3", awayTeamId: "a4", homeSourceType: "team", homeSourceRef: "A3", awaySourceType: "team", awaySourceRef: "A4" },
+      { id: "a-g3", matchNumber: 3, bracketCode: "A3", stage: "group_stage", groupId: "group-a", scheduledAt: new Date("2026-06-15T10:00:00Z"), homeTeamId: "a1", awayTeamId: "a3", homeSourceType: "team", homeSourceRef: "A1", awaySourceType: "team", awaySourceRef: "A3" },
+      { id: "a-g4", matchNumber: 4, bracketCode: "A4", stage: "group_stage", groupId: "group-a", scheduledAt: new Date("2026-06-15T13:00:00Z"), homeTeamId: "a2", awayTeamId: "a4", homeSourceType: "team", homeSourceRef: "A2", awaySourceType: "team", awaySourceRef: "A4" },
+      { id: "a-g5", matchNumber: 5, bracketCode: "A5", stage: "group_stage", groupId: "group-a", scheduledAt: new Date("2026-06-20T10:00:00Z"), homeTeamId: "a1", awayTeamId: "a4", homeSourceType: "team", homeSourceRef: "A1", awaySourceType: "team", awaySourceRef: "A4" },
+      { id: "a-g6", matchNumber: 6, bracketCode: "A6", stage: "group_stage", groupId: "group-a", scheduledAt: new Date("2026-06-20T13:00:00Z"), homeTeamId: "a2", awayTeamId: "a3", homeSourceType: "team", homeSourceRef: "A2", awaySourceType: "team", awaySourceRef: "A3" },
+      { id: "b-g1", matchNumber: 7, bracketCode: "B1", stage: "group_stage", groupId: "group-b", scheduledAt: new Date("2026-06-11T16:00:00Z"), homeTeamId: "b1", awayTeamId: "b2", homeSourceType: "team", homeSourceRef: "B1", awaySourceType: "team", awaySourceRef: "B2" },
+      { id: "k1", matchNumber: 73, bracketCode: "M073", stage: "round_of_32", groupId: null, scheduledAt: new Date("2026-06-28T10:00:00Z"), homeTeamId: null, awayTeamId: "sco", homeSourceType: "group_position", homeSourceRef: "A1", awaySourceType: "team", awaySourceRef: "SCO" },
+      { id: "k2", matchNumber: 89, bracketCode: "M089", stage: "round_of_16", groupId: null, scheduledAt: new Date("2026-07-04T10:00:00Z"), homeTeamId: null, awayTeamId: "bra", homeSourceType: "match_winner", homeSourceRef: "M073", awaySourceType: "team", awaySourceRef: "BRA" },
+    ];
+    const officialResultRecords: OfficialResultRecord[] = [
+      { matchId: "a-g1", homeScore: 1, awayScore: 0, advancingTeamId: null },
+      { matchId: "a-g2", homeScore: 0, awayScore: 0, advancingTeamId: null },
+      { matchId: "a-g3", homeScore: 1, awayScore: 0, advancingTeamId: null },
+      { matchId: "a-g4", homeScore: 1, awayScore: 0, advancingTeamId: null },
+      { matchId: "a-g5", homeScore: 0, awayScore: 0, advancingTeamId: null },
+      { matchId: "a-g6", homeScore: 1, awayScore: 0, advancingTeamId: null },
+      { matchId: "k1", homeScore: 2, awayScore: 0, advancingTeamId: null },
+    ];
+
+    const snapshot = buildApplicationRecalculationSnapshot({
+      groupRecords,
+      groupTeamRecords,
+      teamRecords,
+      playerRecords: [] as PlayerRecord[],
+      matchRecords,
+      officialResultRecords,
+      predictionRecords: [] as MatchPredictionRecord[],
+      tiebreakOverrideRecords: [],
+    });
+
+    expect(snapshot.bestThirdQualifiedGroupCodes).toEqual([]);
+    expect(snapshot.officialParticipantsByKnockoutMatchId.get("k1")).toEqual({
+      homeTeamId: "a1",
+      awayTeamId: "sco",
+    });
+    expect(snapshot.officialParticipantsByKnockoutMatchId.get("k2")).toEqual({
+      homeTeamId: "a1",
+      awayTeamId: "bra",
     });
   });
 
