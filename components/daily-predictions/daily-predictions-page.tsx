@@ -1,7 +1,6 @@
 "use client";
 
-import { useRef } from "react";
-import Link from "next/link";
+import { useEffect, useRef, useState } from "react";
 import { formatInTimeZone } from "date-fns-tz";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { TeamFlag } from "@/components/teams/team-flag";
@@ -10,7 +9,6 @@ import { Card } from "@/components/ui/card";
 import { cn, tabTriggerClass } from "@/lib/utils";
 import { getGroupStageMatchFeedback } from "@/lib/predictions/feedback";
 import { type DailyPredictionsPageView } from "@/lib/daily-predictions/queries";
-import { routes } from "@/lib/routes";
 
 const BRAZIL_TIME_ZONE = "America/Sao_Paulo";
 
@@ -27,8 +25,20 @@ type DailyPredictionsPageProps = {
 };
 
 export function DailyPredictionsPage({ view }: DailyPredictionsPageProps) {
-  const selectedDateLabel = view.selectedDate ? formatDayLabel(view.selectedDate) : null;
+  const [selectedDate, setSelectedDate] = useState(view.selectedDate);
+  const selectedDateLabel = selectedDate ? formatDayLabel(selectedDate) : null;
+  const selectedMatches = selectedDate ? view.matchesByDate[selectedDate] ?? [] : [];
   const datesRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    if (!selectedDate) {
+      return;
+    }
+
+    const url = new URL(window.location.href);
+    url.searchParams.set("dia", selectedDate);
+    window.history.replaceState(null, "", url);
+  }, [selectedDate]);
 
   const scrollDates = (direction: "left" | "right") => {
     const element = datesRef.current;
@@ -73,12 +83,13 @@ export function DailyPredictionsPage({ view }: DailyPredictionsPageProps) {
               >
                 <div className="flex min-w-max gap-2">
                   {view.availableDates.map((dateKey) => {
-                    const isActive = dateKey === view.selectedDate;
+                    const isActive = dateKey === selectedDate;
 
                     return (
-                      <Link
-                        key={dateKey}
-                        href={`${routes.dailyPredictions}?dia=${dateKey}`}
+	                      <button
+	                        key={dateKey}
+	                        type="button"
+	                        onClick={() => setSelectedDate(dateKey)}
                         className={tabTriggerClass(
                           isActive,
                           "inline-flex h-10 items-center rounded-sm px-4 text-sm font-bold",
@@ -89,7 +100,7 @@ export function DailyPredictionsPage({ view }: DailyPredictionsPageProps) {
                           BRAZIL_TIME_ZONE,
                           "dd/MM",
                         )}
-                      </Link>
+                      </button>
                     );
                   })}
                 </div>
@@ -116,15 +127,15 @@ export function DailyPredictionsPage({ view }: DailyPredictionsPageProps) {
         ) : null}
       </section>
 
-      {view.matches.length === 0 ? (
+      {selectedMatches.length === 0 ? (
         <Card className="border border-border px-5 py-6">
           <p className="text-sm text-muted-foreground">
             Nenhum jogo encontrado para esta data.
           </p>
         </Card>
       ) : (
-        <div className="space-y-4">
-          {view.matches.map((match) => (
+        <div className="grid gap-4 xl:grid-cols-2">
+          {selectedMatches.map((match) => (
             <section key={match.id} className="wc-ticket overflow-hidden rounded-sm">
               <div className="border-b border-border px-4 py-2.5">
                 <div className="flex flex-wrap items-center justify-between gap-3">
@@ -180,25 +191,23 @@ export function DailyPredictionsPage({ view }: DailyPredictionsPageProps) {
                     const pointsLabel = feedback ? `+${feedback.points}` : null;
 
                     return (
-                      <div
-                        key={prediction.userId}
-                        className={cn(
-                          "flex items-center gap-4 border-b border-border px-3 py-2.5 last:border-b-0",
-                          prediction.isCurrentUser && "bg-[color:color-mix(in_oklch,var(--wc-gold)_18%,transparent)]",
-                        )}
-                      >
-                        <div className="flex min-w-0 flex-1 items-center gap-4">
-                          <p className="truncate text-sm font-bold text-foreground">
-                            {prediction.displayName}
-                          </p>
-                          <div className="shrink-0 font-heading text-2xl font-black text-foreground">
-                            {prediction.homeScore !== null && prediction.awayScore !== null
-                              ? `${prediction.homeScore} x ${prediction.awayScore}`
-                              : "-"}
-                          </div>
+	                      <div
+	                        key={prediction.userId}
+	                        className={cn(
+	                          "grid grid-cols-[minmax(0,1fr)_5rem_minmax(0,1fr)] items-center gap-3 border-b border-border px-3 py-2.5 last:border-b-0",
+	                          prediction.isCurrentUser && "bg-[color:color-mix(in_oklch,var(--wc-gold)_18%,transparent)]",
+	                        )}
+	                      >
+	                        <p className="min-w-0 truncate text-sm font-bold text-foreground">
+	                          {prediction.displayName}
+	                        </p>
+	                        <div className="text-center font-heading text-2xl font-black text-foreground">
+                          {prediction.homeScore !== null && prediction.awayScore !== null
+                            ? `${prediction.homeScore} x ${prediction.awayScore}`
+                            : "-"}
                         </div>
                         {pointsLabel ? (
-                          <div className="ml-auto flex justify-end">
+                          <div className="flex justify-end">
                             <span
                               className={cn(
                                 "wc-display inline-flex shrink-0 rounded-sm border px-2 py-0.5 text-xs font-black",
@@ -210,7 +219,9 @@ export function DailyPredictionsPage({ view }: DailyPredictionsPageProps) {
                               {pointsLabel}
                             </span>
                           </div>
-                        ) : null}
+	                        ) : (
+	                          <div />
+	                        )}
                       </div>
                     );
                   })}

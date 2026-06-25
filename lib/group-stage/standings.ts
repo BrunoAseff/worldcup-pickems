@@ -419,8 +419,8 @@ export const computeGroupStandings = (
         goalsFor: stats.goalsFor,
         goalsAgainst: stats.goalsAgainst,
         goalDifference: stats.goalDifference,
-        form: stats.recentResults.slice(-5).join(""),
-        recentResults: stats.recentResults.slice(-5),
+        form: stats.recentResults.slice(-3).join(""),
+        recentResults: stats.recentResults.slice(-3),
         qualificationStatus:
           index < 2 ? "qualified" : index === 2 ? "third_place" : "eliminated",
       };
