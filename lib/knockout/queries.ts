@@ -48,6 +48,10 @@ export type KnockoutMatchView = {
   awaySourceRef: string;
   homeParticipant: KnockoutParticipantView;
   awayParticipant: KnockoutParticipantView;
+  officialParticipants: {
+    homeTeamId: string | null;
+    awayTeamId: string | null;
+  };
   officialResult: {
     homeScore: number;
     awayScore: number;
@@ -654,6 +658,7 @@ export const getKnockoutPlayerView = async (userId: string): Promise<KnockoutPag
     stages: buildStages(context.matches, (match) => {
       const predictedState = context.predictionResolver(match);
       const predictedParticipants = predictedState.participants;
+      const officialParticipants = context.officialResolver(match);
       const prediction = predictedState.prediction;
 
       return {
@@ -670,6 +675,10 @@ export const getKnockoutPlayerView = async (userId: string): Promise<KnockoutPag
         awaySourceRef: match.awaySourceRef,
         homeParticipant: predictedParticipants.home,
         awayParticipant: predictedParticipants.away,
+        officialParticipants: {
+          homeTeamId: officialParticipants.home.teamId,
+          awayTeamId: officialParticipants.away.teamId,
+        },
         officialResult: context.officialResultByMatchId.get(match.id) ?? null,
         prediction: prediction
           ? {
@@ -712,6 +721,10 @@ export const getKnockoutAdminView = async (): Promise<KnockoutPageView> => {
         awaySourceRef: match.awaySourceRef,
         homeParticipant: officialParticipants.home,
         awayParticipant: officialParticipants.away,
+        officialParticipants: {
+          homeTeamId: officialParticipants.home.teamId,
+          awayTeamId: officialParticipants.away.teamId,
+        },
         officialResult: context.officialResultByMatchId.get(match.id) ?? null,
         prediction: null,
         canEditPrediction: false,

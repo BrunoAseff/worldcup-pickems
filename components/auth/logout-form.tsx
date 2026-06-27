@@ -7,9 +7,9 @@ export function LogoutForm() {
     <form action={logoutAction}>
       <Button
         type="submit"
-        variant="outline"
+        variant="ghost"
         size="icon"
-        className="size-11 rounded-md"
+        className="size-11 rounded-sm border border-[color:var(--wc-ink)] bg-background text-foreground shadow-[2px_2px_0_var(--wc-ink)] hover:bg-destructive hover:text-destructive-foreground"
         aria-label="Sair"
         title="Sair"
       >
