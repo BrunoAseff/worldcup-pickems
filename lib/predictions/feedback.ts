@@ -111,7 +111,9 @@ export const getKnockoutMatchFeedback = ({
 
   const exact =
     prediction.homeScore === officialResult.homeScore &&
-    prediction.awayScore === officialResult.awayScore;
+    prediction.awayScore === officialResult.awayScore &&
+    prediction.predictedHomeTeamId === participants.homeTeamId &&
+    prediction.predictedAwayTeamId === participants.awayTeamId;
 
   if (points > 0 && exact) {
     return { kind: "exact", label: "Placar exato", points };
