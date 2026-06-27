@@ -282,7 +282,7 @@ export function KnockoutMatchCard({
           stage: match.stage,
           prediction: match.prediction,
           officialResult: match.officialResult,
-          participants: {
+          participants: match.officialParticipants ?? {
             homeTeamId: match.homeParticipant.teamId,
             awayTeamId: match.awayParticipant.teamId,
           },
@@ -303,17 +303,17 @@ export function KnockoutMatchCard({
       (match.prediction.homeScore !== match.officialResult.homeScore ||
         match.prediction.awayScore !== match.officialResult.awayScore),
   );
-  const displayAdvancingTeamId =
-    values.advancingTeamId ??
-    (match.officialResult &&
-    match.homeParticipant.teamId &&
-    match.awayParticipant.teamId
+  const officialAdvancingTeamId =
+    match.officialResult &&
+    match.officialParticipants?.homeTeamId &&
+    match.officialParticipants.awayTeamId
       ? match.officialResult.homeScore > match.officialResult.awayScore
-        ? match.homeParticipant.teamId
+        ? match.officialParticipants.homeTeamId
         : match.officialResult.awayScore > match.officialResult.homeScore
-          ? match.awayParticipant.teamId
+          ? match.officialParticipants.awayTeamId
           : match.officialResult.advancingTeamId
-      : null);
+      : null;
+  const displayAdvancingTeamId = values.advancingTeamId ?? officialAdvancingTeamId;
 
   return (
     <Card

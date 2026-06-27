@@ -98,11 +98,11 @@ export const scoringRuleSections = [
   {
     title: "Mata-mata",
     items: [
-      `16-avos: ${knockoutStagePoints.round_of_32.exact} no placar exato ou ${knockoutStagePoints.round_of_32.winner} ao acertar quem avança.`,
-      `Oitavas: ${knockoutStagePoints.round_of_16.exact} no placar exato ou ${knockoutStagePoints.round_of_16.winner} ao acertar quem avança.`,
-      `Quartas: ${knockoutStagePoints.quarterfinal.exact} no placar exato ou ${knockoutStagePoints.quarterfinal.winner} ao acertar quem avança.`,
-      `Semifinais e disputa de 3º lugar: ${knockoutStagePoints.semifinal.exact} no placar exato ou ${knockoutStagePoints.semifinal.winner} ao acertar quem avança.`,
-      `Final: ${knockoutStagePoints.final.exact} no placar exato ou ${knockoutStagePoints.final.winner} ao acertar o campeão.`,
+      `16-avos: ${knockoutStagePoints.round_of_32.exact} no placar exato do confronto correto ou ${knockoutStagePoints.round_of_32.winner} ao acertar quem avança.`,
+      `Oitavas: ${knockoutStagePoints.round_of_16.exact} no placar exato do confronto correto ou ${knockoutStagePoints.round_of_16.winner} ao acertar quem avança.`,
+      `Quartas: ${knockoutStagePoints.quarterfinal.exact} no placar exato do confronto correto ou ${knockoutStagePoints.quarterfinal.winner} ao acertar quem avança.`,
+      `Semifinais e disputa de 3º lugar: ${knockoutStagePoints.semifinal.exact} no placar exato do confronto correto ou ${knockoutStagePoints.semifinal.winner} ao acertar quem avança.`,
+      `Final: ${knockoutStagePoints.final.exact} no placar exato do confronto correto ou ${knockoutStagePoints.final.winner} ao acertar o campeão.`,
     ],
   },
 ] as const;
@@ -111,9 +111,9 @@ export const scoreKnockoutMatch = (
   stage: keyof typeof knockoutStagePoints,
   prediction: ScoringPrediction | null,
   official: ScoringOfficialResult | undefined,
-  participants: ScoringParticipants,
+  participants: ScoringParticipants | undefined,
 ) => {
-  if (!prediction || !official || !participants.homeTeamId || !participants.awayTeamId) {
+  if (!prediction || !official || !participants?.homeTeamId || !participants.awayTeamId) {
     return 0;
   }
 
@@ -126,6 +126,9 @@ export const scoreKnockoutMatch = (
   const exactRegularTime =
     prediction.predictedHomeScore === official.homeScore &&
     prediction.predictedAwayScore === official.awayScore;
+  const exactParticipants =
+    prediction.predictedHomeTeamId === participants.homeTeamId &&
+    prediction.predictedAwayTeamId === participants.awayTeamId;
   const predictedAdvancingTeamId =
     prediction.predictedHomeScore > prediction.predictedAwayScore
       ? prediction.predictedHomeTeamId
@@ -136,14 +139,14 @@ export const scoreKnockoutMatch = (
   const stagePoints = knockoutStagePoints[stage];
 
   if (official.homeScore === official.awayScore) {
-    if (exactRegularTime && correctAdvancingTeam) {
+    if (exactRegularTime && exactParticipants && correctAdvancingTeam) {
       return stagePoints.exact;
     }
 
     return correctAdvancingTeam ? stagePoints.winner : 0;
   }
 
-  if (exactRegularTime) {
+  if (exactRegularTime && exactParticipants) {
     return stagePoints.exact;
   }
 

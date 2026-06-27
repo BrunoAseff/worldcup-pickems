@@ -107,6 +107,21 @@ describe("recalculation core logic", () => {
         { homeTeamId: "h", awayTeamId: "a" },
       ),
     ).toBe(100);
+
+    expect(
+      scoreKnockoutMatch(
+        "quarterfinal",
+        {
+          predictedHomeTeamId: "alg",
+          predictedAwayTeamId: "arg",
+          predictedHomeScore: 0,
+          predictedAwayScore: 3,
+          predictedAdvancingTeamId: null,
+        },
+        { homeScore: 0, awayScore: 3, advancingTeamId: null },
+        { homeTeamId: "esp", awayTeamId: "arg" },
+      ),
+    ).toBe(20);
   });
 
   it("computes ranking positions with shared top-ranking semantics", () => {

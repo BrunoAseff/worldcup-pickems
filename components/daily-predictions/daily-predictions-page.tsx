@@ -29,6 +29,7 @@ export function DailyPredictionsPage({ view }: DailyPredictionsPageProps) {
   const selectedDateLabel = selectedDate ? formatDayLabel(selectedDate) : null;
   const selectedMatches = selectedDate ? view.matchesByDate[selectedDate] ?? [] : [];
   const datesRef = useRef<HTMLDivElement | null>(null);
+  const dateButtonRefs = useRef(new Map<string, HTMLButtonElement>());
 
   useEffect(() => {
     if (!selectedDate) {
@@ -38,6 +39,12 @@ export function DailyPredictionsPage({ view }: DailyPredictionsPageProps) {
     const url = new URL(window.location.href);
     url.searchParams.set("dia", selectedDate);
     window.history.replaceState(null, "", url);
+
+    dateButtonRefs.current.get(selectedDate)?.scrollIntoView({
+      behavior: "smooth",
+      block: "nearest",
+      inline: "center",
+    });
   }, [selectedDate]);
 
   const scrollDates = (direction: "left" | "right") => {
@@ -86,10 +93,17 @@ export function DailyPredictionsPage({ view }: DailyPredictionsPageProps) {
                     const isActive = dateKey === selectedDate;
 
                     return (
-	                      <button
-	                        key={dateKey}
-	                        type="button"
-	                        onClick={() => setSelectedDate(dateKey)}
+                      <button
+                        key={dateKey}
+                        ref={(element) => {
+                          if (element) {
+                            dateButtonRefs.current.set(dateKey, element);
+                          } else {
+                            dateButtonRefs.current.delete(dateKey);
+                          }
+                        }}
+                        type="button"
+                        onClick={() => setSelectedDate(dateKey)}
                         className={tabTriggerClass(
                           isActive,
                           "inline-flex h-10 items-center rounded-sm px-4 text-sm font-bold",
