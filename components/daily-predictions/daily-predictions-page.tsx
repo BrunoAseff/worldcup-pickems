@@ -7,8 +7,11 @@ import { TeamFlag } from "@/components/teams/team-flag";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { cn, tabTriggerClass } from "@/lib/utils";
-import { getGroupStageMatchFeedback } from "@/lib/predictions/feedback";
-import { type DailyPredictionsPageView } from "@/lib/daily-predictions/queries";
+import { getGroupStageMatchFeedback, getKnockoutMatchFeedback } from "@/lib/predictions/feedback";
+import {
+  type DailyPredictionsMatchView,
+  type DailyPredictionsPageView,
+} from "@/lib/daily-predictions/queries";
 
 const BRAZIL_TIME_ZONE = "America/Sao_Paulo";
 
@@ -23,6 +26,22 @@ const formatDayLabel = (dateKey: string) =>
 type DailyPredictionsPageProps = {
   view: DailyPredictionsPageView;
 };
+
+type KnockoutStage = Exclude<DailyPredictionsMatchView["stage"], "group_stage">;
+
+const knockoutStages = new Set<KnockoutStage>([
+  "round_of_32",
+  "round_of_16",
+  "quarterfinal",
+  "semifinal",
+  "third_place",
+  "final",
+]);
+
+const isKnockoutStage = (
+  stage: DailyPredictionsMatchView["stage"],
+): stage is KnockoutStage =>
+  stage !== "group_stage" && knockoutStages.has(stage);
 
 export function DailyPredictionsPage({ view }: DailyPredictionsPageProps) {
   const [selectedDate, setSelectedDate] = useState(view.selectedDate);
@@ -195,30 +214,89 @@ export function DailyPredictionsPage({ view }: DailyPredictionsPageProps) {
 
                 <div className="overflow-hidden rounded-sm border border-border bg-background/55">
                   {match.predictions.map((prediction) => {
-                    const feedback = getGroupStageMatchFeedback({
-                      prediction: {
-                        homeScore: prediction.homeScore,
-                        awayScore: prediction.awayScore,
-                      },
-                      officialResult: match.officialResult,
-                    });
+                    const isKnockout = isKnockoutStage(match.stage);
+                    const feedback = (() => {
+                      if (isKnockoutStage(match.stage)) {
+                        return getKnockoutMatchFeedback({
+                          stage: match.stage,
+                          prediction: {
+                            homeScore: prediction.homeScore,
+                            awayScore: prediction.awayScore,
+                            predictedHomeTeamId: prediction.predictedHomeTeamId,
+                            predictedAwayTeamId: prediction.predictedAwayTeamId,
+                            predictedAdvancingTeamId: prediction.predictedAdvancingTeamId,
+                          },
+                          officialResult: match.officialResult,
+                          participants: {
+                            homeTeamId: match.homeTeamId,
+                            awayTeamId: match.awayTeamId,
+                          },
+                        });
+                      }
+
+                      return getGroupStageMatchFeedback({
+                        prediction: {
+                          homeScore: prediction.homeScore,
+                          awayScore: prediction.awayScore,
+                        },
+                        officialResult: match.officialResult,
+                      });
+                    })();
                     const pointsLabel = feedback ? `+${feedback.points}` : null;
+                    const hasPrediction =
+                      prediction.homeScore !== null && prediction.awayScore !== null;
+                    const predictedMatchDiffers =
+                      isKnockout &&
+                      hasPrediction &&
+                      (prediction.predictedHomeTeamId !== match.homeTeamId ||
+                        prediction.predictedAwayTeamId !== match.awayTeamId);
+                    const showAdvancingTeam =
+                      isKnockout &&
+                      hasPrediction &&
+                      prediction.homeScore === prediction.awayScore &&
+                      prediction.predictedAdvancingTeamName;
 
                     return (
-	                      <div
-	                        key={prediction.userId}
-	                        className={cn(
-	                          "grid grid-cols-[minmax(0,1fr)_5rem_minmax(0,1fr)] items-center gap-3 border-b border-border px-3 py-2.5 last:border-b-0",
-	                          prediction.isCurrentUser && "bg-[color:color-mix(in_oklch,var(--wc-gold)_18%,transparent)]",
-	                        )}
-	                      >
-	                        <p className="min-w-0 truncate text-sm font-bold text-foreground">
-	                          {prediction.displayName}
-	                        </p>
-	                        <div className="text-center font-heading text-2xl font-black text-foreground">
-                          {prediction.homeScore !== null && prediction.awayScore !== null
-                            ? `${prediction.homeScore} x ${prediction.awayScore}`
-                            : "-"}
+                      <div
+                        key={prediction.userId}
+                        className={cn(
+                          "grid grid-cols-[minmax(0,1fr)_8.5rem_minmax(0,1fr)] items-center gap-3 border-b border-border px-3 py-2.5 last:border-b-0",
+                          prediction.isCurrentUser && "bg-[color:color-mix(in_oklch,var(--wc-gold)_18%,transparent)]",
+                        )}
+                      >
+                        <p className="min-w-0 truncate text-sm font-bold text-foreground">
+                          {prediction.displayName}
+                        </p>
+                        <div className="min-w-0 text-center">
+                          <div className="font-heading text-2xl font-black text-foreground">
+                            {hasPrediction
+                              ? `${prediction.homeScore} x ${prediction.awayScore}`
+                              : "-"}
+                          </div>
+                          {predictedMatchDiffers ? (
+                            <div className="mt-0.5 flex min-w-0 items-center justify-center gap-1 text-[11px] font-bold text-muted-foreground">
+                              <TeamFlag
+                                code={prediction.predictedHomeTeamFlagCode}
+                                className="size-4 shrink-0"
+                              />
+                              <span className="truncate">
+                                {prediction.predictedHomeTeamName ?? "A definir"}
+                              </span>
+                              <span className="shrink-0">x</span>
+                              <span className="truncate">
+                                {prediction.predictedAwayTeamName ?? "A definir"}
+                              </span>
+                              <TeamFlag
+                                code={prediction.predictedAwayTeamFlagCode}
+                                className="size-4 shrink-0"
+                              />
+                            </div>
+                          ) : null}
+                          {showAdvancingTeam ? (
+                            <p className="mt-0.5 truncate text-[11px] font-bold text-[color:var(--wc-green-dark)]">
+                              {prediction.predictedAdvancingTeamName} passa
+                            </p>
+                          ) : null}
                         </div>
                         {pointsLabel ? (
                           <div className="flex justify-end">
@@ -233,9 +311,9 @@ export function DailyPredictionsPage({ view }: DailyPredictionsPageProps) {
                               {pointsLabel}
                             </span>
                           </div>
-	                        ) : (
-	                          <div />
-	                        )}
+                        ) : (
+                          <div />
+                        )}
                       </div>
                     );
                   })}

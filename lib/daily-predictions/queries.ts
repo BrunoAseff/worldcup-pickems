@@ -21,9 +21,19 @@ const stageLabelByStage: Record<
 export type DailyPredictionsMatchView = {
   id: string;
   matchNumber: number;
+  stage:
+    | "group_stage"
+    | "round_of_32"
+    | "round_of_16"
+    | "quarterfinal"
+    | "semifinal"
+    | "third_place"
+    | "final";
   stageLabel: string;
   scheduledAt: string;
   venueName: string;
+  homeTeamId: string | null;
+  awayTeamId: string | null;
   homeTeamName: string;
   awayTeamName: string;
   homeTeamFlagCode: string | null;
@@ -31,6 +41,7 @@ export type DailyPredictionsMatchView = {
   officialResult: {
     homeScore: number;
     awayScore: number;
+    advancingTeamId: string | null;
   } | null;
   submittedPredictions: number;
   predictions: Array<{
@@ -39,6 +50,14 @@ export type DailyPredictionsMatchView = {
     username: string;
     homeScore: number | null;
     awayScore: number | null;
+    predictedHomeTeamId: string | null;
+    predictedAwayTeamId: string | null;
+    predictedAdvancingTeamId: string | null;
+    predictedHomeTeamName: string | null;
+    predictedAwayTeamName: string | null;
+    predictedAdvancingTeamName: string | null;
+    predictedHomeTeamFlagCode: string | null;
+    predictedAwayTeamFlagCode: string | null;
     isCurrentUser: boolean;
   }>;
 };
@@ -146,6 +165,9 @@ export const getDailyPredictionsPageView = async ({
             displayName: users.displayName,
             homeScore: matchPredictions.predictedHomeScore,
             awayScore: matchPredictions.predictedAwayScore,
+            predictedHomeTeamId: matchPredictions.predictedHomeTeamId,
+            predictedAwayTeamId: matchPredictions.predictedAwayTeamId,
+            predictedAdvancingTeamId: matchPredictions.predictedAdvancingTeamId,
           })
           .from(matchPredictions)
           .innerJoin(users, eq(matchPredictions.userId, users.id))
@@ -157,11 +179,40 @@ export const getDailyPredictionsPageView = async ({
             matchId: officialResults.matchId,
             homeScore: officialResults.homeScore,
             awayScore: officialResults.awayScore,
+            advancingTeamId: officialResults.advancingTeamId,
           })
           .from(officialResults)
           .where(inArray(officialResults.matchId, matchIds))
       : Promise.resolve([]),
   ]);
+
+  const predictionTeamIds = Array.from(
+    new Set(
+      predictionRecords
+        .flatMap((prediction) => [
+          prediction.predictedHomeTeamId,
+          prediction.predictedAwayTeamId,
+          prediction.predictedAdvancingTeamId,
+        ])
+        .filter((teamId): teamId is string => Boolean(teamId))
+        .filter((teamId) => !teamById.has(teamId)),
+    ),
+  );
+
+  if (predictionTeamIds.length > 0) {
+    const predictionTeamRecords = await db
+      .select({
+        id: teams.id,
+        namePt: teams.namePt,
+        flagCode: teams.flagCode,
+      })
+      .from(teams)
+      .where(inArray(teams.id, predictionTeamIds));
+
+    for (const team of predictionTeamRecords) {
+      teamById.set(team.id, team);
+    }
+  }
 
   const predictionsByMatchId = new Map<
     string,
@@ -180,6 +231,7 @@ export const getDailyPredictionsPageView = async ({
       {
         homeScore: result.homeScore,
         awayScore: result.awayScore,
+        advancingTeamId: result.advancingTeamId,
       },
     ]),
   );
@@ -197,15 +249,36 @@ export const getDailyPredictionsPageView = async ({
         username: player.username,
         homeScore: prediction?.homeScore ?? null,
         awayScore: prediction?.awayScore ?? null,
+        predictedHomeTeamId: prediction?.predictedHomeTeamId ?? null,
+        predictedAwayTeamId: prediction?.predictedAwayTeamId ?? null,
+        predictedAdvancingTeamId: prediction?.predictedAdvancingTeamId ?? null,
+        predictedHomeTeamName: prediction?.predictedHomeTeamId
+          ? teamById.get(prediction.predictedHomeTeamId)?.namePt ?? null
+          : null,
+        predictedAwayTeamName: prediction?.predictedAwayTeamId
+          ? teamById.get(prediction.predictedAwayTeamId)?.namePt ?? null
+          : null,
+        predictedAdvancingTeamName: prediction?.predictedAdvancingTeamId
+          ? teamById.get(prediction.predictedAdvancingTeamId)?.namePt ?? null
+          : null,
+        predictedHomeTeamFlagCode: prediction?.predictedHomeTeamId
+          ? teamById.get(prediction.predictedHomeTeamId)?.flagCode ?? null
+          : null,
+        predictedAwayTeamFlagCode: prediction?.predictedAwayTeamId
+          ? teamById.get(prediction.predictedAwayTeamId)?.flagCode ?? null
+          : null,
         isCurrentUser: player.id === viewerUserId,
       };
     });
     const matchView = {
       id: match.id,
       matchNumber: match.matchNumber,
+      stage: match.stage,
       stageLabel: stageLabelByStage[match.stage],
       scheduledAt: match.scheduledAt.toISOString(),
       venueName: match.venueName,
+      homeTeamId: match.homeTeamId,
+      awayTeamId: match.awayTeamId,
       homeTeamName: homeTeam?.namePt ?? "A definir",
       awayTeamName: awayTeam?.namePt ?? "A definir",
       homeTeamFlagCode: homeTeam?.flagCode ?? null,
